@@ -5,6 +5,14 @@
  */
 package proyecto2;
 
+import java.awt.Color;
+import proyecto2.presentation.application.ApplicationController;
+import proyecto2.presentation.bien.edicion.BienController;
+import proyecto2.presentation.dependencias.edicion.DependenciaController;
+import proyecto2.presentation.dependencias.listado.DependenciasController;
+import proyecto2.presentation.funcionarios.edicion.FuncionarioController;
+import proyecto2.presentation.funcionarios.listado.FuncionariosController;
+
 /**
  *
  * @author Dani
@@ -18,4 +26,20 @@ public class Application {
         // TODO code application logic here
     }
     
+
+    public static FuncionarioController FUNCIONARIO_CONTROLLER;
+    public static FuncionariosController FUNCIONARIOS_CONTROLLER;
+    public static DependenciaController DEPENDENCIA_CONTROLLER;
+    public static DependenciasController DEPENDENCIAS_CONTROLLER;
+    public static BienController BIEN_CONTROLLER;
+    public static ApplicationController APPLICATION_CONTROLLER; 
+    
+    public static final int MODO_AGREGAR = 0;
+    public static final int MODO_EDITAR = 1;
+    public static final int MODO_CONSULTAR = 2;
+
+    public static final Color COLOR_ERROR = Color.red;
+    public static final Color COLOR_OK = Color.black;
+
+
 }
