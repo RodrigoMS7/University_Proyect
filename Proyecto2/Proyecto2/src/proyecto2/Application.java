@@ -6,16 +6,22 @@
 package proyecto2;
 
 import java.awt.Color;
+import org.hibernate.Session;
+import proyecto2.logic.HibernateUtil;
+import proyecto2.logic.ModelGeneral;
 import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.bien.edicion.BienController;
 import proyecto2.presentation.dependencias.edicion.DependenciaController;
 import proyecto2.presentation.dependencias.listado.DependenciasController;
 import proyecto2.presentation.funcionarios.edicion.FuncionarioController;
 import proyecto2.presentation.funcionarios.listado.FuncionariosController;
+import proyecto2.presentation.solicitudes.edicion.SolicitudController;
+import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
+import proyecto2.presentation.solicitudes.edicion.SolicitudView;
 
 /**
  *
- * @author Dani
+ * @author Rodrigo Meléndez
  */
 public class Application {
 
@@ -23,7 +29,13 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ModelGeneral domainModel = ModelGeneral.instance();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        SolicitudView sv = new SolicitudView();
+        SolicitudModel sm = new SolicitudModel();
+        SolicitudController sc = new SolicitudController(domainModel, sv, sm, session);
+        sv.setVisible(true);
+        SOLICITUD_CONTROLLER = sc;
     }
     
 
@@ -32,6 +44,7 @@ public class Application {
     public static DependenciaController DEPENDENCIA_CONTROLLER;
     public static DependenciasController DEPENDENCIAS_CONTROLLER;
     public static BienController BIEN_CONTROLLER;
+    public static SolicitudController SOLICITUD_CONTROLLER;
     public static ApplicationController APPLICATION_CONTROLLER; 
     
     public static final int MODO_AGREGAR = 0;
