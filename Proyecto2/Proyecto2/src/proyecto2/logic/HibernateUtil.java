@@ -7,6 +7,7 @@ package proyecto2.logic;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -32,5 +33,9 @@ public class HibernateUtil {
     
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    
+    public static void stop(){
+        StandardServiceRegistryBuilder.destroy(sessionFactory.getSessionFactoryOptions().getServiceRegistry());
     }
 }

@@ -26,20 +26,18 @@ public class SolicitudesController {
 //        view.setController(this);
 //        view.setModel(model);
     }
-//     public void buscar(Solicitud filter) throws Exception{       
-//         model.setFilter(filter);
-//        this.refrescarBusqueda();
-//    }
-//    
-//    public void refrescarBusqueda() throws Exception{
+     public void buscar(Solicitud filter) throws Exception{       
+         model.setFilter(filter);
+        this.refrescarBusqueda();
+    }
+    
+    public void refrescarBusqueda() throws Exception{
+//        proyecto2.logic.
 //       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
-//        model.setFuncionarios(rows);
+//        model.setSolicitudes(rows);
 //        model.commit();
-//         for (int i = 0; i < rows.size(); i++) {
-//                System.out.println(rows.get(i).toString());
-//            }
 //        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
-//    }    
+    }    
 //
 //    public void preAgregar(Point at)throws Exception{      
 ////        Usuario principal = (Usuario) session.getAttribute(Application.USER_ATTRIBUTE);
