@@ -6,9 +6,13 @@
 package proyecto2.presentation.solicitudes.listado;
 
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
+import proyecto2.Application;
+import proyecto2.SessionUsuario;
 import proyecto2.logic.Solicitud;
+import proyecto2.logic.Usuario;
 
 /**
  *
@@ -18,6 +22,7 @@ public class SolicitudesController {
     Session session;
     SolicitudesView view;
     SolicitudesModel model;
+    SessionUsuario sessionUsu;
     
     public SolicitudesController(SolicitudesView view, SolicitudesModel model, Session session) {
         this.session=session;
@@ -32,8 +37,17 @@ public class SolicitudesController {
     }
     
     public void refrescarBusqueda() throws Exception{
-//        proyecto2.logic.
-//       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
+        Usuario principal = (Usuario)sessionUsu.getAttribute("User");
+        if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals("Secretario") ){
+           
+        }else  if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals("Adminitrador") ){
+           
+        }else  if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()) == "Jefe OCCB" ){
+
+        }else if  (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()) == "Jefe OCCB" ){
+        
+        }
+//        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
 //        model.setSolicitudes(rows);
 //        model.commit();
 //        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
