@@ -6,9 +6,13 @@
 package proyecto2.presentation.solicitudes.listado;
 
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
+import proyecto2.Application;
+import proyecto2.SessionUsuario;
 import proyecto2.logic.Solicitud;
+import proyecto2.logic.Usuario;
 
 /**
  *
@@ -18,6 +22,7 @@ public class SolicitudesController {
     Session session;
     SolicitudesView view;
     SolicitudesModel model;
+    SessionUsuario sessionUsu;
     
     public SolicitudesController(SolicitudesView view, SolicitudesModel model, Session session) {
         this.session=session;
@@ -32,11 +37,12 @@ public class SolicitudesController {
     }
     
     public void refrescarBusqueda() throws Exception{
-       
+
        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
+
     }    
 //
 //    public void preAgregar(Point at)throws Exception{      

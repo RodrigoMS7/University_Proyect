@@ -19,8 +19,8 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
 
     FuncionariosController controller;
     FuncionariosModel model;
-    public FuncionariosView() {
-         super("",false,true);
+    public FuncionariosView() throws Exception {
+        super("", false, true);
         initComponents();
     }
 

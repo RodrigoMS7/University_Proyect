@@ -10,7 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
 import proyecto2.Application;
+import proyecto2.SessionUsuario;
 import proyecto2.logic.Funcionario;
+import proyecto2.logic.Usuario;
 
 /**
  *
@@ -20,17 +22,26 @@ public class FuncionariosController {
     Session session;
     FuncionariosView view;
     FuncionariosModel model;
-    
-    public FuncionariosController(FuncionariosView view, FuncionariosModel model, Session session) {
+    SessionUsuario sessionUsuario;
+    public FuncionariosController(FuncionariosView view, FuncionariosModel model, Session session, SessionUsuario u) {
         this.session=session;
-        
+        sessionUsuario = u;
         this.view = view;
         this.model = model;
         view.setController(this);
         view.setModel(model);
     }
-     public void buscar(Funcionario filter) throws Exception{       
-         model.setFilter(filter);
+     public void buscar(Funcionario filter) throws Exception{
+          Usuario principal = (Usuario) sessionUsuario.getAttribute("User");
+               System.out.println("jpa");
+           System.out.println(proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()));
+
+        if (!proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals( "Administrador") ){
+           throw new Exception(Application.ROL_NOTAUTHORIZED);
+        }
+          
+           
+        model.setFilter(filter);
         this.refrescarBusqueda();
     }
     
@@ -38,15 +49,15 @@ public class FuncionariosController {
        List<Funcionario> rows = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
         model.setFuncionarios(rows);
         model.commit();
-         for (int i = 0; i < rows.size(); i++) {
-                System.out.println(rows.get(i).toString());
-            }
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
     }    
 
     public void preAgregar(Point at)throws Exception{      
-//        Usuario principal = (Usuario) session.getAttribute(Application.USER_ATTRIBUTE);
-//        if ( !Arrays.asList(Application.ROL_MANAGER).contains(principal.getRol())){
+//        Usuario principal = (Usuario) sessionUsuario.getAttribute("User");
+//               System.out.println("jpa");
+//
+//       System.out.println(principal.getUsername());
+//        if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()) != "Administrador" ){
 //           throw new Exception(Application.ROL_NOTAUTHORIZED);
 //        }
         Application.FUNCIONARIO_CONTROLLER.reset(Application.MODO_AGREGAR, new Funcionario()); //modo agregar se setea aqui

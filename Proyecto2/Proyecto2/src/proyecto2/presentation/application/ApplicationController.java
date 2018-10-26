@@ -8,6 +8,8 @@ package proyecto2.presentation.application;
 import java.awt.Point;
 import org.hibernate.Session;
 import proyecto2.Application;
+import proyecto2.SessionUsuario;
+import proyecto2.logic.Usuario;
 
 /**
  *
@@ -17,10 +19,11 @@ public class ApplicationController {
     ApplicationView view;
     ApplicationModel model;
     Session session;
+    SessionUsuario sessUsu;
     
-    public ApplicationController(ApplicationView view, ApplicationModel model, Session session) {
+    public ApplicationController(ApplicationView view, ApplicationModel model, Session session, SessionUsuario sessUsu) {
         this.session=session;
-        
+        this.sessUsu = sessUsu;
         this.view = view;
         this.model = model;
         view.setController(this);
@@ -42,9 +45,9 @@ public class ApplicationController {
     }
     
     public void reset(){
-        Application.DEPENDENCIAS_CONTROLLER.reset();
+        Application.FUNCIONARIOS_CONTROLLER.reset();
        // Application.ESTADOS_CONTROLLER.reset();
-       // model.reset((Usuario) session.getAttribute(Application.USER_ATTRIBUTE));
+        model.reset((Usuario) sessUsu.getAttribute(Application.USER_ATTRIBUTE));
     }
     
     public void show(){

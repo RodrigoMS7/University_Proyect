@@ -57,12 +57,13 @@ public class ModelGeneral {
         ses = HibernateUtil.getSessionFactory().openSession();
     }
             
-    public  Usuario getUsuario(String id, String password) throws Exception{
+    public  Usuario getUsuario(int id, String password) throws Exception{
         Usuario u = (Usuario) ses.get(Usuario.class, id);
+        
         if(u==null)  throw new Exception ("Usuario no existe");
         if (u.getPassword().equals(password)){
             Hibernate.initialize( u.getFuncionario());
-            Hibernate.initialize( u.getFuncionario().getLabors());
+//            Hibernate.initialize( u.getFuncionario().getLabors());
             ses.evict(u);
             return u;
         }
@@ -187,6 +188,53 @@ public class ModelGeneral {
             return null;
         }
     }
+    
+//    public List<Solicitud> searchSolicitudes(Solicitud sol ){
+//        String sql = "select * from funcionario where id like '%%%s%%'";
+//
+//        sql = String.format(sql, sol.getId());
+//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//                ResultSet rs = stm.executeQuery(sql);) {
+//            List<Solicitud> resultado = new ArrayList<Solicitud>();
+//            while (rs.next()) {
+//                resultado.add(new Funcionario(rs.getString("id"), rs.getString("nombre")));
+//            }
+//            return resultado;
+//        } catch (SQLException e) {
+//            return null;
+//        }
+//    }
+//    
+    public String getRolUsuario(String id) throws Exception{
+        
+         Puesto u = (Puesto) ses.get(Puesto.class, getPuestoDeLabor(id));
+        if(u==null)  throw new Exception ("Puesto no existe");
+//            Hibernate.initialize( u.getFuncionario().getLabors());
+            ses.evict(u);
+            return u.getNombre();
+       
+//         String sql = "select * from puesto where id_puesto="+getPuestoDeLabor(id);
+//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//                ResultSet rs = stm.executeQuery(sql);) {
+//            while (rs.next()) {
+//                return rs.getString("nombre");
+//            }
+//        } catch (SQLException e) {}
+//        return "";
+    }
+    
+    public int getPuestoDeLabor(String id){
+        String sql = "select puesto from labor where funcionario= '"+id+"'";
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            while (rs.next()) {
+                int puesto = rs.getInt("puesto");
+                return puesto;
+            }
+        } catch (SQLException e) {        }
+       return 0;
+    }
+
     public List<Solicitud> searchSolicitudes(Solicitud filtro) throws ParseException{
        
         String sql="select * from solicitud where comprobante like '%%%s%%'";
@@ -203,5 +251,6 @@ public class ModelGeneral {
             return null;
         }
     }
+
 
 }
