@@ -43,9 +43,9 @@ public class SolicitudesModel extends java.util.Observable{
     public SolicitudTableModel getSolicitudes() {
         return solicitudes;
     }
-
+    
     public void setSolicitudes(List<Solicitud> solicitudes) {
-        int[] cols={SolicitudTableModel.COMPROBANTE,SolicitudTableModel.ESTADO};
+        int[] cols={SolicitudTableModel.CODIGO,SolicitudTableModel.FECHA,SolicitudTableModel.CANTIDAD,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.MONTO,SolicitudTableModel.COMPROBANTE};
         this.solicitudes= new SolicitudTableModel(cols,solicitudes);
     }
 

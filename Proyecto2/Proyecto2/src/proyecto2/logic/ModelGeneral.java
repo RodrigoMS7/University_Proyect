@@ -15,6 +15,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Hibernate;
@@ -128,6 +130,13 @@ public class ModelGeneral {
         ses.merge(bien);
         t.commit();        
     }
+    
+    public void borraBien(Bien bien){
+        Transaction t = ses.beginTransaction();
+        ses.delete(bien);
+        t.commit();        
+    }
+    
     public List<Bien> searchBien(Bien filter){
         String sql = "select * from funcionario where id like '%%%s%%'";
 
@@ -225,4 +234,23 @@ public class ModelGeneral {
         } catch (SQLException e) {        }
        return 0;
     }
+
+    public List<Solicitud> searchSolicitudes(Solicitud filtro) throws ParseException{
+       
+        String sql="select * from solicitud where comprobante like '%%%s%%'";
+        sql=String.format(sql, filtro.getComprobante());
+        try(Statement stm=proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs=stm.executeQuery(sql);){
+            List<Solicitud> resultado=new ArrayList<Solicitud>();
+            while(rs.next()){
+               // resultado.add(new Solicitud((Integer)Integer.parseInt(rs.getString("codigo")),rs.getString("comprobante"),rs.getString("tipoAdquisicion"),Integer.valueOf(rs.getString("cantidad")),rs.getDouble("monto"),rs.getString("estado")));
+               resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante")));
+            }
+            return resultado;
+        }catch(SQLException e){
+            return null;
+        }
+    }
+
+
 }

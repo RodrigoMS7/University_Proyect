@@ -13,13 +13,14 @@ import proyecto2.logic.Solicitud;
  *
  * @author oscar
  */
-public class SolicitudTableModel extends AbstractTableModel{
+public class SolicitudTableModel extends AbstractTableModel {
+
     List<Solicitud> rows;
     int[] cols;
 
-    public  SolicitudTableModel(int[] cols, List<Solicitud> rows){
-        this.cols=cols;
-        this.rows=rows;
+    public SolicitudTableModel(int[] cols, List<Solicitud> rows) {
+        this.cols = cols;
+        this.rows = rows;
         initColNames();
     }
 
@@ -34,55 +35,58 @@ public class SolicitudTableModel extends AbstractTableModel{
     }
 
     @Override
-    public String getColumnName(int col){
+    public String getColumnName(int col) {
         return colNames[cols[col]]; //colNames => array
-    }    
-    
+    }
 
-
+    @Override
     public Object getValueAt(int row, int col) {
         //rows => lista
         //rows.get => obtiene el objeto en esa fila
-        Solicitud solicitud = rows.get(row); 
-        switch (cols[col]){
-            case COMPROBANTE:
-                return solicitud.getComprobante();
+        Solicitud solicitud = rows.get(row);
+        switch (cols[col]) {
             case CODIGO:
                 return solicitud.getCodigo();
-            case TIPO:
-                return solicitud.getTipoAdquisicion();
+            case FECHA:
+                return solicitud.getFecha();
             case CANTIDAD:
                 return solicitud.getCantidad();
-            case MONTO:
-                return solicitud.getMonto();
+            case TIPO:
+                return solicitud.getTipoAdquisicion();
             case ESTADO:
                 return solicitud.getEstado();
-            case FECHA:
-                return solicitud.getFecha();     
-            default: return "";
+            case MONTO:
+                return solicitud.getMonto();
+            case COMPROBANTE:
+                return solicitud.getComprobante();
+
+            default:
+                return "";
         }
-    }    
+    }
 
     public Solicitud getRowAt(int row) {
         return rows.get(row);
     }
-    
-    public static final int COMPROBANTE=0;
-    public static final int CODIGO=1;
-    public static final int TIPO=2;
-    public static final int MONTO=3;
-    public static final int ESTADO=4;
-    public static final int FECHA=5;
-    public static final int CANTIDAD=6;
-    
-    String[] colNames = new String[9];
-    private void initColNames(){
-        colNames[COMPROBANTE] = "Comprobante";
+
+    public static final int COMPROBANTE = 6;
+    public static final int CODIGO = 0;
+    public static final int TIPO = 3;
+    public static final int MONTO = 5;
+    public static final int ESTADO = 4;
+    public static final int FECHA = 1;
+    public static final int CANTIDAD = 2;
+
+    String[] colNames = new String[7];
+
+    private void initColNames() {
+
         colNames[CODIGO] = "Codigo";
-        colNames[TIPO] = "Tipo adquisicion";
-        colNames[MONTO] = "Precio";
-        colNames[ESTADO] = "Estado";
         colNames[FECHA] = "Fecha";
         colNames[CANTIDAD] = "Cantidad";
+        colNames[TIPO] = "Tipo";
+        colNames[ESTADO] = "Estado";
+        colNames[MONTO] = "Precio";
+        colNames[COMPROBANTE] = "Comprobante";
     }
 }

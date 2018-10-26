@@ -28,29 +28,21 @@ public class SolicitudesController {
         this.session=session;
         this.view = view;
         this.model = model;
-//        view.setController(this);
-//        view.setModel(model);
+        view.setController(this);
+        view.setModel(model);
     }
      public void buscar(Solicitud filter) throws Exception{       
-         model.setFilter(filter);
+        model.setFilter(filter);
         this.refrescarBusqueda();
     }
     
     public void refrescarBusqueda() throws Exception{
-        Usuario principal = (Usuario)sessionUsu.getAttribute("User");
-        if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals("Secretario") ){
-           
-        }else  if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals("Adminitrador") ){
-           
-        }else  if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()) == "Jefe OCCB" ){
 
-        }else if  (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()) == "Jefe OCCB" ){
-        
-        }
-//        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
-//        model.setSolicitudes(rows);
-//        model.commit();
-//        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
+       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
+        model.setSolicitudes(rows);
+        model.commit();
+        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
+
     }    
 //
 //    public void preAgregar(Point at)throws Exception{      

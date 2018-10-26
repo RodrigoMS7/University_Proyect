@@ -5,19 +5,64 @@
  */
 package proyecto2.presentation.solicitudes.listado;
 
+import java.util.Observable;
+import javax.swing.JOptionPane;
+import proyecto2.Application;
+import proyecto2.logic.Solicitud;
+
 /**
  *
  * @author oscar
  */
-public class SolicitudesView extends javax.swing.JInternalFrame {
+public class SolicitudesView extends javax.swing.JInternalFrame implements java.util.Observer{
 
     /**
      * Creates new form SolicitudesView
      */
+    SolicitudesController controller;
+    SolicitudesModel model;
+    
     public SolicitudesView() {
+        super("",false,true);
         initComponents();
     }
 
+    public SolicitudesController getController() {
+        return controller;
+    }
+
+    public void setController(SolicitudesController controller) {
+        this.controller = controller;
+    }
+
+    public SolicitudesModel getModel() {
+        return model;
+    }
+
+    public void setModel(SolicitudesModel model) {
+        this.model = model;
+         model.addObserver(this);
+    }
+    //no hace falta por el momento
+//    boolean validar(){
+//        boolean error=false;
+//        
+//    }
+    public void limpiarErrores(){
+        this.comprobante.setForeground(Application.COLOR_OK);
+    }
+    
+    public void fromSolicitud(Solicitud filtro){
+        comprobanteFld.setText(filtro.getComprobante());
+    }
+    
+    Solicitud toSolicitud(){
+        Solicitud result=new Solicitud();
+        result.setComprobante(comprobanteFld.getText());
+        return result;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +72,7 @@ public class SolicitudesView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        comprobante = new javax.swing.JLabel();
         comprobanteFld = new javax.swing.JTextField();
         buscarButton = new javax.swing.JButton();
         agregarButton = new javax.swing.JButton();
@@ -35,10 +80,15 @@ public class SolicitudesView extends javax.swing.JInternalFrame {
         solicitudes = new javax.swing.JTable();
         eliminarButton = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Comprobante:");
+        comprobante.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        comprobante.setText("Comprobante:");
 
         buscarButton.setText("buscar");
+        buscarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarButtonActionPerformed(evt);
+            }
+        });
 
         agregarButton.setText("agregar");
 
@@ -65,24 +115,24 @@ public class SolicitudesView extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(eliminarButton))
                     .addComponent(agregarButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(comprobante)
                         .addGap(18, 18, 18)
                         .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscarButton)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(comprobante)
                     .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -91,20 +141,37 @@ public class SolicitudesView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eliminarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
+        // TODO add your handling code here:
+        try{
+            controller.buscar(this.toSolicitud());
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
+        }
+    }//GEN-LAST:event_buscarButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarButton;
     private javax.swing.JButton buscarButton;
+    private javax.swing.JLabel comprobante;
     private javax.swing.JTextField comprobanteFld;
     private javax.swing.JButton eliminarButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable solicitudes;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object o1) {
+        this.limpiarErrores();
+        Solicitud filtro=model.getFilter();
+        this.fromSolicitud(filtro);
+        solicitudes.setModel(model.getSolicitudes());
+    }
 }

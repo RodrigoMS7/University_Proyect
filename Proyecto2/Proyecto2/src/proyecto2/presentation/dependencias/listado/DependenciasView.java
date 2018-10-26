@@ -57,7 +57,7 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
     
     public void fromDependencia(Dependencia filtro){
        codigoTextField.setText(filtro.getNombre());
-   }
+    }
    
     Dependencia toDependencia(){
         Dependencia result = new Dependencia();
