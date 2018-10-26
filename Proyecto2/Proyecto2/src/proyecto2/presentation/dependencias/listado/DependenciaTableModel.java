@@ -18,6 +18,7 @@ public class DependenciaTableModel extends AbstractTableModel{
     public DependenciaTableModel(int[] cols,List<Dependencia> rows) {
         this.cols=cols;
         this.rows = rows;
+        initColNames();
     }
     
     @Override

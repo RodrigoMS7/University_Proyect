@@ -33,6 +33,9 @@ public class ApplicationController {
     public void funcionariosShow(){
         Application.FUNCIONARIOS_CONTROLLER.show();
     }
+    public void solicitudesShow(){
+        Application.SOLICITUDES_CONTROLLER.show();
+    }
     public void enter(){
         this.reset();
         this.show();

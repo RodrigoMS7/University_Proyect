@@ -66,6 +66,8 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenu2 = new javax.swing.JMenu();
         Funcionarios = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        solicitudesMenu = new javax.swing.JMenu();
+        solicitudesMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +109,18 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         jMenuBar1.add(Funcionarios);
 
+        solicitudesMenu.setText("Solicitudes");
+
+        solicitudesMenuItem.setText("Listado");
+        solicitudesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitudesMenuItemActionPerformed(evt);
+            }
+        });
+        solicitudesMenu.add(solicitudesMenuItem);
+
+        jMenuBar1.add(solicitudesMenu);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,6 +144,11 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        controller.funcionariosShow();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void solicitudesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesMenuItemActionPerformed
+        // TODO add your handling code here:
+        controller.solicitudesShow();
+    }//GEN-LAST:event_solicitudesMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,5 +195,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu solicitudesMenu;
+    private javax.swing.JMenuItem solicitudesMenuItem;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,20 +23,20 @@ public class SolicitudesController {
         this.session=session;
         this.view = view;
         this.model = model;
-//        view.setController(this);
-//        view.setModel(model);
+        view.setController(this);
+        view.setModel(model);
     }
      public void buscar(Solicitud filter) throws Exception{       
-         model.setFilter(filter);
+        model.setFilter(filter);
         this.refrescarBusqueda();
     }
     
     public void refrescarBusqueda() throws Exception{
-//        proyecto2.logic.
-//       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
-//        model.setSolicitudes(rows);
-//        model.commit();
-//        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
+       
+       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
+        model.setSolicitudes(rows);
+        model.commit();
+        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
     }    
 //
 //    public void preAgregar(Point at)throws Exception{      
