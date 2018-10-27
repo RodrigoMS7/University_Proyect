@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.funcionarios.listado;
+package proyecto2.presentation.rrhh.funcionarios.listado;
 
 import java.util.Observable;
 import javax.swing.JOptionPane;

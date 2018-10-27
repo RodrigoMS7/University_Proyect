@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.dependencias.edicion;
+package proyecto2.presentation.rrhh.dependencias.edicion;
 
 import java.util.Arrays;
 import java.util.Observable;
@@ -25,14 +25,14 @@ public class DependenciaView extends javax.swing.JDialog implements java.util.Ob
         initComponents();
     }
     
-    public void setController(proyecto2.presentation.dependencias.edicion.DependenciaController controller){
+    public void setController(proyecto2.presentation.rrhh.dependencias.edicion.DependenciaController controller){
         this.controller=controller;
     }
     public DependenciaController getController(){
         return controller;
     }
     
-    public void setModel(proyecto2.presentation.dependencias.edicion.DependenciaModel model){
+    public void setModel(proyecto2.presentation.rrhh.dependencias.edicion.DependenciaModel model){
         this.model=model;
         model.addObserver(this);
     }

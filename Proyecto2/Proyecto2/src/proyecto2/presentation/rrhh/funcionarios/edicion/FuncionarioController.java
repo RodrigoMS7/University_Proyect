@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.dependencias.edicion;
+package proyecto2.presentation.rrhh.funcionarios.edicion;
 
 import java.awt.Point;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import proyecto2.Application;
-import proyecto2.logic.Dependencia;
+import proyecto2.logic.Funcionario;
 
 /**
  *
  * @author oscar
  */
-public class DependenciaController {
-    DependenciaView view;
-    DependenciaModel model;
-    Session session;
-
-    public DependenciaController(DependenciaView view, DependenciaModel model, Session session) {
+public class FuncionarioController {
+    FuncionarioView view;
+    FuncionarioModel model;
+    Session session; 
+    public FuncionarioController(FuncionarioView view, FuncionarioModel model, Session session) {
         this.view = view;
         this.model = model;
         this.session = session;
@@ -29,12 +28,12 @@ public class DependenciaController {
         view.setModel(model);
     }
     
-    public void reset(){
+     public void reset(){
         model.reset();
     }
     
-    public void reset(int modo, Dependencia current){
-//        model.reset(modo, current);
+    public void reset(int modo, Funcionario current){
+        model.reset(modo, current);
     }    
     
     public void show(){
@@ -50,21 +49,24 @@ public class DependenciaController {
         view.setVisible(false);
     }  
     
-     public void guardar(Dependencia dependencia) throws Exception{ 
-        Transaction t = session.beginTransaction();
+     public void guardar(Funcionario funcionario) throws Exception{ 
+           Transaction t = session.beginTransaction();
         switch(model.getModo()){
             case Application.MODO_AGREGAR:
-                session.save(dependencia);
+//                proyecto2.logic.ModelGeneral.instance();
+                session.save(funcionario);
                 t.commit();
                 //Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();                   
-                model.setCurrent(new Dependencia());
+                model.setCurrent(new Funcionario());
                 model.commit();   
                 break;
             case Application.MODO_EDITAR:
-                session.update(dependencia);
+                session.update(funcionario);
                  t.commit();
                 //Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
                 break;
         }   
     } 
+  
+      
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.funcionarios.edicion;
+package proyecto2.presentation.rrhh.funcionarios.edicion;
 
 import java.util.Arrays;
 import java.util.Observable;
