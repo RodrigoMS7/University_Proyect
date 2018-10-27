@@ -49,7 +49,7 @@ public class Application {
         //applicationView.addInternalFrame(personasView);
         JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
         JEFE_CONTROLLER=personascontroller;
-         applicationView.addInternalFrame(personasView);
+        applicationView.addInternalFrame(personasView);
         
         
     }
