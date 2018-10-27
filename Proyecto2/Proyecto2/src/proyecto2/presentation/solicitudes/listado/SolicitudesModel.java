@@ -5,6 +5,7 @@
  */
 package proyecto2.presentation.solicitudes.listado;
 
+import proyecto2.presentation.SolicitudTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
