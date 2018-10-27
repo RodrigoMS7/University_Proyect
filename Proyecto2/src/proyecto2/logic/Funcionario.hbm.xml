@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2018 06:00:15 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="proyecto2.logic.Funcionario" table="funcionario" catalog="activos" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="id" length="9" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="20" />
+        </property>
+        <set name="labors" table="labor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="funcionario" length="9" not-null="true" />
+            </key>
+            <one-to-many class="proyecto2.logic.Labor" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="funcionario" length="9" not-null="true" />
+            </key>
+            <one-to-many class="proyecto2.logic.Usuario" />
+        </set>
+        <set name="solicituds" table="solicitud" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="funcionario" length="9" />
+            </key>
+            <one-to-many class="proyecto2.logic.Solicitud" />
+        </set>
+    </class>
+</hibernate-mapping>
