@@ -36,7 +36,7 @@ public class JefeController {
         this.refrescarBusqueda();
     }
       public void buscar(){
-        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().findSolicitudesJefe();
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado();
         if(!rows.isEmpty()){
         model.setSolicitudes(rows);
         model.commit();
@@ -45,7 +45,7 @@ public class JefeController {
     
     public void refrescarBusqueda() throws Exception{
         System.out.println(model.getFilter().getEstado());
-       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().findSolicitudesJefe(model.getFilter());
+       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido", model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");

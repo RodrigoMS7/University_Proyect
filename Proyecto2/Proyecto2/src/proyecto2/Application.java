@@ -19,6 +19,9 @@ import proyecto2.presentation.login_usuario.LoginController;
 import proyecto2.presentation.occb.jefe.JefeController;
 import proyecto2.presentation.occb.jefe.JefeModel;
 import proyecto2.presentation.occb.jefe.JefeView;
+import proyecto2.presentation.occb.secretaria.listado.SecretariaController;
+import proyecto2.presentation.occb.secretaria.listado.SecretariaModel;
+import proyecto2.presentation.occb.secretaria.listado.SecretariaView;
 import proyecto2.presentation.rrhh.dependencias.edicion.DependenciaController;
 import proyecto2.presentation.rrhh.dependencias.listado.DependenciasController;
 import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioController;
@@ -44,13 +47,18 @@ public class Application {
         applicationView.setVisible(true);
         
         
-        JefeModel personasModel = new JefeModel();
-        JefeView personasView= new JefeView();
-        //applicationView.addInternalFrame(personasView);
-        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
-        JEFE_CONTROLLER=personascontroller;
-        applicationView.addInternalFrame(personasView);
+//        JefeModel personasModel = new JefeModel();
+//        JefeView personasView= new JefeView();
+//        //applicationView.addInternalFrame(personasView);
+//        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
+//        JEFE_CONTROLLER=personascontroller;
+//        applicationView.addInternalFrame(personasView);
         
+        SecretariaModel secretariaModel=new SecretariaModel();
+        SecretariaView secretariaView=new SecretariaView();
+        SecretariaController secretariaController=new SecretariaController(secretariaView,secretariaModel,session);
+        applicationView.addInternalFrame(secretariaView);
+        SECRETARIA_CONTROLLER=secretariaController;
         
     }
    
@@ -64,7 +72,7 @@ public class Application {
     public static SolicitudesController SOLICITUDES_CONTROLLER;
     public static JefeController JEFE_CONTROLLER;
     public static SolicitudController SOLICITUD_CONTROLLER;
-    
+    public static SecretariaController SECRETARIA_CONTROLLER;
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;

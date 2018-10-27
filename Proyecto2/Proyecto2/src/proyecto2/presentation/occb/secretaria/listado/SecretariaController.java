@@ -15,14 +15,14 @@ import proyecto2.logic.Solicitud;
  *
  * @author oscar
  */
-public class SolicitudesController {
+public class SecretariaController {
     
     Session session;
-    SolicitudesView view;
-    SolicitudesModel model;
+    SecretariaView view;
+    SecretariaModel model;
     SessionUsuario sessionUsu;
     
-    public SolicitudesController(SolicitudesView view, SolicitudesModel model, Session session) {
+    public SecretariaController(SecretariaView view, SecretariaModel model, Session session) {
         this.session=session;
         this.view = view;
         this.model = model;
@@ -36,7 +36,7 @@ public class SolicitudesController {
     
     public void refrescarBusqueda() throws Exception{
 
-       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
+       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido",model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");

@@ -162,20 +162,7 @@ public class ModelGeneral {
         HibernateUtil.stop();
     }
     
-    public List<Dependencia> searchDependencias(Dependencia filtro){
-        //probando
-//        List<Dependencia> resultado=new ArrayList<Dependencia>();
-//       // List<Dependencia> resultado=new ArrayList<Dependencia>();
-//        try(Statement stm =  proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//                ResultSet rs = stm.executeQuery("select * from dependencia where codigo like '%0%'");)                
-//        {
-//            while(rs.next()){
-//                resultado.add(new Dependencia(rs.getString("codigo"),rs.getString("nombre")));
-//            }
-//        }catch (SQLException e) {}
-//        return resultado;
-
-        
+    public List<Dependencia> searchDependencias(Dependencia filtro){   
         String sql="select * from dependencia where codigo like '%%%s%%'";
         
         sql=String.format(sql, filtro.getCodigo());
@@ -229,7 +216,6 @@ public class ModelGeneral {
                 ResultSet rs=stm.executeQuery(sql);){
             List<Solicitud> resultado=new ArrayList<Solicitud>();
             while(rs.next()){
-               // resultado.add(new Solicitud((Integer)Integer.parseInt(rs.getString("codigo")),rs.getString("comprobante"),rs.getString("tipoAdquisicion"),Integer.valueOf(rs.getString("cantidad")),rs.getDouble("monto"),rs.getString("estado")));
                resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante")));
             }
             return resultado;
@@ -238,6 +224,26 @@ public class ModelGeneral {
         }
     }
     
+
+    public List<Solicitud> searchByEstado(String estado,Solicitud filtro) {
+        String sql = "select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where comprobante like '%%%s%%' and estado='"+estado+"'";
+        sql=String.format(sql, filtro.getComprobante());
+        
+        try(Statement stm=proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs=stm.executeQuery(sql);){
+            List<Solicitud> resultado=new ArrayList<Solicitud>();
+            while(rs.next()){
+                Dependencia d=new Dependencia();
+                d.setCodigo(rs.getString("codigo"));
+                d.setNombre(rs.getString("nombre"));
+                resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante"),d));
+                
+            }
+            return resultado;
+        }catch(SQLException e){
+            return null;
+        }
+    } 
     
     public List<Solicitud> findByDependencia_Comprobante(int codigo_Dependencia, Solicitud filter){
         Query query = ses.createQuery("from Solicitud s where s.dependencia = :codigo and s.comprobante like :comprobante");
@@ -259,30 +265,7 @@ public class ModelGeneral {
     }
     
 
- 
-    
-     public List<Solicitud> findSolicitudesJefe(Solicitud filter){
-         String sql = "select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where comprobante like '%%%s%%' and estado='"+estado+"'";
-
-         sql = String.format(sql, filter.getComprobante());
-         System.out.println(sql);
-         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                 ResultSet rs=stm.executeQuery(sql);){
-            List<Solicitud> resultado=new ArrayList<Solicitud>();
-            while (rs.next()) {
-                Dependencia dep = new Dependencia();
-                dep.setCodigo(rs.getString("codigo"));
-                dep.setNombre(rs.getString("nombre"));
-               // resultado.add(new Solicitud((Integer)Integer.parseInt(rs.getString("codigo")),rs.getString("comprobante"),rs.getString("tipoAdquisicion"),Integer.valueOf(rs.getString("cantidad")),rs.getDouble("monto"),rs.getString("estado")));
-               resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante"), dep));
-            }
-            return resultado;
-        }catch(SQLException e){
-            return null;
-        }
-     }
-
-      public List<Solicitud> findSolicitudesJefe(){
+      public List<Solicitud> searchByEstado(){
 //         String sql = "select * from solicitud where estado = 'recibido'";
           String sql ="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where estado = 'recibido'";
          try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

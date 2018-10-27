@@ -13,12 +13,12 @@ import proyecto2.logic.Solicitud;
  *
  * @author oscar
  */
-public class SolicitudTableModel extends AbstractTableModel {
+public class SecretariaTableModel extends AbstractTableModel {
 
     List<Solicitud> rows;
     int[] cols;
 
-    public SolicitudTableModel(int[] cols, List<Solicitud> rows) {
+    public SecretariaTableModel(int[] cols, List<Solicitud> rows) {
         this.cols = cols;
         this.rows = rows;
         initColNames();
@@ -60,7 +60,7 @@ public class SolicitudTableModel extends AbstractTableModel {
             case COMPROBANTE:
                 return solicitud.getComprobante();
             case DEPENDENCIA:
-                return solicitud.getDependencia();
+                return solicitud.getDependencia().getNombre();
             default:
                 return "";
         }
@@ -70,14 +70,14 @@ public class SolicitudTableModel extends AbstractTableModel {
         return rows.get(row);
     }
 
-    public static final int COMPROBANTE = 1;
+    public static final int COMPROBANTE = 6;
     public static final int CODIGO = 0;
-    public static final int TIPO = 4;
-    public static final int MONTO = 6;
-    public static final int ESTADO = 7;
-    public static final int FECHA = 3;
-    public static final int CANTIDAD = 5;
-    public static final int DEPENDENCIA = 2;
+    public static final int TIPO = 3;
+    public static final int MONTO = 5;
+    public static final int ESTADO = 4;
+    public static final int FECHA = 1;
+    public static final int CANTIDAD = 2;
+    public static final int DEPENDENCIA = 7;
     String[] colNames = new String[8];
 
     private void initColNames() {
