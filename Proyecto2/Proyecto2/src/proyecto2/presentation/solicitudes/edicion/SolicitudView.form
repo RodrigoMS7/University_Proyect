@@ -167,7 +167,7 @@
                   <Component id="button_EliminaBien" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="button_Guardar" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="button_Salir" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>

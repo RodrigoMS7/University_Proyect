@@ -8,11 +8,11 @@ package proyecto2;
 import java.awt.Color;
 import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.bien.edicion.BienController;
-import proyecto2.presentation.dependencias.edicion.DependenciaController;
-import proyecto2.presentation.dependencias.listado.DependenciasController;
-import proyecto2.presentation.funcionarios.edicion.FuncionarioController;
-import proyecto2.presentation.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.login_usuario.LoginController;
+import proyecto2.presentation.rrhh.dependencias.edicion.DependenciaController;
+import proyecto2.presentation.rrhh.dependencias.listado.DependenciasController;
+import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioController;
+import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
 import proyecto2.presentation.solicitudes.listado.SolicitudesController;
 
