@@ -68,6 +68,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuItem1 = new javax.swing.JMenuItem();
         solicitudesMenu = new javax.swing.JMenu();
         solicitudesMenuItem = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +120,14 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         });
         solicitudesMenu.add(solicitudesMenuItem);
 
+        jMenuItem2.setText("jefe");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        solicitudesMenu.add(jMenuItem2);
+
         jMenuBar1.add(solicitudesMenu);
 
         setJMenuBar(jMenuBar1);
@@ -149,6 +158,10 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         // TODO add your handling code here:
         controller.solicitudesShow();
     }//GEN-LAST:event_solicitudesMenuItemActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+       controller.solicitudesJefeShow();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +208,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenu solicitudesMenu;
     private javax.swing.JMenuItem solicitudesMenuItem;
     // End of variables declaration//GEN-END:variables

@@ -39,6 +39,9 @@ public class ApplicationController {
     public void solicitudesShow(){
         Application.SOLICITUDES_CONTROLLER.show();
     }
+     public void solicitudesJefeShow(){
+         Application.JEFE_CONTROLLER.show();
+     }
     public void enter(){
         this.reset();
         this.show();

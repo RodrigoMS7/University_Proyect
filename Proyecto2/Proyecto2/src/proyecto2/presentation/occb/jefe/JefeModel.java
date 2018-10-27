@@ -5,10 +5,68 @@
  */
 package proyecto2.presentation.occb.jefe;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observer;
+import proyecto2.logic.Solicitud;
+import proyecto2.presentation.SolicitudTableModel;
+
 /**
  *
  * @author Dani
  */
-public class JefeModel {
+public class JefeModel extends java.util.Observable{
+
+    Solicitud filter;
+    SolicitudTableModel solicitudes;
+    Solicitud seleccionada;
+
+    public JefeModel() {
+        this.reset();
+    }
+
+    public void reset(){ 
+        filter = new Solicitud();
+        List<Solicitud> rows = new ArrayList<>();
+        seleccionada=null;
+        this.setSolicitudes(rows);
+        this.commit();
+    }
+
+    public Solicitud getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Solicitud filter) {
+        this.filter = filter;
+    }
+
+    public SolicitudTableModel getSolicitudes() {
+        return solicitudes;
+    }
     
+    public void setSolicitudes(List<Solicitud> solicitudes) {
+        int[] cols={SolicitudTableModel.CODIGO,SolicitudTableModel.FECHA,SolicitudTableModel.CANTIDAD,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.MONTO,SolicitudTableModel.COMPROBANTE};
+        this.solicitudes= new SolicitudTableModel(cols,solicitudes);
+    }
+
+    public Solicitud getSeleccionada() {
+        return seleccionada;
+    }
+
+    public void setSeleccionada(Solicitud seleccionada) {
+        this.seleccionada = seleccionada;
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        super.addObserver(o);
+        this.commit();
+    }
+
+    public void commit(){
+        setChanged();
+        notifyObservers();
+    }
+
 }

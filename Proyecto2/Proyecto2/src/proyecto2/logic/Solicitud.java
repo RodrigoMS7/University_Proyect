@@ -120,6 +120,11 @@ public class Solicitud  implements java.io.Serializable {
     public String getMotivioRechazo() {
         return this.motivioRechazo;
     }
+
+    public Solicitud(String estado, Double monto) {
+        this.estado = estado;
+        this.monto = monto;
+    }
     
     public void setMotivioRechazo(String motivioRechazo) {
         this.motivioRechazo = motivioRechazo;
@@ -131,9 +136,6 @@ public class Solicitud  implements java.io.Serializable {
     public void setBiens(Set biens) {
         this.biens = biens;
     }
-
-
-
 
 }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation;
+package proyecto2.presentation.solicitudes.listado;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -76,7 +76,6 @@ public class SolicitudTableModel extends AbstractTableModel {
     public static final int ESTADO = 4;
     public static final int FECHA = 1;
     public static final int CANTIDAD = 2;
-    public static final int DEPENDENCIA =7;
 
     String[] colNames = new String[7];
 
@@ -89,6 +88,5 @@ public class SolicitudTableModel extends AbstractTableModel {
         colNames[ESTADO] = "Estado";
         colNames[MONTO] = "Precio";
         colNames[COMPROBANTE] = "Comprobante";
-        colNames[DEPENDENCIA] = "Dependencia";
     }
 }
