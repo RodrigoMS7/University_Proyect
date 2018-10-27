@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.solicitudes.edicion;
+package proyecto2.presentation.administrador.edicion;
 
+import proyecto2.presentation.solicitudes.edicion.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -64,7 +65,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         label_Fecha = new javax.swing.JLabel();
         text_Fecha = new javax.swing.JTextField();
         label_Tipo = new javax.swing.JLabel();
-        comboBox_Tipo = new javax.swing.JComboBox<String>();
+        comboBox_Tipo = new javax.swing.JComboBox<>();
         label_Descripcion = new javax.swing.JLabel();
         text_Descripcion = new javax.swing.JTextField();
         label_Marca = new javax.swing.JLabel();
@@ -78,7 +79,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         button_EliminaBien = new javax.swing.JButton();
         button_Guardar = new javax.swing.JButton();
         button_Dependencia = new javax.swing.JButton();
-        comboBox_Estado = new javax.swing.JComboBox<String>();
+        comboBox_Estado = new javax.swing.JComboBox<>();
         label_Estado = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -103,7 +104,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         label_Tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_Tipo.setText("Tipo");
 
-        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Compra", "Donación", "Producción" }));
+        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Donación", "Producción" }));
 
         label_Descripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_Descripcion.setText("Descripción");
@@ -145,7 +146,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
             }
         });
 
-        comboBox_Estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "solicitud recibida", "por verificar", "rechazada", "en espera de rotulación", "solicitud procesada" }));
+        comboBox_Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "solicitud recibida", "por verificar", "rechazada", "en espera de rotulación", "solicitud procesada" }));
 
         label_Estado.setText("Estado");
 

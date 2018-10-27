@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import proyecto2.data.HibernateUtil;
@@ -252,6 +253,36 @@ public class ModelGeneral {
             return null;
         }
     }
+    
+    public List<Solicitud> searchByEstado(Solicitud filtro) {
+         Query query = ses.createQuery("from Solicitud s "
+                + "inner join fetch s.dependencia "
+                + "where s.estado = 'recibido' "
+                + "and s.comprobante like :comprobante");
+        
+        //query.setParameterList("estados", estados);
+        query.setString("comprobante","%"+filtro.getComprobante()+"%");
+        return query.list();
+    }
+    
+    public List<Solicitud> findByDependencia_Comprobante(int codigo_Dependencia, Solicitud filter){
+        Query query = ses.createQuery("from Solicitud s where s.dependencia = :codigo and s.comprobante like :comprobante");
+        query.setInteger("codigo", codigo_Dependencia);
+        query.setString("comprobante","%"+filter.getComprobante()+"%");
+        return query.list();
+    }
 
+    public List<Solicitud> findSolicitudByEstado(List<String>estados, Solicitud filter){
+        //Query query = ses.createQuery("from Solicitud s where s.estado in (:estados) and s.comprobante like :comprobante");
+        Query query = ses.createQuery("from Solicitud s "
+                + "inner join fetch s.dependencia "
+                + "where s.estado in (:estados) "
+                + "and s.comprobante like :comprobante");
+        
+        query.setParameterList("estados", estados);
+        query.setString("comprobante","%"+filter.getComprobante()+"%");
+        return query.list();
+    }
+    
 
 }
