@@ -18,7 +18,7 @@ import proyecto2.presentation.solicitudes.listado.SolicitudesController;
 
 /**
  *
- * @author Dani
+ * @author Rodrigo Meléndez
  */
 public class Application {
 
