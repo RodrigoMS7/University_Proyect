@@ -238,17 +238,6 @@ public class ModelGeneral {
         }
     }
     
-
-    public List<Solicitud> searchByEstado(Solicitud filtro) {
-         Query query = ses.createQuery("from Solicitud s "
-                + "inner join fetch s.dependencia "
-                + "where s.estado = 'recibido' "
-                + "and s.comprobante like :comprobante");
-        
-        //query.setParameterList("estados", estados);
-        query.setString("comprobante","%"+filtro.getComprobante()+"%");
-        return query.list();
-    }
     
     public List<Solicitud> findByDependencia_Comprobante(int codigo_Dependencia, Solicitud filter){
         Query query = ses.createQuery("from Solicitud s where s.dependencia = :codigo and s.comprobante like :comprobante");
@@ -273,16 +262,19 @@ public class ModelGeneral {
  
     
      public List<Solicitud> findSolicitudesJefe(Solicitud filter){
-        String sql="select * from solicitud where comprobante like '%%%s%%' and estado = 'recibido'";
-         
-        sql=String.format(sql, filter.getComprobante());
-        System.out.println(sql);
-        try(Statement stm=proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-                ResultSet rs=stm.executeQuery(sql);){
+         String sql = "select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where comprobante like '%%%s%%' and estado='"+estado+"'";
+
+         sql = String.format(sql, filter.getComprobante());
+         System.out.println(sql);
+         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                 ResultSet rs=stm.executeQuery(sql);){
             List<Solicitud> resultado=new ArrayList<Solicitud>();
-            while(rs.next()){
+            while (rs.next()) {
+                Dependencia dep = new Dependencia();
+                dep.setCodigo(rs.getString("codigo"));
+                dep.setNombre(rs.getString("nombre"));
                // resultado.add(new Solicitud((Integer)Integer.parseInt(rs.getString("codigo")),rs.getString("comprobante"),rs.getString("tipoAdquisicion"),Integer.valueOf(rs.getString("cantidad")),rs.getDouble("monto"),rs.getString("estado")));
-               resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante")));
+               resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante"), dep));
             }
             return resultado;
         }catch(SQLException e){
@@ -291,12 +283,16 @@ public class ModelGeneral {
      }
 
       public List<Solicitud> findSolicitudesJefe(){
-         String sql = "select * from solicitud where estado = 'recibido'";
+//         String sql = "select * from solicitud where estado = 'recibido'";
+          String sql ="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where estado = 'recibido'";
          try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                  ResultSet rs = stm.executeQuery(sql);) {
              List<Solicitud> resultado = new ArrayList<Solicitud>();
              while (rs.next()) {
-                 resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")), rs.getDate("fecha"), Integer.parseInt(rs.getString("cantidad")), rs.getString("tipoAdquisicion"), rs.getString("estado"), Double.parseDouble(rs.getString("monto")), rs.getString("comprobante")));
+                 Dependencia dep = new Dependencia();
+                 dep.setCodigo(rs.getString("codigo"));
+                 dep.setNombre(rs.getString("nombre"));
+                 resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")), rs.getDate("fecha"), Integer.parseInt(rs.getString("cantidad")), rs.getString("tipoAdquisicion"), rs.getString("estado"), Double.parseDouble(rs.getString("monto")), rs.getString("comprobante"),dep));
              }
              return resultado;
          } catch (SQLException e) {

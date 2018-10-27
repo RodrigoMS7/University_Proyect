@@ -46,7 +46,7 @@ public class JefeModel extends java.util.Observable{
     }
     
     public void setSolicitudes(List<Solicitud> solicitudes) {
-        int[] cols={SolicitudTableModel.CODIGO,SolicitudTableModel.FECHA,SolicitudTableModel.CANTIDAD,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.MONTO,SolicitudTableModel.COMPROBANTE};
+        int[] cols={SolicitudTableModel.CODIGO,SolicitudTableModel.FECHA,SolicitudTableModel.CANTIDAD,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.MONTO,SolicitudTableModel.COMPROBANTE, SolicitudTableModel.DEPENDENCIA};
         this.solicitudes= new SolicitudTableModel(cols,solicitudes);
     }
 

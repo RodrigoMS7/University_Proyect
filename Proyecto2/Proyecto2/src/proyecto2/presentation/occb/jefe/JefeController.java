@@ -70,7 +70,7 @@ public class JefeController {
     }
     
     public void show(){
-        buscar();
+//        buscar();
         view.setVisible(true);
     }
 
