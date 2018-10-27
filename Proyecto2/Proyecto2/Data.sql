@@ -1,19 +1,18 @@
 use Activos;
-
-#insert into Usuario (username,password,funcionario) values ('ivania','001',(SELECT id FROM Funcionario WHERE nombre ='Ivania'));
-
-#insert into Dependencia 
-
--- insert into Dependencia (codigo) values ('EIF200');
+insert into Funcionario(nombre,id) values('Ivania','001');
+insert into Usuario (username,password,funcionario) values ('ivania','001',(SELECT id FROM Funcionario WHERE nombre ='Ivania'));
 
 
--- insert into Puesto (nombre) values ('Administrador');
+insert into Dependencia (codigo, nombre) values ('EIF200', 'Escuela Info');
 
--- insert into Labor(dependencia, funcionario,puesto) values ('EIF200','001',1); 
--- insert into Labor(dependencia, funcionario,puesto) values (2,'002',1); 
 
--- insert into Categoria(tipo,consecutivo) values('Silla Lab', 1);
--- insert into Categoria(tipo,consecutivo) values('Laptop', 1);
+insert into Puesto (nombre) values ('Administrador');
+
+insert into Labor(dependencia, funcionario,puesto) values ('EIF200','001',1); 
+insert into Labor(dependencia, funcionario,puesto) values (2,'002',1); 
+
+insert into Categoria(tipo,consecutivo) values('Silla Lab', 1);
+insert into Categoria(tipo,consecutivo) values('Laptop', 1);
 insert into Solicitud (fecha, cantidad, tipoAdquisicion, monto, dependencia, funcionario, estado,comprobante) values(CURDATE(), 2,'Compra', 200000.0, 'EIF200', '001', 'recibido', '256');
 
 insert into Bien(cantidad,modelo,marca,precio,solicitud,categoria) values (20,'Silla Lab','PPP',20000,1,1);

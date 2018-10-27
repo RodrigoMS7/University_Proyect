@@ -6,9 +6,19 @@
 package proyecto2;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Session;
+import proyecto2.data.HibernateUtil;
+import proyecto2.logic.Solicitud;
 import proyecto2.presentation.application.ApplicationController;
+import proyecto2.presentation.application.ApplicationModel;
+import proyecto2.presentation.application.ApplicationView;
 import proyecto2.presentation.bien.edicion.BienController;
 import proyecto2.presentation.login_usuario.LoginController;
+import proyecto2.presentation.occb.jefe.JefeController;
+import proyecto2.presentation.occb.jefe.JefeModel;
+import proyecto2.presentation.occb.jefe.JefeView;
 import proyecto2.presentation.rrhh.dependencias.edicion.DependenciaController;
 import proyecto2.presentation.rrhh.dependencias.listado.DependenciasController;
 import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioController;
@@ -21,14 +31,29 @@ import proyecto2.presentation.solicitudes.listado.SolicitudesController;
  * @author Rodrigo Meléndez
  */
 public class Application {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
     
+    public static void main(String[] args) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        SessionUsuario ses = new SessionUsuario();
+        
+        ApplicationModel applicationModel = new ApplicationModel();
+        ApplicationView applicationView= new ApplicationView();
+        ApplicationController applicationController = new ApplicationController(applicationView,applicationModel,session,ses);
+        APPLICATION_CONTROLLER = applicationController;
+       
+        applicationView.setVisible(true);
+        
+        
+        JefeModel personasModel = new JefeModel();
+        JefeView personasView= new JefeView();
+        //applicationView.addInternalFrame(personasView);
+        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
+        JEFE_CONTROLLER=personascontroller;
+         applicationView.addInternalFrame(personasView);
+        
+        
+    }
+   
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
     public static FuncionariosController FUNCIONARIOS_CONTROLLER;
     public static DependenciaController DEPENDENCIA_CONTROLLER;
@@ -37,7 +62,7 @@ public class Application {
     public static ApplicationController APPLICATION_CONTROLLER;
     public static LoginController LOGIN_CONTROLLER; 
     public static SolicitudesController SOLICITUDES_CONTROLLER;
-
+    public static JefeController JEFE_CONTROLLER;
     public static SolicitudController SOLICITUD_CONTROLLER;
     
     public static final int MODO_AGREGAR = 0;
