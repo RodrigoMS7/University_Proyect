@@ -53,7 +53,9 @@ public class SecretariaController {
         t.commit();
         Application.SECRETARIA_CONTROLLER.refrescarBusqueda();
     }
-    
+    public void actualizarMotivo(Solicitud s, String estado)throws Exception{
+         Transaction t=session.beginTransaction();
+    }
     public void reset(){
         model.reset();
     }

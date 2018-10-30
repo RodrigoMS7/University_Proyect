@@ -20,19 +20,19 @@ public class DependenciaView extends javax.swing.JDialog implements java.util.Ob
     DependenciaController controller;
     DependenciaModel model;
 
-    public DependenciaView() {
-        super(/*parent, modal*/);
+    public DependenciaView(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
     
-    public void setController(proyecto2.presentation.rrhh.dependencias.edicion.DependenciaController controller){
+    public void setController(DependenciaController controller){
         this.controller=controller;
     }
     public DependenciaController getController(){
         return controller;
     }
     
-    public void setModel(proyecto2.presentation.rrhh.dependencias.edicion.DependenciaModel model){
+    public void setModel(DependenciaModel model){
         this.model=model;
         model.addObserver(this);
     }

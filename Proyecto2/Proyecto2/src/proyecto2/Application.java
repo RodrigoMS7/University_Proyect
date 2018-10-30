@@ -23,7 +23,11 @@ import proyecto2.presentation.occb.secretaria.listado.SecretariaController;
 import proyecto2.presentation.occb.secretaria.listado.SecretariaModel;
 import proyecto2.presentation.occb.secretaria.listado.SecretariaView;
 import proyecto2.presentation.rrhh.dependencias.edicion.DependenciaController;
+import proyecto2.presentation.rrhh.dependencias.edicion.DependenciaModel;
+import proyecto2.presentation.rrhh.dependencias.edicion.DependenciaView;
 import proyecto2.presentation.rrhh.dependencias.listado.DependenciasController;
+import proyecto2.presentation.rrhh.dependencias.listado.DependenciasModel;
+import proyecto2.presentation.rrhh.dependencias.listado.DependenciasView;
 import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioController;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
@@ -59,6 +63,19 @@ public class Application {
         SecretariaController secretariaController=new SecretariaController(secretariaView,secretariaModel,session);
         applicationView.addInternalFrame(secretariaView);
         SECRETARIA_CONTROLLER=secretariaController;
+        
+        DependenciaModel dependenciaModel= new DependenciaModel();
+        DependenciaView dependenciaView=new DependenciaView(applicationView,true);
+        DependenciaController dependenciaController=new DependenciaController(dependenciaView,dependenciaModel,session);
+        DEPENDENCIA_CONTROLLER=dependenciaController;
+        
+        DependenciasModel dependenciasModel= new DependenciasModel();
+        DependenciasView dependenciasView=new DependenciasView();
+        applicationView.addInternalFrame(dependenciasView);
+        DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
+        DEPENDENCIAS_CONTROLLER=dependenciasController;
+        
+        
         
     }
    

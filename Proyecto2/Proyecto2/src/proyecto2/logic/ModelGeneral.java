@@ -119,6 +119,13 @@ public class ModelGeneral {
         ses.delete(f);
         t.commit();
     }
+    
+    public void eliminaDependencia(Dependencia d){
+        Transaction t = ses.beginTransaction();
+        ses.delete(d);
+        t.commit();
+    }
+    
     public void agregarBien(Bien bien) {
         Transaction t = ses.beginTransaction();
         ses.persist(bien);

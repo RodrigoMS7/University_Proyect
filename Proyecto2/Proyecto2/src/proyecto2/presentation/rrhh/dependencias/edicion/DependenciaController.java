@@ -34,7 +34,7 @@ public class DependenciaController {
     }
     
     public void reset(int modo, Dependencia current){
-//        model.reset(modo, current);
+        model.reset(modo, current);
     }    
     
     public void show(){
