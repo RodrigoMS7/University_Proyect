@@ -28,10 +28,14 @@ public class LoginController {
         view.setController(this);
         view.setModel(model);
     }
+    
+    public LoginModel getLoginModel(){
+        return model;
+    }
 
     public void login(Usuario typed) throws Exception{
         model.setCurrent(typed);
-        Usuario real = proyecto2.logic.ModelGeneral.instance().getUsuario(1/*typed.getUsername()*/,typed.getPassword());
+        Usuario real = proyecto2.logic.ModelGeneral.instance().getUsuario(typed.getUsername(), typed.getPassword());
         sessUsu.setAttibute(Application.USER_ATTRIBUTE, real);
         view.setVisible(false);
         Application.APPLICATION_CONTROLLER.enter();

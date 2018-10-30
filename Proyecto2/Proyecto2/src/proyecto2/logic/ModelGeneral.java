@@ -59,8 +59,8 @@ public class ModelGeneral {
         ses = HibernateUtil.getSessionFactory().openSession();
     }
             
-    public  Usuario getUsuario(int id, String password) throws Exception{
-        Usuario u = (Usuario) ses.get(Usuario.class, id);
+    public  Usuario getUsuario(String username, String password) throws Exception{
+        Usuario u = (Usuario) ses.get(Usuario.class, username);
         
         if(u==null)  throw new Exception ("Usuario no existe");
         if (u.getPassword().equals(password)){
@@ -282,6 +282,31 @@ public class ModelGeneral {
              return null;
         }
      }
+      
+     public Labor searchLabor(String id){
+        String sql = "select * from labor where funcionario = " + id;
+
+        sql = String.format(sql, id);
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            Labor resultado = new Labor();
+            while (rs.next()) {
+                Dependencia dep = new Dependencia();
+                dep.setCodigo(rs.getString("codigo"));
+                dep.setNombre(rs.getString("nombre"));
+                Funcionario fun = new Funcionario();
+                fun.setId(rs.getString("id"));
+                fun.setNombre(rs.getString("nombre"));
+                Puesto pue = new Puesto();
+                pue.setIdPuesto(rs.getInt("id_puesto"));
+                pue.setNombre(rs.getString("nombre"));
+                resultado = new Labor(dep, fun, pue);
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
 
 
 }

@@ -25,6 +25,12 @@ public class Labor  implements java.io.Serializable {
         this.dependencia = dependencia;
         this.funcionario = funcionario;
     }
+    
+    public Labor(Dependencia dependencia, Funcionario funcionario, Puesto puesto) {
+        this.dependencia = dependencia;
+        this.funcionario = funcionario;
+        this.puesto = puesto;
+    }
     public Labor(Dependencia dependencia, Funcionario funcionario, Puesto puesto, Set activos) {
        this.dependencia = dependencia;
        this.funcionario = funcionario;
