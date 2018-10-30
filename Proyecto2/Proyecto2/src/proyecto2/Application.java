@@ -16,6 +16,8 @@ import proyecto2.presentation.application.ApplicationModel;
 import proyecto2.presentation.application.ApplicationView;
 import proyecto2.presentation.bien.edicion.BienController;
 import proyecto2.presentation.login_usuario.LoginController;
+import proyecto2.presentation.login_usuario.LoginModel;
+import proyecto2.presentation.login_usuario.LoginView;
 import proyecto2.presentation.occb.jefe.JefeController;
 import proyecto2.presentation.occb.jefe.JefeModel;
 import proyecto2.presentation.occb.jefe.JefeView;
@@ -31,6 +33,8 @@ import proyecto2.presentation.rrhh.dependencias.listado.DependenciasView;
 import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioController;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
+import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
+import proyecto2.presentation.solicitudes.edicion.SolicitudView;
 import proyecto2.presentation.solicitudes.listado.SolicitudesController;
 
 /**
@@ -43,12 +47,18 @@ public class Application {
         Session session = HibernateUtil.getSessionFactory().openSession();
         SessionUsuario ses = new SessionUsuario();
         
+        LoginModel loginModel = new LoginModel();
+        LoginView loginView= new LoginView();
+        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
+        LOGIN_CONTROLLER = logincontroller;
+        loginView.setVisible(true);
+        
         ApplicationModel applicationModel = new ApplicationModel();
         ApplicationView applicationView= new ApplicationView();
         ApplicationController applicationController = new ApplicationController(applicationView,applicationModel,session,ses);
         APPLICATION_CONTROLLER = applicationController;
        
-        applicationView.setVisible(true);
+        //applicationView.setVisible(true);
         
         
 //        JefeModel personasModel = new JefeModel();
@@ -57,6 +67,12 @@ public class Application {
 //        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
 //        JEFE_CONTROLLER=personascontroller;
 //        applicationView.addInternalFrame(personasView);
+        SolicitudModel solicitudModel=new SolicitudModel();
+        SolicitudView solicitudView=new SolicitudView();
+        SolicitudController solicitudController = new SolicitudController(solicitudView, solicitudModel,session);
+        //applicationView.addInternalFrame(solicitudView);
+        SOLICITUD_CONTROLLER = solicitudController;
+        
         
         SecretariaModel secretariaModel=new SecretariaModel();
         SecretariaView secretariaView=new SecretariaView();
@@ -85,7 +101,7 @@ public class Application {
     public static DependenciasController DEPENDENCIAS_CONTROLLER;
     public static BienController BIEN_CONTROLLER;
     public static ApplicationController APPLICATION_CONTROLLER;
-    public static LoginController LOGIN_CONTROLLER; 
+    public static LoginController LOGIN_CONTROLLER;
     public static SolicitudesController SOLICITUDES_CONTROLLER;
     public static JefeController JEFE_CONTROLLER;
     public static SolicitudController SOLICITUD_CONTROLLER;

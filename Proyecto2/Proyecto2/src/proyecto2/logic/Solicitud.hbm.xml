@@ -35,7 +35,7 @@
         <property name="motivioRechazo" type="string">
             <column name="motivioRechazo" />
         </property>
-        <set name="biens" table="bien" inverse="true" lazy="true" fetch="select">
+        <set name="biens" table="bien" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
                 <column name="solicitud" not-null="true" />
             </key>
