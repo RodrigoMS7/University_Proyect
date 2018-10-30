@@ -6,14 +6,13 @@
 package proyecto2.presentation.solicitudes.edicion;
 
 import java.util.List;
-import javax.swing.table.AbstractTableModel;
 import proyecto2.logic.Bien;
 
 /**
  *
  * @author Rodrigo Meléndez
  */
-public class SolicitudBienTableModel extends AbstractTableModel {
+public class SolicitudBienTableModel {
     List<Bien> rows;
     int[] cols;
 

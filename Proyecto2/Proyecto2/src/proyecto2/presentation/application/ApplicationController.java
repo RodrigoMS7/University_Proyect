@@ -39,23 +39,19 @@ public class ApplicationController {
     public void solicitudesShow(){
         Application.SOLICITUDES_CONTROLLER.show();
     }
-    public void solicitudesJefeShow(){
+     public void solicitudesJefeShow(){
          Application.JEFE_CONTROLLER.show();
-    }
-    public void solicitudesSecretariaShow(){
+     }
+     public void solicitudesSecretariaShow(){
          Application.SECRETARIA_CONTROLLER.show();
-    }
-    public void solicitudEdicionShow(){
-         Application.SOLICITUD_CONTROLLER.show();
-    }
-    
+     }
     public void enter(){
         this.reset();
         this.show();
     }
     
     public void reset(){
-        //Application.FUNCIONARIOS_CONTROLLER.reset();
+        Application.FUNCIONARIOS_CONTROLLER.reset();
        // Application.ESTADOS_CONTROLLER.reset();
         model.reset((Usuario) sessUsu.getAttribute(Application.USER_ATTRIBUTE));
     }
