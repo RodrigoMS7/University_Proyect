@@ -31,7 +31,11 @@ import proyecto2.presentation.rrhh.dependencias.listado.DependenciasController;
 import proyecto2.presentation.rrhh.dependencias.listado.DependenciasModel;
 import proyecto2.presentation.rrhh.dependencias.listado.DependenciasView;
 import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioController;
+import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioModel;
+import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioView;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
+import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosModel;
+import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosView;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
 import proyecto2.presentation.solicitudes.edicion.SolicitudView;
@@ -43,7 +47,7 @@ import proyecto2.presentation.solicitudes.listado.SolicitudesController;
  */
 public class Application {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Session session = HibernateUtil.getSessionFactory().openSession();
         SessionUsuario ses = new SessionUsuario();
         
@@ -91,6 +95,18 @@ public class Application {
         DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
         DEPENDENCIAS_CONTROLLER=dependenciasController;
         
+        FuncionarioModel funcionarioModel = new FuncionarioModel();
+         FuncionarioView funcionarioView = new FuncionarioView(applicationView, true);
+        FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel,session);
+        FUNCIONARIO_CONTROLLER = funcionarioController;
+        //funcionarioView.setVisible(true);
+
+        FuncionariosModel funcionariosModel = new FuncionariosModel();
+        FuncionariosView funcionariosView = new FuncionariosView();
+        applicationView.addInternalFrame(funcionariosView);
+        FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session,ses);
+        FUNCIONARIOS_CONTROLLER = funcionariosController;
+        applicationView.setVisible(true);
         
         
     }
