@@ -75,8 +75,9 @@ public class JefeController {
         model.reset();
     }
 
-    public void show() {
-//        buscar();
+    
+    public void show(){
+        buscar();
         view.setVisible(true);
     }
 
