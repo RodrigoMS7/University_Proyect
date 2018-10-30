@@ -71,6 +71,8 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+
         solicitudesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
