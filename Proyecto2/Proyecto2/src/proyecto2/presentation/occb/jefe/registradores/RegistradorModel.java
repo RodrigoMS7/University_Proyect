@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.funcionarios.listado;
+package proyecto2.presentation.occb.jefe.registradores;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 import proyecto2.logic.Funcionario;
+import proyecto2.presentation.rrhh.funcionarios.listado.FuncionarioTableModel;
 
 /**
  *
- * @author oscar
+ * @author Dani
  */
-public class FuncionariosModel extends java.util.Observable{
-
+public class RegistradorModel extends java.util.Observable {
     Funcionario filter;
     FuncionarioTableModel funcionarios;
     Funcionario seleccionada;
 
-    public FuncionariosModel() {
+    public RegistradorModel() {
         this.reset();
     }
 

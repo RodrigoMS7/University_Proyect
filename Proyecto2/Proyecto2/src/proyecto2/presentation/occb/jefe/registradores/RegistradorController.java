@@ -3,27 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.funcionarios.listado;
+package proyecto2.presentation.occb.jefe.registradores;
 
 import java.awt.Point;
-import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
 import proyecto2.Application;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Funcionario;
-import proyecto2.logic.Usuario;
 
 /**
  *
- * @author oscar
+ * @author Dani
  */
-public class FuncionariosController {
+public class RegistradorController {
     Session session;
-    FuncionariosView view;
-    FuncionariosModel model;
+    RegistradorView view;
+    RegistradorModel model;
     SessionUsuario sessionUsuario;
-    public FuncionariosController(FuncionariosView view, FuncionariosModel model, Session session, SessionUsuario u) {
+    
+    public RegistradorController(RegistradorView view, RegistradorModel model, Session session, SessionUsuario u) {
         this.session=session;
         sessionUsuario = u;
         this.view = view;
@@ -32,13 +31,13 @@ public class FuncionariosController {
         view.setModel(model);
     }
      public void buscar(Funcionario filter) throws Exception{
-          Usuario principal = (Usuario) sessionUsuario.getAttribute("User");
-               System.out.println("jpa");
-           System.out.println(proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()));
-
-        if (!proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals( "Administrador") ){
-           throw new Exception(Application.ROL_NOTAUTHORIZED);
-        }
+//          Usuario principal = (Usuario) sessionUsuario.getAttribute("User");
+//               System.out.println("jpa");
+//           System.out.println(proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()));
+//
+//        if (!proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals( "Administrador") ){
+//           throw new Exception(Application.ROL_NOTAUTHORIZED);
+//        }
           
            
         model.setFilter(filter);
@@ -82,7 +81,8 @@ public class FuncionariosController {
         Funcionario seleccionada = model.getFuncionarios().getRowAt(row); 
         try {
             proyecto2.logic.ModelGeneral.instance().eliminaFuncionario(seleccionada);
-        } catch (Exception ex) { }
+        } catch (Exception ex) { 
+        }
         List<Funcionario> rowsMod = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
         model.setFuncionarios(rowsMod);
         model.commit();
