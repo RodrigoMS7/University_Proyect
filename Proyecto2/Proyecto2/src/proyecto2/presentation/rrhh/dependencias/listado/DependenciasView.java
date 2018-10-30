@@ -113,6 +113,11 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
         });
 
         eliminarButton.setText("eliminar");
+        eliminarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,6 +177,10 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
     private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_agregarButtonActionPerformed
+
+    private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

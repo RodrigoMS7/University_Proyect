@@ -115,11 +115,9 @@ public class ModelGeneral {
         }
     }
     public void eliminaFuncionario(Funcionario f) {
-        String sql = "delete from persona where id='%s'";
-        sql = String.format(sql, f.getId());
-        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                ResultSet rs = stm.executeQuery(sql);) {
-        } catch (SQLException e) {}
+        Transaction t = ses.beginTransaction();
+        ses.delete(f);
+        t.commit();
     }
     public void agregarBien(Bien bien) {
         Transaction t = ses.beginTransaction();
