@@ -13,6 +13,8 @@ import java.util.Observable;
 import javax.swing.JOptionPane;
 import proyecto2.Application;
 import proyecto2.logic.Bien;
+import proyecto2.logic.Dependencia;
+import proyecto2.logic.Labor;
 import proyecto2.logic.Solicitud;
 
 /**
@@ -63,8 +65,8 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         label_Comprobante = new javax.swing.JLabel();
         label_Fecha = new javax.swing.JLabel();
         text_Fecha = new javax.swing.JTextField();
+        comboBox_Tipo = new javax.swing.JComboBox<>();
         label_Tipo = new javax.swing.JLabel();
-        comboBox_Tipo = new javax.swing.JComboBox<String>();
         label_Descripcion = new javax.swing.JLabel();
         text_Descripcion = new javax.swing.JTextField();
         label_Marca = new javax.swing.JLabel();
@@ -77,52 +79,71 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         text_Precio = new javax.swing.JTextField();
         button_EliminaBien = new javax.swing.JButton();
         button_Guardar = new javax.swing.JButton();
-        button_Dependencia = new javax.swing.JButton();
-        comboBox_Estado = new javax.swing.JComboBox<String>();
+        comboBox_Estado = new javax.swing.JComboBox<>();
         label_Estado = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_bien = new javax.swing.JTable();
         button_AgregaBien = new javax.swing.JButton();
         button_Salir = new javax.swing.JButton();
         text_Comprobante = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_Solicitud.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         label_Solicitud.setText("SOLICITUD");
+        getContentPane().add(label_Solicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 29, -1, -1));
 
         label_Bien.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         label_Bien.setText("BIENES");
+        getContentPane().add(label_Bien, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 143, -1, -1));
 
         label_Comprobante.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_Comprobante.setText("Comprobante");
+        getContentPane().add(label_Comprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
 
         label_Fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_Fecha.setText("Fecha");
+        getContentPane().add(label_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
+        getContentPane().add(text_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 81, -1));
+
+        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Donación", "Producción" }));
+        getContentPane().add(comboBox_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
 
         label_Tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_Tipo.setText("Tipo");
-
-        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Compra", "Donación", "Producción" }));
+        getContentPane().add(label_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
 
         label_Descripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_Descripcion.setText("Descripción");
+        getContentPane().add(label_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 172, -1, -1));
+        getContentPane().add(text_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 193, 118, -1));
 
         label_Marca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_Marca.setText("Marca");
+        getContentPane().add(label_Marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 171, -1, -1));
 
         label_Modelo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_Modelo.setText("Modelo");
+        getContentPane().add(label_Modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 172, -1, -1));
+        getContentPane().add(text_Marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 193, 135, -1));
+        getContentPane().add(text_Modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 193, 137, -1));
 
         label_Cantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_Cantidad.setText("Cantidad");
+        getContentPane().add(label_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 172, -1, -1));
 
         label_Precio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_Precio.setText("Precio");
+        getContentPane().add(label_Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(613, 172, -1, -1));
 
         text_Cantidad.setText("0");
+        getContentPane().add(text_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 193, 118, -1));
 
         text_Precio.setText("0.0");
+        getContentPane().add(text_Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(613, 193, 126, -1));
 
         button_EliminaBien.setText("Eliminar");
         button_EliminaBien.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +151,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
                 button_EliminaBienActionPerformed(evt);
             }
         });
+        getContentPane().add(button_EliminaBien, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 225, -1, -1));
 
         button_Guardar.setText("Guardar");
         button_Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -137,19 +159,15 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
                 button_GuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(button_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, -1, -1));
 
-        button_Dependencia.setText("Agregar Dependencia");
-        button_Dependencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_DependenciaActionPerformed(evt);
-            }
-        });
-
-        comboBox_Estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "solicitud recibida", "por verificar", "rechazada", "en espera de rotulación", "solicitud procesada" }));
+        comboBox_Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "solicitud recibida", "por verificar", "rechazada", "en espera de rotulación", "solicitud procesada" }));
+        getContentPane().add(comboBox_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
 
         label_Estado.setText("Estado");
+        getContentPane().add(label_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_bien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -160,9 +178,17 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_bien);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 225, 688, 166));
 
         button_AgregaBien.setText("Agregar");
+        button_AgregaBien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_AgregaBienActionPerformed(evt);
+            }
+        });
+        getContentPane().add(button_AgregaBien, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 187, -1, -1));
 
         button_Salir.setText("Salir");
         button_Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -170,142 +196,46 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
                 button_SalirActionPerformed(evt);
             }
         });
+        getContentPane().add(button_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, -1, -1));
+        getContentPane().add(text_Comprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 89, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_Solicitud)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_Descripcion)
-                                    .addComponent(text_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(14, 14, 14)
-                                        .addComponent(label_Marca))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(text_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(label_Modelo)
-                                            .addComponent(text_Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(label_Cantidad)
-                                            .addComponent(text_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(label_Precio)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(text_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(button_AgregaBien))))
-                                    .addComponent(button_Dependencia))))
-                        .addContainerGap(24, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(button_EliminaBien))
-                            .addComponent(label_Bien)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_Comprobante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(text_Comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_Fecha)
-                                .addGap(10, 10, 10)
-                                .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_Tipo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label_Estado)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboBox_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 24, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(292, 292, 292)
-                .addComponent(button_Guardar)
-                .addGap(68, 68, 68)
-                .addComponent(button_Salir)
-                .addGap(0, 0, Short.MAX_VALUE))
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 808, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(label_Solicitud)
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_Comprobante)
-                    .addComponent(label_Fecha)
-                    .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_Tipo)
-                    .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBox_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_Estado)
-                    .addComponent(text_Comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(button_Dependencia)
-                .addGap(21, 21, 21)
-                .addComponent(label_Bien)
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_Modelo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_Cantidad)
-                            .addComponent(label_Precio))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(text_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(text_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_Descripcion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label_Marca)
-                        .addGap(7, 7, 7)
-                        .addComponent(text_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(button_AgregaBien))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button_EliminaBien))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button_Guardar)
-                    .addComponent(button_Salir))
-                .addContainerGap(25, Short.MAX_VALUE))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 268, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 810, 270));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 808, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 98, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 810, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button_DependenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DependenciaActionPerformed
-        Application.DEPENDENCIAS_CONTROLLER.show();
-    }//GEN-LAST:event_button_DependenciaActionPerformed
-
     private void button_EliminaBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_EliminaBienActionPerformed
         try {
-            int row = this.jTable1.getSelectedRow();
-            int col = this.jTable1.getSelectedColumn();
+            int row = this.table_bien.getSelectedRow();
+            int col = this.table_bien.getSelectedColumn();
             this.controller.borrarBien(row); //Mandar una excepcion si agrega Dependencia es null
             JOptionPane.showMessageDialog(this, "Solicitud Eliminada Exitosamente", "OK", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
@@ -316,7 +246,8 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     private void button_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_GuardarActionPerformed
         if (this.validarSolicitud()) {
             try {
-                this.controller.guardarSolicitud(this.agregaSolicitud()); //Mandar una excepcion si agrega Dependencia es null
+                Labor labor = this.buscaLabor(Application.LOGIN_CONTROLLER.getLoginModel().getCurrent().getFuncionario().getId());
+                this.controller.guardarSolicitud(this.agregaSolicitud(labor.getDependencia())); //Mandar una excepcion si agrega Dependencia es null
                 JOptionPane.showMessageDialog(this, "Solicitud Agregada Exitosamente", "OK", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -327,9 +258,16 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     }//GEN-LAST:event_button_GuardarActionPerformed
 
     private void button_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SalirActionPerformed
-        //this.controller.hide();
-        System.exit(0);
+        this.controller.hide();
     }//GEN-LAST:event_button_SalirActionPerformed
+
+    private void button_AgregaBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AgregaBienActionPerformed
+        try{
+        this.controller.refrescarTablaBien();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }   
+    }//GEN-LAST:event_button_AgregaBienActionPerformed
 
     private boolean validarSolicitud() {
         boolean error = true;
@@ -379,7 +317,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         return error;
     }
 
-    Solicitud agregaSolicitud() throws ParseException {
+    Solicitud agregaSolicitud(Dependencia dependencia) throws ParseException {
         Solicitud s = new Solicitud();
         s.setComprobante(this.text_Comprobante.getText());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
@@ -391,9 +329,14 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         }
         s.setTipoAdquisicion((String) this.comboBox_Tipo.getSelectedItem());
         s.setEstado((String) this.comboBox_Estado.getSelectedItem());
-        //s.setDependencia(dependencia); //Como mandar la dependencia
+        s.setDependencia(dependencia); //Como mandar la dependencia
         s.setBiens(new HashSet<Bien>(proyecto2.logic.ModelGeneral.instance().searchBien(this.controller.model.getFilter()))); //Como agregar los bienes
         return s;
+    }
+    
+    private Labor buscaLabor(String id) {
+        Labor labor = proyecto2.logic.ModelGeneral.instance().searchLabor(id);
+        return labor;
     }
 
     public void limpiarErrores() {
@@ -425,14 +368,14 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_AgregaBien;
-    private javax.swing.JButton button_Dependencia;
     private javax.swing.JButton button_EliminaBien;
     private javax.swing.JButton button_Guardar;
     private javax.swing.JButton button_Salir;
     private javax.swing.JComboBox<String> comboBox_Estado;
     private javax.swing.JComboBox<String> comboBox_Tipo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel label_Bien;
     private javax.swing.JLabel label_Cantidad;
     private javax.swing.JLabel label_Comprobante;
@@ -444,6 +387,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     private javax.swing.JLabel label_Precio;
     private javax.swing.JLabel label_Solicitud;
     private javax.swing.JLabel label_Tipo;
+    private javax.swing.JTable table_bien;
     private javax.swing.JTextField text_Cantidad;
     private javax.swing.JTextField text_Comprobante;
     private javax.swing.JTextField text_Descripcion;
@@ -458,6 +402,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         this.limpiarErrores();
         Solicitud actual = model.getCurrentS();
         this.fromSolicitud(actual);
+        this.table_bien.setModel(model.getBien());
     }
 
 }

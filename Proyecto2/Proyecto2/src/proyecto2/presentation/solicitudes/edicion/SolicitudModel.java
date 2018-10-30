@@ -40,7 +40,7 @@ public class SolicitudModel extends java.util.Observable {
     
     public void setBien(List<Bien> bienes){
         int[] cols = {SolicitudBienTableModel.DESCRIPCION,SolicitudBienTableModel.MARCA,SolicitudBienTableModel.MODELO,SolicitudBienTableModel.CANTIDAD,SolicitudBienTableModel.PRECIO};
-        this.bienes = new SolicitudBienTableModel(cols, bienes);    
+        this.bienes = new SolicitudBienTableModel(cols, bienes);
     }
     
     public Bien getFilter() {
@@ -103,6 +103,6 @@ public class SolicitudModel extends java.util.Observable {
 
     public void commit(){
         setChanged();
-        notifyObservers();       
+        notifyObservers();
     }
 }
