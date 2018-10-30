@@ -47,11 +47,9 @@ public class SecretariaController {
     
     public void actualizar(Solicitud s, String estado)throws Exception{
         Transaction t=session.beginTransaction();
-//        System.out.println(s.getCodigo());
         Solicitud sol = proyecto2.logic.ModelGeneral.instance().getSolicitud(s.getCodigo());
         model.setEstado(sol, estado);
         session.merge(sol);
-//        session.update(s);
         t.commit();
         Application.SECRETARIA_CONTROLLER.refrescarBusqueda();
     }
