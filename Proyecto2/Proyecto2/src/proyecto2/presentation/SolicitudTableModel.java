@@ -44,6 +44,8 @@ public class SolicitudTableModel extends AbstractTableModel {
         //rows => lista
         //rows.get => obtiene el objeto en esa fila
         Solicitud solicitud = rows.get(row);
+//        if()
+       // System.out.println(solicitud.getDependencia().getNombre());
         switch (cols[col]) {
             case CODIGO:
                 return solicitud.getCodigo();
@@ -59,7 +61,8 @@ public class SolicitudTableModel extends AbstractTableModel {
                 return solicitud.getMonto();
             case COMPROBANTE:
                 return solicitud.getComprobante();
-
+            case DEPENDENCIA:
+                return solicitud.getDependencia().getNombre();
             default:
                 return "";
         }
@@ -68,6 +71,7 @@ public class SolicitudTableModel extends AbstractTableModel {
     public Solicitud getRowAt(int row) {
         return rows.get(row);
     }
+    
 
     public static final int COMPROBANTE = 6;
     public static final int CODIGO = 0;
@@ -78,7 +82,7 @@ public class SolicitudTableModel extends AbstractTableModel {
     public static final int CANTIDAD = 2;
     public static final int DEPENDENCIA =7;
 
-    String[] colNames = new String[7];
+    String[] colNames = new String[9];
 
     private void initColNames() {
 

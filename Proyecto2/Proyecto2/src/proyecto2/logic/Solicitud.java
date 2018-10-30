@@ -55,6 +55,7 @@ public class Solicitud  implements java.io.Serializable {
     }
 
     public Solicitud(Integer codigo,Date fecha,Integer cantidad,String tipo,String estado,Double monto,String comprobante,Dependencia dependencia){
+
         this.codigo=codigo;
         this.fecha=fecha;
         this.cantidad=cantidad;
