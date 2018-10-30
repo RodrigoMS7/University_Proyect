@@ -19,39 +19,45 @@ import proyecto2.logic.Usuario;
  * @author Dani
  */
 public class JefeController {
+
     Session session;
     JefeView view;
     JefeModel model;
     SessionUsuario sessionUsuario;
+
     public JefeController(JefeView view, JefeModel model, Session session, SessionUsuario u) {
-        this.session=session;
+        this.session = session;
         sessionUsuario = u;
         this.view = view;
         this.model = model;
         view.setController(this);
         view.setModel(model);
     }
-     public void buscar(Solicitud filter) throws Exception{
+
+    public void buscar(Solicitud filter) throws Exception {
         model.setFilter(filter);
         this.refrescarBusqueda();
     }
-      public void buscar(){
+
+    public void buscar() {
         List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado();
-        if(!rows.isEmpty()){
-        model.setSolicitudes(rows);
-        model.commit();
+        if (!rows.isEmpty()) {
+            model.setSolicitudes(rows);
+            model.commit();
         }
     }
-    
-    public void refrescarBusqueda() throws Exception{
+
+    public void refrescarBusqueda() throws Exception {
         System.out.println(model.getFilter().getEstado());
-       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido", model.getFilter());
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido", model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
-        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
-    }    
-    
-    public void editar(int row, Point at){       
+        if (rows.isEmpty()) {
+            throw new Exception("Ningún dato coincide");
+        }
+    }
+
+    public void editar(int row, Point at) {
 //        Funcionario seleccionada = model.getFuncionarios().getRowAt(row); 
 ////        Usuario principal = (Usuario) session.getAttribute(Application.USER_ATTRIBUTE);
 //        int modo;
@@ -65,21 +71,22 @@ public class JefeController {
 //        Application.FUNCIONARIO_CONTROLLER.show(at);
     }
 
-    public void reset(){
+    public void reset() {
         model.reset();
     }
+
     
     public void show(){
         buscar();
         view.setVisible(true);
     }
 
-    public void show(Point position){
+    public void show(Point position) {
         view.setLocation(position);
         this.show();
-    }   
-    
-    public void hide(){
+    }
+
+    public void hide() {
         view.setVisible(false);
-    }     
+    }
 }

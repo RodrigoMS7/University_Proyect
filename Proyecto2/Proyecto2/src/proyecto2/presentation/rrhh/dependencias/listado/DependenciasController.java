@@ -9,20 +9,24 @@ import java.awt.Point;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
+import proyecto2.Application;
+import proyecto2.SessionUsuario;
 import proyecto2.logic.Dependencia;
+import proyecto2.logic.Funcionario;
 
 /**
  *
  * @author oscar
  */
 public class DependenciasController {
-    //Falta agregar domainmodel
+    
     Session session;
     DependenciasView view;
     DependenciasModel model;
-    
-    public DependenciasController(DependenciasView view, DependenciasModel model, Session session){
+    SessionUsuario sessionUsuario;
+    public DependenciasController(DependenciasView view, DependenciasModel model, Session session,SessionUsuario u){
         this.session=session;
+        sessionUsuario = u;
         this.view = view;
         this.model = model;
         view.setController(this);
@@ -42,15 +46,28 @@ public class DependenciasController {
     }
 
     public void borrar(int row){  
+        
         Dependencia seleccionada = model.getDependencias().getRowAt(row); 
         try {
-            //domainModel.deletePersona(seleccionada);
-        } catch (Exception ex) { }
-        //List<Dependencia> rowsMod = domainModel.searchPersonas(model.getFilter());
-      //  model.setDependencias(rowsMod);
+            proyecto2.logic.ModelGeneral.instance().eliminaDependencia(seleccionada);
+        } catch (Exception ex) { 
+        }
+        List<Dependencia> rowsMod=proyecto2.logic.ModelGeneral.instance().searchDependencias(model.getFilter());
+        
+        model.setDependencias(rowsMod);
         model.commit();
+        
     }
-
+    public void preAgregar(Point at)throws Exception{
+        Application.DEPENDENCIA_CONTROLLER.reset(Application.MODO_AGREGAR, new Dependencia()); //modo agregar se setea aqui
+        Application.DEPENDENCIA_CONTROLLER.show(at);
+    }
+    public void editar(int row, Point at){
+        Dependencia seleccionada = model.getDependencias().getRowAt(row);
+        int modo;
+        Application.DEPENDENCIA_CONTROLLER.reset(Application.MODO_EDITAR, seleccionada);
+        Application.DEPENDENCIA_CONTROLLER.show(at);
+    }
     public void reset(){
         model.reset();
     }

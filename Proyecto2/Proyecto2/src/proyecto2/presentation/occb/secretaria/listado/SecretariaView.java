@@ -75,6 +75,8 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
         rechazarButton = new javax.swing.JButton();
         comprobante = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+
         buscarButton.setText("buscar");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +157,7 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarButton)
                     .addComponent(rechazarButton))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();

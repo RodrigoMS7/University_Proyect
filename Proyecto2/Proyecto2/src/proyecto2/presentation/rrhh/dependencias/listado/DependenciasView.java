@@ -176,10 +176,17 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
 
     private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
         // TODO add your handling code here:
+        try {
+            controller.preAgregar(this.agregarButton.getLocationOnScreen());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
+        }
     }//GEN-LAST:event_agregarButtonActionPerformed
 
     private void eliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarButtonActionPerformed
         // TODO add your handling code here:
+        int row = this.dependenciasFld.getSelectedRow();
+        controller.borrar(row);
     }//GEN-LAST:event_eliminarButtonActionPerformed
 
 

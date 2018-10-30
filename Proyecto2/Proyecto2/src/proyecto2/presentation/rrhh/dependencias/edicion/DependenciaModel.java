@@ -47,4 +47,10 @@ public class DependenciaModel extends java.util.Observable{
         setChanged();
         notifyObservers();       
     }   
+
+    void reset(int modo, Dependencia current) {
+        this.setModo(modo);
+        this.setCurrent(current);
+        this.commit();
+    }
 }
