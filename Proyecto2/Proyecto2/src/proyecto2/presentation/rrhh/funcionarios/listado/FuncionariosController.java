@@ -32,13 +32,13 @@ public class FuncionariosController {
         view.setModel(model);
     }
      public void buscar(Funcionario filter) throws Exception{
-          Usuario principal = (Usuario) sessionUsuario.getAttribute("User");
-               System.out.println("jpa");
-           System.out.println(proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()));
-
-        if (!proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals( "Administrador") ){
-           throw new Exception(Application.ROL_NOTAUTHORIZED);
-        }
+//          Usuario principal = (Usuario) sessionUsuario.getAttribute("User");
+//               System.out.println("jpa");
+//           System.out.println(proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()));
+//
+//        if (!proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()).equals( "Administrador") ){
+//           throw new Exception(Application.ROL_NOTAUTHORIZED);
+//        }
           
            
         model.setFilter(filter);
@@ -82,7 +82,8 @@ public class FuncionariosController {
         Funcionario seleccionada = model.getFuncionarios().getRowAt(row); 
         try {
             proyecto2.logic.ModelGeneral.instance().eliminaFuncionario(seleccionada);
-        } catch (Exception ex) { }
+        } catch (Exception ex) { 
+        }
         List<Funcionario> rowsMod = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
         model.setFuncionarios(rowsMod);
         model.commit();

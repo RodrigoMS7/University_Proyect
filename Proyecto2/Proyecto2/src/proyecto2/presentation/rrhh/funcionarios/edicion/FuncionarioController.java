@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import proyecto2.Application;
 import proyecto2.logic.Funcionario;
 
+
 /**
  *
  * @author oscar
@@ -27,7 +28,7 @@ public class FuncionarioController {
         view.setController(this);
         view.setModel(model);
     }
-    
+
      public void reset(){
         model.reset();
     }
