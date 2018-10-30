@@ -147,7 +147,7 @@ public class Solicitud  implements java.io.Serializable {
     public void setBiens(Set biens) {
         this.biens = biens;
     }
-
+    
 }
 
 
