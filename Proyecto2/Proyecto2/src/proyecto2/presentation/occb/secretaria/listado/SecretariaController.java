@@ -48,8 +48,8 @@ public class SecretariaController {
     public void actualizar(Solicitud s, String estado)throws Exception{
         Transaction t=session.beginTransaction();
         model.setEstado(s, estado);
-        //session.merge(s);
-        session.update(s);
+        session.merge(s);
+        //session.update(s);
         t.commit();
         Application.SECRETARIA_CONTROLLER.refrescarBusqueda();
     }
