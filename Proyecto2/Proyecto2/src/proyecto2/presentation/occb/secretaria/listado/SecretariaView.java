@@ -7,6 +7,7 @@ package proyecto2.presentation.occb.secretaria.listado;
 
 import java.util.Observable;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import proyecto2.Application;
 import proyecto2.logic.Solicitud;
 
@@ -92,11 +93,26 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        solicitudes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                solicitudesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(solicitudes);
 
         aceptarButton.setText("Aceptar");
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarButtonActionPerformed(evt);
+            }
+        });
 
         rechazarButton.setText("Rechazar");
+        rechazarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rechazarButtonActionPerformed(evt);
+            }
+        });
 
         comprobante.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         comprobante.setText("Comprobante:");
@@ -106,6 +122,14 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addComponent(comprobante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buscarButton)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(250, 250, 250)
@@ -113,18 +137,9 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
                         .addGap(18, 18, 18)
                         .addComponent(rechazarButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(comprobante)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buscarButton)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(45, 45, 45))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,9 +149,9 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
                     .addComponent(buscarButton)
                     .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comprobante))
-                .addGap(32, 32, 32)
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(aceptarButton)
                     .addComponent(rechazarButton))
@@ -154,7 +169,44 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
              JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
         }
     }//GEN-LAST:event_buscarButtonActionPerformed
+    Solicitud seleccionada;
+    private void rechazarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechazarButtonActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+            JTextField motivo=new JTextField();
+            Object[] message={"Motivo de rechazo: ",motivo};
+            JOptionPane.showConfirmDialog(null, message,"Motivo",JOptionPane.OK_OPTION);
+            if(motivo.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Error, debe digitar un motivo");
+                return;
+            }
+            else {
+                seleccionada.setMotivioRechazo(motivo.getText());
+                //seleccionada.setEstado("rechazada");
+                controller.actualizar(seleccionada,"rechazada");
+            }
+        }catch(Exception e){ }
+    }//GEN-LAST:event_rechazarButtonActionPerformed
 
+    private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
+        // TODO add your handling code here:
+        
+        //seleccionada.setEstado("por verificar");
+        try{
+            controller.actualizar(seleccionada,"por verificar");
+        }catch(Exception e){}
+    }//GEN-LAST:event_aceptarButtonActionPerformed
+   
+    private void solicitudesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_solicitudesMouseClicked
+        // TODO add your handling code here:
+        try{
+            int row=solicitudes.getSelectedRow();
+            seleccionada= model.getSolicitudes().getRowAt(row);
+        }catch(Exception e){
+        }
+    }//GEN-LAST:event_solicitudesMouseClicked
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarButton;

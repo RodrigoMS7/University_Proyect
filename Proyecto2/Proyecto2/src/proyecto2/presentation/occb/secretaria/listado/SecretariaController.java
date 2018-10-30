@@ -8,6 +8,8 @@ package proyecto2.presentation.occb.secretaria.listado;
 import java.awt.Point;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import proyecto2.Application;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Solicitud;
 
@@ -36,13 +38,21 @@ public class SecretariaController {
     
     public void refrescarBusqueda() throws Exception{
 
-       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido",model.getFilter());
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido",model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
 
-    }  
+    }
     
+    public void actualizar(Solicitud s, String estado)throws Exception{
+        Transaction t=session.beginTransaction();
+        model.setEstado(s, estado);
+        //session.merge(s);
+        session.update(s);
+        t.commit();
+        Application.SECRETARIA_CONTROLLER.refrescarBusqueda();
+    }
     
     public void reset(){
         model.reset();

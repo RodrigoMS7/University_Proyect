@@ -68,4 +68,7 @@ public class SecretariaModel extends java.util.Observable{
         setChanged();
         notifyObservers();
     }
+    public void setEstado(Solicitud s, String estado){
+        s.setEstado(estado);
+    }
 }
