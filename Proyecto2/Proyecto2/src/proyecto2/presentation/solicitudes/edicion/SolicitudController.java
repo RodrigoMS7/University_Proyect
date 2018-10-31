@@ -40,33 +40,18 @@ public class SolicitudController {
 //        model.setFilter(filter);
 //        this.refrescarBusqueda();
 //    }
-    
-    public void refrescarTablaBien() throws Exception{
-        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().getAllBienes();
+    public void refrescarTablaBien() throws Exception {
+        List<Bien> rows = model.getListaBienes();
+//        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().getAllBienes();
         model.setBien(rows);
         model.commit();
-        if(rows.isEmpty()) throw new Exception("Ningun dato coincide");
+//        if (rows.isEmpty()) {
+//            throw new Exception("Ningun dato coincide");
+//        }
     }
 
-    public void guardarBien(Bien bien, Solicitud solicitud) throws Exception{ 
-        Transaction t = session.beginTransaction();
-//        bien.setSolicitud(solicitud);
-        switch(model.getModoB()){
-            case Application.MODO_AGREGAR:
-                session.save(bien);
-                t.commit();
-                //Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();                   
-                model.setCurrentB(new Bien());
-                model.commit();
-////                this.refrescarTablaBien();
-                break;
-            case Application.MODO_EDITAR:
-                session.update(bien);
-                 t.commit();
-//                 this.refrescarTablaBien();
-                //Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
-                break;
-        } 
+    public void guardarBien(Bien bien )  { 
+        model.agregaBien(bien);
     }
     
     public void borrarBien(int row)throws Exception {  
@@ -83,9 +68,10 @@ public class SolicitudController {
     public void guardarSolicitud(Solicitud solicitud) throws Exception{ 
         Transaction t = session.beginTransaction();
         Usuario principal = (Usuario) sessU.getAttribute("User");
-        System.out.println(solicitud.getComprobante());
         String cod = proyecto2.logic.ModelGeneral.instance().getCodigoDependenciaDesdeLabor(principal.getFuncionario().getId());
         Dependencia dep = proyecto2.logic.ModelGeneral.instance().getDependencia(cod);
+        model.setSolicituaABien(solicitud);
+        solicitud.setBiens(model.biens);
         switch(model.getModoS()){
             case Application.MODO_AGREGAR:
                 solicitud.setDependencia(dep);

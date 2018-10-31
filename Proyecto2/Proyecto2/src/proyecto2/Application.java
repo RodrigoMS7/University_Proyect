@@ -54,7 +54,6 @@ public class Application {
     public static void main(String[] args) throws Exception {
         Session session = HibernateUtil.getSessionFactory().openSession();
         SessionUsuario ses = new SessionUsuario();
-        
         LoginModel loginModel = new LoginModel();
         LoginView loginView= new LoginView();
         LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);

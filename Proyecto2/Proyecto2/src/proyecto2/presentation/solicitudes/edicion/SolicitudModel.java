@@ -6,8 +6,10 @@
 package proyecto2.presentation.solicitudes.edicion;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Observer;
+import java.util.Set;
 import proyecto2.logic.Bien;
 import proyecto2.logic.Solicitud;
 
@@ -22,9 +24,40 @@ public class SolicitudModel extends java.util.Observable {
     int modoB;
     Solicitud currentS;
     int modoS;  
+    List<Bien> listaBienes;
+    Set biens = new HashSet(0);
 
+    
     public SolicitudModel() {
+        listaBienes = new ArrayList();
         this.reset();
+    }
+    
+    public void agregaBien(Bien bien){
+        listaBienes.add(bien);
+        biens.add(bien);
+    }
+
+    public SolicitudBienTableModel getBienes() {
+        return bienes;
+    }
+
+    public void setBienes(SolicitudBienTableModel bienes) {
+        this.bienes = bienes;
+    }
+
+    public List<Bien> getListaBienes() {
+        return listaBienes;
+    }
+
+    public void setListaBienes(List<Bien> listaBienes) {
+        this.listaBienes = listaBienes;
+    }
+    
+    public void setSolicituaABien(Solicitud solicitud){
+        for(Bien bien: listaBienes){
+            bien.setSolicitud(solicitud);    
+        }
     }
 
     public void reset(){ //PUEDE QUE NO FUNCIONE (PROBAR)

@@ -341,4 +341,13 @@ public class ModelGeneral {
         }
     }
 
+//    public int getUltimoCodigoSolicitud(){ BORRAR
+//        String sql = "select * from solicitud";
+//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//                ResultSet rs = stm.executeQuery(sql);) {
+//            rs.last();
+//            return rs.getInt("codigo");
+//        } catch (SQLException e) { }
+//        return 0;
+//    }
 }

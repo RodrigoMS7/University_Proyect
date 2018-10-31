@@ -269,7 +269,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     private void button_AgregaBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AgregaBienActionPerformed
         try {
             this.controller.refrescarTablaBien();
-            this.controller.guardarBien(this.toBien(),this.agregaSolicitud());
+            this.controller.guardarBien(this.toBien());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
