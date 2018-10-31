@@ -20,8 +20,6 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
 
       public JefeView() {
         super("",false,true);
-//        actualiza();
-//        controller.buscar();
         initComponents();
     }
        public void actualiza(){
@@ -70,7 +68,7 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
         comprobanteFld = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buttonAsignar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -96,7 +94,12 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
             }
         });
 
-        jButton2.setText("Asignar Registrador");
+        buttonAsignar.setText("Asignar Registrador");
+        buttonAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAsignarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +121,7 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
-                .addComponent(jButton2)
+                .addComponent(buttonAsignar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -132,7 +135,7 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(buttonAsignar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -147,11 +150,15 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void buttonAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAsignarActionPerformed
+        controller.getRegistradores(buttonAsignar.getLocation());
+    }//GEN-LAST:event_buttonAsignarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAsignar;
     private javax.swing.JTextField comprobanteFld;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable solicitudesTable;

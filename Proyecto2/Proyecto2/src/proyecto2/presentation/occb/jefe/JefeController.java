@@ -57,18 +57,8 @@ public class JefeController {
         }
     }
 
-    public void editar(int row, Point at) {
-//        Funcionario seleccionada = model.getFuncionarios().getRowAt(row); 
-////        Usuario principal = (Usuario) session.getAttribute(Application.USER_ATTRIBUTE);
-//        int modo;
-////        if ( Arrays.asList(Application.ROL_MANAGER, Application.ROL_SUPERVISOR).contains(principal.getRol())){
-////            modo=Application.MODO_EDITAR;
-////        }
-////        else{
-////            modo=Application.MODO_CONSULTAR;            
-////        }
-//        Application.FUNCIONARIO_CONTROLLER.reset(Application.MODO_EDITAR, seleccionada);
-//        Application.FUNCIONARIO_CONTROLLER.show(at);
+    public void getRegistradores(Point at) {
+        Application.JEFE_REGISTRADOR_CONTROLLER.show(at);
     }
 
     public void reset() {

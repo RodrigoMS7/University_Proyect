@@ -21,6 +21,10 @@ import proyecto2.presentation.login_usuario.LoginView;
 import proyecto2.presentation.occb.jefe.JefeController;
 import proyecto2.presentation.occb.jefe.JefeModel;
 import proyecto2.presentation.occb.jefe.JefeView;
+import proyecto2.presentation.occb.jefe.registradores.JefeRegistradorController;
+import proyecto2.presentation.occb.jefe.registradores.JefeRegistradorModel;
+import proyecto2.presentation.occb.jefe.registradores.JefeRegistradorView;
+
 import proyecto2.presentation.occb.secretaria.listado.SecretariaController;
 import proyecto2.presentation.occb.secretaria.listado.SecretariaModel;
 import proyecto2.presentation.occb.secretaria.listado.SecretariaView;
@@ -51,11 +55,11 @@ public class Application {
         Session session = HibernateUtil.getSessionFactory().openSession();
         SessionUsuario ses = new SessionUsuario();
         
-        LoginModel loginModel = new LoginModel();
-        LoginView loginView= new LoginView();
-        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
-        LOGIN_CONTROLLER = logincontroller;
-        loginView.setVisible(true);
+//        LoginModel loginModel = new LoginModel();
+//        LoginView loginView= new LoginView();
+//        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
+//        LOGIN_CONTROLLER = logincontroller;
+//        loginView.setVisible(true);
         
         ApplicationModel applicationModel = new ApplicationModel();
         ApplicationView applicationView= new ApplicationView();
@@ -70,6 +74,12 @@ public class Application {
         //applicationView.addInternalFrame(personasView);
         JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
         JEFE_CONTROLLER=personascontroller;
+        
+        JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
+        JefeRegistradorView jefRegView = new JefeRegistradorView(applicationView, true);
+        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
+        JEFE_REGISTRADOR_CONTROLLER= jefRegController;
+  
         applicationView.addInternalFrame(personasView);
         SolicitudModel solicitudModel=new SolicitudModel();
         SolicitudView solicitudView=new SolicitudView();
@@ -121,6 +131,7 @@ public class Application {
     public static JefeController JEFE_CONTROLLER;
     public static SolicitudController SOLICITUD_CONTROLLER;
     public static SecretariaController SECRETARIA_CONTROLLER;
+    public static JefeRegistradorController JEFE_REGISTRADOR_CONTROLLER;
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;

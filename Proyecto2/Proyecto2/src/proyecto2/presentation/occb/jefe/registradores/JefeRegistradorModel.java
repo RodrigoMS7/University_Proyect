@@ -15,12 +15,12 @@ import proyecto2.presentation.rrhh.funcionarios.listado.FuncionarioTableModel;
  *
  * @author Dani
  */
-public class RegistradorModel extends java.util.Observable {
+public class JefeRegistradorModel extends java.util.Observable {
     Funcionario filter;
     FuncionarioTableModel funcionarios;
     Funcionario seleccionada;
 
-    public RegistradorModel() {
+    public JefeRegistradorModel() {
         this.reset();
     }
 

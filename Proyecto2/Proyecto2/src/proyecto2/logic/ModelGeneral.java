@@ -315,7 +315,7 @@ public class ModelGeneral {
      
      
     public List<Funcionario> getRegistradores() {
-        String sql = "select * from funcionario where id like '%%%s%%'";
+        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where puesto=1";//*** poner codigo registrador
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Funcionario> resultado = new ArrayList<Funcionario>();
