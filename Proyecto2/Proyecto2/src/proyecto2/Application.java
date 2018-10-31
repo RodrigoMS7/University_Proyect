@@ -54,46 +54,46 @@ public class Application {
     public static void main(String[] args) throws Exception {
         Session session = HibernateUtil.getSessionFactory().openSession();
         SessionUsuario ses = new SessionUsuario();
-        LoginModel loginModel = new LoginModel();
-        LoginView loginView= new LoginView();
-        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
-        LOGIN_CONTROLLER = logincontroller;
-        loginView.setVisible(true);
+//        LoginModel loginModel = new LoginModel();
+//        LoginView loginView= new LoginView();
+//        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
+//        LOGIN_CONTROLLER = logincontroller;
+//        loginView.setVisible(true);
         
-//        ApplicationModel applicationModel = new ApplicationModel();
-//        ApplicationView applicationView= new ApplicationView();
-//        ApplicationController applicationController = new ApplicationController(applicationView,applicationModel,session,ses);
-//        APPLICATION_CONTROLLER = applicationController;
-//       
-//        //applicationView.setVisible(true);
+        ApplicationModel applicationModel = new ApplicationModel();
+        ApplicationView applicationView= new ApplicationView();
+        ApplicationController applicationController = new ApplicationController(applicationView,applicationModel,session,ses);
+        APPLICATION_CONTROLLER = applicationController;
+       
+        applicationView.setVisible(true);
 //        
 //        
-//        JefeModel personasModel = new JefeModel();
-//        JefeView personasView= new JefeView();
-//        //applicationView.addInternalFrame(personasView);
-//        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
-//        JEFE_CONTROLLER=personascontroller;
+        JefeModel personasModel = new JefeModel();
+        JefeView personasView= new JefeView();
+        //applicationView.addInternalFrame(personasView);
+        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
+        JEFE_CONTROLLER=personascontroller;
+        
+        JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
+        JefeRegistradorView jefRegView = new JefeRegistradorView();
+        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
+        JEFE_REGISTRADOR_CONTROLLER= jefRegController;
+        applicationView.addInternalFrame(jefRegView);
+  
+        applicationView.addInternalFrame(personasView);
+//        SolicitudModel solicitudModel = new SolicitudModel();
+//        SolicitudView solicitudView = new SolicitudView();
+//        SolicitudController solicitudController = new SolicitudController(solicitudView, solicitudModel, session, ses);
+//        //applicationView.addInternalFrame(solicitudView);
+//        SOLICITUD_CONTROLLER = solicitudController;
+//        solicitudView.setVisible(true);
 //        
-//        JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
-//        JefeRegistradorView jefRegView = new JefeRegistradorView();
-//        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
-//        JEFE_REGISTRADOR_CONTROLLER= jefRegController;
-//        applicationView.addInternalFrame(jefRegView);
-//  
-//        applicationView.addInternalFrame(personasView);
-        SolicitudModel solicitudModel = new SolicitudModel();
-        SolicitudView solicitudView = new SolicitudView();
-        SolicitudController solicitudController = new SolicitudController(solicitudView, solicitudModel, session, ses);
-        //applicationView.addInternalFrame(solicitudView);
-        SOLICITUD_CONTROLLER = solicitudController;
-        solicitudView.setVisible(true);
 //        
-//        
-//        SecretariaModel secretariaModel=new SecretariaModel();
-//        SecretariaView secretariaView=new SecretariaView();
-//        SecretariaController secretariaController=new SecretariaController(secretariaView,secretariaModel,session);
-//        applicationView.addInternalFrame(secretariaView);
-//        SECRETARIA_CONTROLLER=secretariaController;
+        SecretariaModel secretariaModel=new SecretariaModel();
+        SecretariaView secretariaView=new SecretariaView();
+        SecretariaController secretariaController=new SecretariaController(secretariaView,secretariaModel,session);
+        applicationView.addInternalFrame(secretariaView);
+        SECRETARIA_CONTROLLER=secretariaController;
 //        
 //        DependenciaModel dependenciaModel= new DependenciaModel();
 //        DependenciaView dependenciaView=new DependenciaView(applicationView,true);
@@ -106,18 +106,18 @@ public class Application {
 //        DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
 //        DEPENDENCIAS_CONTROLLER=dependenciasController;
 //        
-//        FuncionarioModel funcionarioModel = new FuncionarioModel();
-//        FuncionarioView funcionarioView = new FuncionarioView();
-//        FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel, session);
-//        FUNCIONARIO_CONTROLLER = funcionarioController;
-//        applicationView.addInternalFrame(funcionarioView);
-//
-//        FuncionariosModel funcionariosModel = new FuncionariosModel();
-//        FuncionariosView funcionariosView = new FuncionariosView();
-//        applicationView.addInternalFrame(funcionariosView);
-//        FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session,ses);
-//        FUNCIONARIOS_CONTROLLER = funcionariosController;
-//        applicationView.setVisible(true);
+        FuncionarioModel funcionarioModel = new FuncionarioModel();
+        FuncionarioView funcionarioView = new FuncionarioView();
+        FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel, session);
+        FUNCIONARIO_CONTROLLER = funcionarioController;
+        applicationView.addInternalFrame(funcionarioView);
+
+        FuncionariosModel funcionariosModel = new FuncionariosModel();
+        FuncionariosView funcionariosView = new FuncionariosView();
+        applicationView.addInternalFrame(funcionariosView);
+        FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session,ses);
+        FUNCIONARIOS_CONTROLLER = funcionariosController;
+        applicationView.setVisible(true);
         
     }
    

@@ -152,8 +152,8 @@ public class ModelGeneral {
     }
     
     
-     public List<Bien> getAllBienes(){
-        String sql = "select * from bien";
+     public List<Bien> getAllBienesSolicitud(Solicitud solicitud){
+        String sql = "select * from bien where solicitud="+solicitud.getCodigo();
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Bien> resultado = new ArrayList<Bien>();
@@ -283,9 +283,9 @@ public class ModelGeneral {
     }
     
 
-      public List<Solicitud> searchByEstado(){
+      public List<Solicitud> searchSolicitudesPorVerificar(){
 //         String sql = "select * from solicitud where estado = 'recibido'";
-          String sql ="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where estado = 'recibido'";
+          String sql ="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where estado = 'porVerificar'";
          try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                  ResultSet rs = stm.executeQuery(sql);) {
              List<Solicitud> resultado = new ArrayList<Solicitud>();
@@ -341,13 +341,5 @@ public class ModelGeneral {
         }
     }
 
-//    public int getUltimoCodigoSolicitud(){ BORRAR
-//        String sql = "select * from solicitud";
-//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//                ResultSet rs = stm.executeQuery(sql);) {
-//            rs.last();
-//            return rs.getInt("codigo");
-//        } catch (SQLException e) { }
-//        return 0;
-//    }
+
 }

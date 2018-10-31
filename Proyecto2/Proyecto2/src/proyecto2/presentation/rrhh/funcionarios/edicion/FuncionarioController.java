@@ -62,7 +62,7 @@ public class FuncionarioController {
                 model.commit();   
                 break;
             case Application.MODO_EDITAR:
-                session.update(funcionario);
+                session.merge(funcionario);
                  t.commit();
                 Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
                 break;

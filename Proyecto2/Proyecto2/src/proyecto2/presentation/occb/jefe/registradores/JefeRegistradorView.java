@@ -6,6 +6,8 @@
 package proyecto2.presentation.occb.jefe.registradores;
 
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import proyecto2.logic.Funcionario;
 
 /**
@@ -51,6 +53,9 @@ public class JefeRegistradorView extends javax.swing.JInternalFrame implements j
         jScrollPane1 = new javax.swing.JScrollPane();
         funcionariosTab = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,6 +78,13 @@ public class JefeRegistradorView extends javax.swing.JInternalFrame implements j
 
         jLabel1.setText("REGISTRADORES");
 
+        jButton1.setText("Asignar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,7 +96,10 @@ public class JefeRegistradorView extends javax.swing.JInternalFrame implements j
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jButton1)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,7 +109,9 @@ public class JefeRegistradorView extends javax.swing.JInternalFrame implements j
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,9 +119,27 @@ public class JefeRegistradorView extends javax.swing.JInternalFrame implements j
 
     private void jScrollPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseClicked
           if(evt.getClickCount() ==2){
+              System.out.println("HOla doble click");
             int row = funcionariosTab.getSelectedRow();
+              try {
+                  controller.asignaRegistradorAsolicitud(row);
+              } catch (Exception ex) {
+                  Logger.getLogger(JefeRegistradorView.class.getName()).log(Level.SEVERE, null, ex);
+              }
         }
     }//GEN-LAST:event_jScrollPane1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        System.out.println("HOla doble click");
+        int row = funcionariosTab.getSelectedRow();
+        try {
+            controller.asignaRegistradorAsolicitud(row);
+        } catch (Exception ex) {
+            Logger.getLogger(JefeRegistradorView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,6 +147,7 @@ public class JefeRegistradorView extends javax.swing.JInternalFrame implements j
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable funcionariosTab;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

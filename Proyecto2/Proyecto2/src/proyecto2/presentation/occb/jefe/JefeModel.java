@@ -8,6 +8,7 @@ package proyecto2.presentation.occb.jefe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
+import proyecto2.logic.Funcionario;
 import proyecto2.logic.Solicitud;
 import proyecto2.presentation.SolicitudTableModel;
 
@@ -20,7 +21,16 @@ public class JefeModel extends java.util.Observable{
     Solicitud filter;
     SolicitudTableModel solicitudes;
     Solicitud seleccionada;
+    Funcionario registrador;
 
+    public Funcionario getRegistrador() {
+        return registrador;
+    }
+
+    public void setRegistrador(Funcionario registrador) {
+        this.registrador = registrador;
+    }
+    
     public JefeModel() {
         this.reset();
     }
