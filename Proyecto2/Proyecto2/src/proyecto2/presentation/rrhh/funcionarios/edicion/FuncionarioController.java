@@ -57,14 +57,14 @@ public class FuncionarioController {
 //                proyecto2.logic.ModelGeneral.instance();
                 session.save(funcionario);
                 t.commit();
-                //Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();                   
+                Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();                   
                 model.setCurrent(new Funcionario());
                 model.commit();   
                 break;
             case Application.MODO_EDITAR:
                 session.update(funcionario);
                  t.commit();
-                //Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
+                Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
                 break;
         }   
     } 

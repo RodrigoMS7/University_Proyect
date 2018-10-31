@@ -32,10 +32,10 @@ public class BienesController {
         this.refrescarBusqueda();
     }
     public void refrescarBusqueda() throws Exception{
-        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().searchBien(model.getFilter());
-        model.setBien(rows);
-        model.commit();
-        if(rows.isEmpty()) throw new Exception("Ningun dato coincide");
+//        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().searchBien(model.getFilter());
+//        model.setBien(rows);
+//        model.commit();
+//        if(rows.isEmpty()) throw new Exception("Ningun dato coincide");
     }
 
     public void borrar(int row){

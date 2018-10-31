@@ -25,7 +25,6 @@ public class Bien  implements java.io.Serializable {
     }
 
     public Bien(String descripcion, String marca, String modelo, Integer cantidad, Double precio) {
-//       this.categoria = categoria;
 //       this.solicitud = solicitud;
         this.cantidad = cantidad;
         this.modelo = modelo;
@@ -35,6 +34,7 @@ public class Bien  implements java.io.Serializable {
         // this.activos = activos;
     }
     
+
     public Bien(Categoria categoria, Solicitud solicitud, Integer cantidad, String modelo, String descripcion, String marca, Double precio, Set activos) {
        this.categoria = categoria;
        this.solicitud = solicitud;

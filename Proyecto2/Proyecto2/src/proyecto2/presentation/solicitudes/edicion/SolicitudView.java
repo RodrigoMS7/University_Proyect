@@ -62,11 +62,6 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
 
         label_Solicitud = new javax.swing.JLabel();
         label_Bien = new javax.swing.JLabel();
-        label_Comprobante = new javax.swing.JLabel();
-        label_Fecha = new javax.swing.JLabel();
-        text_Fecha = new javax.swing.JTextField();
-        comboBox_Tipo = new javax.swing.JComboBox<>();
-        label_Tipo = new javax.swing.JLabel();
         label_Descripcion = new javax.swing.JLabel();
         text_Descripcion = new javax.swing.JTextField();
         label_Marca = new javax.swing.JLabel();
@@ -79,8 +74,6 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         text_Precio = new javax.swing.JTextField();
         button_EliminaBien = new javax.swing.JButton();
         button_Guardar = new javax.swing.JButton();
-        comboBox_Estado = new javax.swing.JComboBox<>();
-        label_Estado = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_bien = new javax.swing.JTable();
         button_AgregaBien = new javax.swing.JButton();
@@ -88,6 +81,11 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         text_Comprobante = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        comboBox_Tipo = new javax.swing.JComboBox<String>();
+        label_Tipo = new javax.swing.JLabel();
+        text_Fecha = new javax.swing.JTextField();
+        labelComprobante = new javax.swing.JLabel();
+        label_Fecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -99,22 +97,6 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         label_Bien.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         label_Bien.setText("BIENES");
         getContentPane().add(label_Bien, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 143, -1, -1));
-
-        label_Comprobante.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        label_Comprobante.setText("Comprobante");
-        getContentPane().add(label_Comprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
-
-        label_Fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        label_Fecha.setText("Fecha");
-        getContentPane().add(label_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, -1, -1));
-        getContentPane().add(text_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 81, -1));
-
-        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Donación", "Producción" }));
-        getContentPane().add(comboBox_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, -1, -1));
-
-        label_Tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        label_Tipo.setText("Tipo");
-        getContentPane().add(label_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, -1));
 
         label_Descripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         label_Descripcion.setText("Descripción");
@@ -160,12 +142,6 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
             }
         });
         getContentPane().add(button_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, -1, -1));
-
-        comboBox_Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "solicitud recibida", "por verificar", "rechazada", "en espera de rotulación", "solicitud procesada" }));
-        getContentPane().add(comboBox_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
-
-        label_Estado.setText("Estado");
-        getContentPane().add(label_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, -1, -1));
 
         table_bien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -216,15 +192,45 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Compra", "Donación", "Producción" }));
+
+        label_Tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        label_Tipo.setText("Tipo");
+
+        labelComprobante.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        labelComprobante.setText("Comprobante");
+
+        label_Fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        label_Fecha.setText("Fecha dd/mm/yyyy");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(labelComprobante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addComponent(label_Fecha)
+                .addGap(18, 18, 18)
+                .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(label_Tipo)
+                .addGap(18, 18, 18)
+                .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(219, 219, 219))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 98, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_Tipo)
+                    .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelComprobante)
+                    .addComponent(label_Fecha))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 810, 100));
@@ -244,17 +250,16 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     }//GEN-LAST:event_button_EliminaBienActionPerformed
 
     private void button_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_GuardarActionPerformed
-        if (this.validarSolicitud()) {
+//        if (this.validarSolicitud()) {
             try {
-                Labor labor = this.buscaLabor(Application.LOGIN_CONTROLLER.getLoginModel().getCurrent().getFuncionario().getId());
-                this.controller.guardarSolicitud(this.agregaSolicitud(labor.getDependencia())); //Mandar una excepcion si agrega Dependencia es null
+                this.controller.guardarSolicitud(this.agregaSolicitud()); //Mandar una excepcion si agrega Dependencia es null
                 JOptionPane.showMessageDialog(this, "Solicitud Agregada Exitosamente", "OK", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Datos invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Datos invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_button_GuardarActionPerformed
 
     private void button_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SalirActionPerformed
@@ -262,19 +267,20 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     }//GEN-LAST:event_button_SalirActionPerformed
 
     private void button_AgregaBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AgregaBienActionPerformed
-        try{
-        this.controller.refrescarTablaBien();
-        }catch(Exception ex){
+        try {
+            this.controller.refrescarTablaBien();
+            this.controller.guardarBien(this.toBien(),this.agregaSolicitud());
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }   
+        }
     }//GEN-LAST:event_button_AgregaBienActionPerformed
 
     private boolean validarSolicitud() {
         boolean error = true;
-        this.label_Comprobante.setForeground(Application.COLOR_OK);
+        this.labelComprobante.setForeground(Application.COLOR_OK);
         this.label_Fecha.setForeground(Application.COLOR_OK);
         if (this.text_Comprobante.getText().isEmpty()) {
-            this.label_Comprobante.setForeground(Application.COLOR_ERROR);
+            this.labelComprobante.setForeground(Application.COLOR_ERROR);
             error = false;
         }
         if (this.text_Fecha.getText().isEmpty()) {
@@ -317,70 +323,46 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         return error;
     }
 
-    Solicitud agregaSolicitud(Dependencia dependencia) throws ParseException {
+    Solicitud agregaSolicitud() throws ParseException {
         Solicitud s = new Solicitud();
         s.setComprobante(this.text_Comprobante.getText());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
         try {
-            s.setFecha(sdf.parse(this.text_Fecha.getText())); //TALVEZ
+            s.setFecha(sdf.parse(this.text_Fecha.getText())); 
         } catch (ParseException ex) {
             this.label_Fecha.setForeground(Application.COLOR_ERROR);
             JOptionPane.showMessageDialog(this, "Mal formato de la fecha (D/M/Y)", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         s.setTipoAdquisicion((String) this.comboBox_Tipo.getSelectedItem());
-        s.setEstado((String) this.comboBox_Estado.getSelectedItem());
-        s.setDependencia(dependencia); //Como mandar la dependencia
-        s.setBiens(new HashSet<Bien>(proyecto2.logic.ModelGeneral.instance().searchBien(this.controller.model.getFilter()))); //Como agregar los bienes
+        s.setEstado("recibida");
+//        s.setBiens(new HashSet<Bien>(proyecto2.logic.ModelGeneral.instance().searchBien(this.controller.model.getFilter()))); //Como agregar los bienes
         return s;
     }
-    
-    private Labor buscaLabor(String id) {
-        Labor labor = proyecto2.logic.ModelGeneral.instance().searchLabor(id);
-        return labor;
+
+      Bien toBien(){
+        Bien b=new Bien();
+        b.setDescripcion(text_Descripcion.getText());
+        b.setMarca(text_Marca.getText());
+        b.setModelo(text_Modelo.getText());
+        b.setCantidad(Integer.parseInt(text_Cantidad.getText()));
+        b.setPrecio(Double.parseDouble(text_Precio.getText()));
+        return b;
     }
 
-    public void limpiarErrores() {
-        this.label_Comprobante.setForeground(Application.COLOR_OK);
-        this.label_Fecha.setForeground(Application.COLOR_OK);
-    }
-
-    public void fromSolicitud(Solicitud actual) { //NO SE SI FUNCIONE, TENGO DUDAS DE SU FUNCIONAMIENTO
-        try {
-            this.label_Comprobante.setEnabled(model.getModoS() == Application.MODO_AGREGAR);
-            if (actual.getEstado() == "solicitud recibida") {
-                this.label_Comprobante.setEnabled(model.getModoS() == Application.MODO_EDITAR);
-            }
-            this.label_Comprobante.setText(actual.getComprobante());
-            Boolean editable = Arrays.asList(Application.MODO_AGREGAR, Application.MODO_EDITAR).contains(model.getModoS());
-
-            this.label_Fecha.setEnabled(editable);
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
-            this.text_Fecha.setText(sdf.format(actual.getFecha()));
-            this.comboBox_Tipo.setSelectedItem(actual.getTipoAdquisicion());
-            this.comboBox_Estado.setSelectedItem(actual.getEstado());
-            this.controller.refrescarTablaBien();
-            this.button_Guardar.setVisible(editable);
-            this.validate();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_AgregaBien;
     private javax.swing.JButton button_EliminaBien;
     private javax.swing.JButton button_Guardar;
     private javax.swing.JButton button_Salir;
-    private javax.swing.JComboBox<String> comboBox_Estado;
     private javax.swing.JComboBox<String> comboBox_Tipo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelComprobante;
     private javax.swing.JLabel label_Bien;
     private javax.swing.JLabel label_Cantidad;
-    private javax.swing.JLabel label_Comprobante;
     private javax.swing.JLabel label_Descripcion;
-    private javax.swing.JLabel label_Estado;
     private javax.swing.JLabel label_Fecha;
     private javax.swing.JLabel label_Marca;
     private javax.swing.JLabel label_Modelo;
@@ -403,6 +385,71 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         Solicitud actual = model.getCurrentS();
         this.fromSolicitud(actual);
         this.table_bien.setModel(model.getBien());
+    }
+    
+    
+  
+    private boolean validarBien2() {
+        //probando 
+        boolean error = false;
+        Bien actual = model.getCurrentB();
+
+        this.label_Descripcion.setForeground(Application.COLOR_OK);
+        if (this.text_Descripcion.getText().isEmpty()) {
+            this.label_Descripcion.setForeground(Application.COLOR_ERROR);
+            error = true;
+        }
+
+        this.label_Marca.setForeground(Application.COLOR_OK);
+        if (this.text_Marca.getText().isEmpty()) {
+            this.label_Marca.setForeground(Application.COLOR_ERROR);
+            error = true;
+        }
+
+        this.label_Marca.setForeground(Application.COLOR_OK);
+        if (this.text_Modelo.getText().isEmpty()) {
+            this.label_Modelo.setForeground(Application.COLOR_ERROR);
+            error = true;
+        }
+
+        this.label_Cantidad.setForeground(Application.COLOR_OK);
+        if (Integer.parseInt(this.text_Cantidad.getText()) == 0) {
+            this.label_Cantidad.setForeground(Application.COLOR_ERROR);
+            error = true;
+        }
+
+        this.label_Precio.setForeground(Application.COLOR_OK);
+        if (Double.parseDouble(this.text_Precio.getText()) == 0.0) {
+            this.label_Precio.setForeground(Application.COLOR_ERROR);
+            error = true;
+        }
+        return !error;
+    }
+    
+    public void limpiarErrores() {
+        this.labelComprobante.setForeground(Application.COLOR_OK);
+        this.label_Fecha.setForeground(Application.COLOR_OK);
+    }
+
+    public void fromSolicitud(Solicitud actual) { //NO SE SI FUNCIONE, TENGO DUDAS DE SU FUNCIONAMIENTO
+        try {
+//            this.label_Comprobante.setEnabled(model.getModoS() == Application.MODO_AGREGAR);
+//            if (actual.getEstado() == "solicitud recibida") {
+//                this.label_Comprobante.setEnabled(model.getModoS() == Application.MODO_EDITAR);
+//            }
+//            this.label_Comprobante.setText(actual.getComprobante());
+            Boolean editable = Arrays.asList(Application.MODO_AGREGAR, Application.MODO_EDITAR).contains(model.getModoS());
+
+            this.label_Fecha.setEnabled(editable);
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
+//            this.text_Fecha.setText(sdf.format(actual.getFecha()));
+            this.comboBox_Tipo.setSelectedItem(actual.getTipoAdquisicion());
+//            this.controller.refrescarTablaBien();
+            this.button_Guardar.setVisible(editable);
+            this.validate();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }

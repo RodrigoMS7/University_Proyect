@@ -81,7 +81,7 @@ public class ModelGeneral {
         }
     }
 
-    public  Dependencia getDependencia(int codigo) throws Exception{
+    public  Dependencia getDependencia(String codigo) throws Exception{
         Dependencia d = (Dependencia) ses.get(Dependencia.class, codigo);
         Hibernate.initialize(d.getSolicituds());
         ses.evict(d);
@@ -191,20 +191,12 @@ public class ModelGeneral {
    
     public String getRolUsuario(String id) throws Exception{
         
-         Puesto u = (Puesto) ses.get(Puesto.class, getPuestoDeLabor(id));
+        Puesto u = (Puesto) ses.get(Puesto.class, getPuestoDeLabor(id));
         if(u==null)  throw new Exception ("Puesto no existe");
 //            Hibernate.initialize( u.getFuncionario().getLabors());
             ses.evict(u);
             return u.getNombre();
-       
 //         String sql = "select * from puesto where id_puesto="+getPuestoDeLabor(id);
-//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-//                ResultSet rs = stm.executeQuery(sql);) {
-//            while (rs.next()) {
-//                return rs.getString("nombre");
-//            }
-//        } catch (SQLException e) {}
-//        return "";
     }
     
     public int getPuestoDeLabor(String id){
@@ -218,6 +210,21 @@ public class ModelGeneral {
         } catch (SQLException e) {        }
        return 0;
     }
+    
+      public String getCodigoDependenciaDesdeLabor(String id) throws Exception{
+        String sql = "select dependencia from labor where funcionario= '"+id+"'";
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            while (rs.next()) {
+                String codigo = rs.getString("dependencia");
+                return codigo;
+            }
+        } catch (SQLException e) {
+        }
+        return "";
+    }
+      
+      
 
     public List<Solicitud> searchSolicitudes(Solicitud filtro) throws ParseException{
        
