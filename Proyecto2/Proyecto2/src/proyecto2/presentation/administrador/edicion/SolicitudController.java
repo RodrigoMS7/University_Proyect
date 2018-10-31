@@ -20,13 +20,11 @@ import proyecto2.logic.Solicitud;
  * @author Rodrigo Meléndez
  */
 public class SolicitudController {
-    ModelGeneral modelGeneral;
     Session session;
     SolicitudView view;
     SolicitudModel model;
 
-    public SolicitudController(ModelGeneral modelGeneral, SolicitudView view, SolicitudModel model, Session session){
-        this.modelGeneral = modelGeneral;
+    public SolicitudController(SolicitudView view, SolicitudModel model, Session session){
         this.session=session;
         this.view = view;
         this.model = model;

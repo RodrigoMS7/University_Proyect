@@ -118,7 +118,7 @@ public class JefeRegistradorView extends javax.swing.JInternalFrame implements j
 
     @Override
     public void update(Observable o, Object arg) {
-        Funcionario filtro = model.getFilter();
+        //Funcionario filtro = model.getFilter();
         this.funcionariosTab.setModel(model.getFuncionarios());
     }
 }

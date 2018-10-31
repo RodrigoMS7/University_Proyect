@@ -19,13 +19,11 @@ import proyecto2.logic.Solicitud;
  * @author Rodrigo Meléndez
  */
 public class SolicitudController {
-    //ModelGeneral modelGeneral;
     Session session;
     SolicitudView view;
     SolicitudModel model;
 
-    public SolicitudController(/*ModelGeneral modelGeneral,*/ SolicitudView view, SolicitudModel model, Session session){
-        //this.modelGeneral = modelGeneral;
+    public SolicitudController(SolicitudView view, SolicitudModel model, Session session){
         this.session=session;
         this.view = view;
         this.model = model;
@@ -39,7 +37,7 @@ public class SolicitudController {
 //    }
     
     public void refrescarTablaBien() throws Exception{
-        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().searchBien(model.getFilter());
+        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().getAllBienes();
         model.setBien(rows);
         model.commit();
         if(rows.isEmpty()) throw new Exception("Ningun dato coincide");
@@ -66,14 +64,14 @@ public class SolicitudController {
     }
     
     public void borrarBien(int row)throws Exception {  
-        Bien seleccionada = model.getBien().getRowAt(row); 
-        try {
-            proyecto2.logic.ModelGeneral.instance().borraBien(seleccionada);
-        } catch (Exception ex) { }
-        List<Bien> rowsMod = proyecto2.logic.ModelGeneral.instance().searchBien(model.getFilter());
-        model.setBien(rowsMod);
-        model.commit();
-        this.refrescarTablaBien();
+//        Bien seleccionada = model.getBien().getRowAt(row); 
+//        try {
+//            proyecto2.logic.ModelGeneral.instance().borraBien(seleccionada);
+//        } catch (Exception ex) { }
+//        List<Bien> rowsMod = proyecto2.logic.ModelGeneral.instance().searchBien(model.getFilter());
+//        model.setBien(rowsMod);
+//        model.commit();
+//        this.refrescarTablaBien();
     }
     
     public void guardarSolicitud(Solicitud solicitud) throws Exception{ 

@@ -16,7 +16,7 @@ import proyecto2.presentation.rrhh.funcionarios.listado.FuncionarioTableModel;
  * @author Dani
  */
 public class JefeRegistradorModel extends java.util.Observable {
-    Funcionario filter;
+   // Funcionario filter;
     FuncionarioTableModel funcionarios;
     Funcionario seleccionada;
 
@@ -25,20 +25,20 @@ public class JefeRegistradorModel extends java.util.Observable {
     }
 
     public void reset(){ 
-        filter = new Funcionario();
+     //   filter = new Funcionario();
         List<Funcionario> rows = new ArrayList<>();
         seleccionada=null;
         this.setFuncionarios(rows);
         this.commit();
     }
 
-    public Funcionario getFilter() {
-        return filter;
-    }
+//    public Funcionario getFilter() {
+//        return filter;
+//    }
 
-    public void setFilter(Funcionario filter) {
-        this.filter = filter;
-    }
+//    public void setFilter(Funcionario filter) {
+//        this.filter = filter;
+//    }
 
     public FuncionarioTableModel getFuncionarios() {
         return funcionarios;

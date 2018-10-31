@@ -151,10 +151,9 @@ public class ModelGeneral {
         t.commit();        
     }
     
-    public List<Bien> searchBien(Bien filter){
-        String sql = "select * from funcionario where id like '%%%s%%'";
-
-        sql = String.format(sql, filter.getCodigo());
+    
+     public List<Bien> getAllBienes(){
+        String sql = "select * from bien";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Bien> resultado = new ArrayList<Bien>();

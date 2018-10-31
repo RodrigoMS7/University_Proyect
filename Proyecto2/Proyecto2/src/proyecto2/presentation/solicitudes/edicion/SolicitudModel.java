@@ -15,8 +15,7 @@ import proyecto2.logic.Solicitud;
  *
  * @author Rodrigo Meléndez
  */
-public class SolicitudModel extends java.util.Observable {
-    Bien filter; 
+public class SolicitudModel extends java.util.Observable { 
     SolicitudBienTableModel bienes;
     Bien seleccionado;
     Bien currentB;
@@ -29,26 +28,22 @@ public class SolicitudModel extends java.util.Observable {
     }
 
     public void reset(){ //PUEDE QUE NO FUNCIONE (PROBAR)
-        setCurrentB(new Bien());
         setCurrentS(new Solicitud());
-        filter = new Bien();
         List<Bien> rows = new ArrayList<>();        
         seleccionado = null;  
         this.setBien(rows);
         this.commit();  
     }
     
+      void reset(int modo, Solicitud current) {
+        this.setModoS(modo);
+        this.setCurrentS(current);
+        this.commit();
+    }
+    
     public void setBien(List<Bien> bienes){
         int[] cols = {SolicitudBienTableModel.DESCRIPCION,SolicitudBienTableModel.MARCA,SolicitudBienTableModel.MODELO,SolicitudBienTableModel.CANTIDAD,SolicitudBienTableModel.PRECIO};
         this.bienes = new SolicitudBienTableModel(cols, bienes);
-    }
-    
-    public Bien getFilter() {
-        return filter;
-    }
-    
-    public void setFilter(Bien filter) {
-        this.filter = filter;
     }
     
      public SolicitudBienTableModel getBien() {
