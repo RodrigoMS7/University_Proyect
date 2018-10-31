@@ -1,5 +1,5 @@
 package proyecto2.logic;
-// Generated 26/10/2018 06:00:14 PM by Hibernate Tools 4.3.1
+// Generated 30/10/2018 06:44:16 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,23 +27,6 @@ public class Solicitud  implements java.io.Serializable {
     public Solicitud() {
     }
 
-	
-    public Solicitud(Dependencia dependencia) {
-        this.dependencia = dependencia;
-    }
-    public Solicitud(Dependencia dependencia, Funcionario funcionario, Date fecha, Integer cantidad, String tipoAdquisicion, String estado, Double monto, String comprobante, String motivioRechazo, Set biens) {
-       this.dependencia = dependencia;
-       this.funcionario = funcionario;
-       this.fecha = fecha;
-       this.cantidad = cantidad;
-       this.tipoAdquisicion = tipoAdquisicion;
-       this.estado = estado;
-       this.monto = monto;
-       this.comprobante = comprobante;
-       this.motivioRechazo = motivioRechazo;
-       this.biens = biens;
-    }
-    
     public Solicitud(Integer codigo,Date fecha,Integer cantidad,String tipo,String estado,Double monto,String comprobante){
         this.codigo=codigo;
         this.fecha=fecha;
@@ -55,7 +38,6 @@ public class Solicitud  implements java.io.Serializable {
     }
 
     public Solicitud(Integer codigo,Date fecha,Integer cantidad,String tipo,String estado,Double monto,String comprobante,Dependencia dependencia){
-
         this.codigo=codigo;
         this.fecha=fecha;
         this.cantidad=cantidad;
@@ -64,6 +46,19 @@ public class Solicitud  implements java.io.Serializable {
         this.monto=monto;
         this.comprobante=comprobante;
         this.dependencia=dependencia;
+    }
+    
+    public Solicitud(Dependencia dependencia, Funcionario funcionario, Date fecha, Integer cantidad, String tipoAdquisicion, String estado, Double monto, String comprobante, String motivioRechazo, Set biens) {
+       this.dependencia = dependencia;
+       this.funcionario = funcionario;
+       this.fecha = fecha;
+       this.cantidad = cantidad;
+       this.tipoAdquisicion = tipoAdquisicion;
+       this.estado = estado;
+       this.monto = monto;
+       this.comprobante = comprobante;
+       this.motivioRechazo = motivioRechazo;
+       this.biens = biens;
     }
    
     public Integer getCodigo() {
@@ -132,11 +127,6 @@ public class Solicitud  implements java.io.Serializable {
     public String getMotivioRechazo() {
         return this.motivioRechazo;
     }
-
-    public Solicitud(String estado, Double monto) {
-        this.estado = estado;
-        this.monto = monto;
-    }
     
     public void setMotivioRechazo(String motivioRechazo) {
         this.motivioRechazo = motivioRechazo;
@@ -148,7 +138,10 @@ public class Solicitud  implements java.io.Serializable {
     public void setBiens(Set biens) {
         this.biens = biens;
     }
-    
+
+
+
+
 }
 
 

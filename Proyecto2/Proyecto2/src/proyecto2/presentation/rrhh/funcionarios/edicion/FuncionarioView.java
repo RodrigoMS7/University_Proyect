@@ -15,7 +15,7 @@ import proyecto2.logic.Funcionario;
  *
  * @author Dani
  */
-public class FuncionarioView extends javax.swing.JDialog implements java.util.Observer {
+public class FuncionarioView extends javax.swing.JInternalFrame implements java.util.Observer {
 
     FuncionarioController controller;
     FuncionarioModel model;
@@ -37,8 +37,8 @@ public class FuncionarioView extends javax.swing.JDialog implements java.util.Ob
         model.addObserver(this); 
     }
 
-    public FuncionarioView(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public FuncionarioView() {
+        super("", false, true);
         initComponents();
     }
 

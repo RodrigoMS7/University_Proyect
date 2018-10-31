@@ -76,9 +76,10 @@ public class Application {
         JEFE_CONTROLLER=personascontroller;
         
         JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
-        JefeRegistradorView jefRegView = new JefeRegistradorView(applicationView, true);
+        JefeRegistradorView jefRegView = new JefeRegistradorView();
         JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
         JEFE_REGISTRADOR_CONTROLLER= jefRegController;
+        applicationView.addInternalFrame(jefRegView);
   
         applicationView.addInternalFrame(personasView);
         SolicitudModel solicitudModel=new SolicitudModel();
@@ -106,10 +107,10 @@ public class Application {
         DEPENDENCIAS_CONTROLLER=dependenciasController;
         
         FuncionarioModel funcionarioModel = new FuncionarioModel();
-         FuncionarioView funcionarioView = new FuncionarioView(applicationView, true);
-        FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel,session);
+        FuncionarioView funcionarioView = new FuncionarioView();
+        FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel, session);
         FUNCIONARIO_CONTROLLER = funcionarioController;
-        //funcionarioView.setVisible(true);
+        applicationView.addInternalFrame(funcionarioView);
 
         FuncionariosModel funcionariosModel = new FuncionariosModel();
         FuncionariosView funcionariosView = new FuncionariosView();

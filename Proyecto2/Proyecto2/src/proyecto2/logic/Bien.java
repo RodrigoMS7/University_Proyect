@@ -1,5 +1,5 @@
 package proyecto2.logic;
-// Generated 26/10/2018 06:00:14 PM by Hibernate Tools 4.3.1
+// Generated 30/10/2018 06:44:16 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -24,10 +24,17 @@ public class Bien  implements java.io.Serializable {
     public Bien() {
     }
 
-	
-    public Bien(Solicitud solicitud) {
-        this.solicitud = solicitud;
+    public Bien(String descripcion, String marca, String modelo, Integer cantidad, Double precio) {
+//       this.categoria = categoria;
+//       this.solicitud = solicitud;
+        this.cantidad = cantidad;
+        this.modelo = modelo;
+        this.descripcion = descripcion;
+        this.marca = marca;
+        this.precio = precio;
+        // this.activos = activos;
     }
+    
     public Bien(Categoria categoria, Solicitud solicitud, Integer cantidad, String modelo, String descripcion, String marca, Double precio, Set activos) {
        this.categoria = categoria;
        this.solicitud = solicitud;
@@ -38,18 +45,7 @@ public class Bien  implements java.io.Serializable {
        this.precio = precio;
        this.activos = activos;
     }
-
-    public Bien(String descripcion, String marca, String modelo, Integer cantidad, Double precio/*, Set activos*/) {
-//       this.categoria = categoria;
-//       this.solicitud = solicitud;
-        this.cantidad = cantidad;
-        this.modelo = modelo;
-        this.descripcion = descripcion;
-        this.marca = marca;
-        this.precio = precio;
-        // this.activos = activos;
-    }
-
+   
     public Integer getCodigo() {
         return this.codigo;
     }

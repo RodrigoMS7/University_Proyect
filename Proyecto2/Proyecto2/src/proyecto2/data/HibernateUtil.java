@@ -37,5 +37,4 @@ public class HibernateUtil {
     public static void stop() {
         StandardServiceRegistryBuilder.destroy(sessionFactory.getSessionFactoryOptions().getServiceRegistry());
     }
-
 }

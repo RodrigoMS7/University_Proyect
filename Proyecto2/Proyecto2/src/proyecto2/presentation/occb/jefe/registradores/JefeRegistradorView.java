@@ -12,7 +12,7 @@ import proyecto2.logic.Funcionario;
  *
  * @author Dani
  */
-public class JefeRegistradorView extends javax.swing.JDialog implements java.util.Observer{
+public class JefeRegistradorView extends javax.swing.JInternalFrame implements java.util.Observer{
     JefeRegistradorController controller;
     JefeRegistradorModel model;
 
@@ -30,10 +30,11 @@ public class JefeRegistradorView extends javax.swing.JDialog implements java.uti
 
     public void setModel(JefeRegistradorModel model) {
         this.model = model;
+         model.addObserver(this);
     }
 
-    public JefeRegistradorView(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public JefeRegistradorView() {
+        super("", false, true);
         initComponents();
     }
 
@@ -49,8 +50,7 @@ public class JefeRegistradorView extends javax.swing.JDialog implements java.uti
 
         jScrollPane1 = new javax.swing.JScrollPane();
         funcionariosTab = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
 
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -71,21 +71,30 @@ public class JefeRegistradorView extends javax.swing.JDialog implements java.uti
         ));
         jScrollPane1.setViewportView(funcionariosTab);
 
+        jLabel1.setText("REGISTRADORES");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,6 +112,7 @@ public class JefeRegistradorView extends javax.swing.JDialog implements java.uti
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable funcionariosTab;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

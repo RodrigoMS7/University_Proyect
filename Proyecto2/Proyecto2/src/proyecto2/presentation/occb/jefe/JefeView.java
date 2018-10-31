@@ -6,6 +6,8 @@
 package proyecto2.presentation.occb.jefe;
 
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyecto2.logic.Solicitud;
 
@@ -151,7 +153,11 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void buttonAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAsignarActionPerformed
-        controller.getRegistradores(buttonAsignar.getLocation());
+        try {
+            controller.getRegistradores(buttonAsignar.getLocation());
+        } catch (Exception ex) {
+            Logger.getLogger(JefeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonAsignarActionPerformed
 
 

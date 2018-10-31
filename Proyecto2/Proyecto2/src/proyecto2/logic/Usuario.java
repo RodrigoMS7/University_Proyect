@@ -1,5 +1,5 @@
 package proyecto2.logic;
-// Generated 26/10/2018 06:00:14 PM by Hibernate Tools 4.3.1
+// Generated 30/10/2018 06:44:16 PM by Hibernate Tools 4.3.1
 
 
 

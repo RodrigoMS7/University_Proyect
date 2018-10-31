@@ -15,13 +15,13 @@ import proyecto2.logic.Dependencia;
  *
  * @author oscar
  */
-public class DependenciaView extends javax.swing.JDialog implements java.util.Observer{
+public class DependenciaView extends javax.swing.JInternalFrame implements java.util.Observer{
 
     DependenciaController controller;
     DependenciaModel model;
 
     public DependenciaView(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+        super("", false, true);
         initComponents();
     }
     

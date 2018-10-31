@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 26/10/2018 06:00:15 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/10/2018 06:44:18 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="proyecto2.logic.Categoria" table="categoria" catalog="activos" optimistic-lock="version">
         <id name="idCategoria" type="java.lang.Integer">

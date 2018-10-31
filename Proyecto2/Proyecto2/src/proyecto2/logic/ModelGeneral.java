@@ -24,6 +24,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import proyecto2.data.HibernateUtil;
+import proyecto2.logic.Bien;
+import proyecto2.logic.Dependencia;
+import proyecto2.logic.Funcionario;
+import proyecto2.logic.Labor;
+import proyecto2.logic.Puesto;
+import proyecto2.logic.Solicitud;
+import proyecto2.logic.Usuario;
 
 /**
  *
@@ -315,7 +322,7 @@ public class ModelGeneral {
      
      
     public List<Funcionario> getRegistradores() {
-        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where puesto=1";//*** poner codigo registrador
+        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where puesto=2";//*** poner codigo registrador
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Funcionario> resultado = new ArrayList<Funcionario>();

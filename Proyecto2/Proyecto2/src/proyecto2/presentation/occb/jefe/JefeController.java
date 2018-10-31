@@ -57,7 +57,7 @@ public class JefeController {
         }
     }
 
-    public void getRegistradores(Point at) {
+    public void getRegistradores(Point at) throws Exception {
         Application.JEFE_REGISTRADOR_CONTROLLER.show(at);
     }
 
