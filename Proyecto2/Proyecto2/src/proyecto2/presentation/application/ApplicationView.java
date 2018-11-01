@@ -71,6 +71,10 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         secretariaMenuItem = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        registradorMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,7 +150,25 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         });
         solicitudesMenu.add(jMenuItem3);
 
+        registradorMenuItem.setText("Registrador");
+        registradorMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registradorMenuItemActionPerformed(evt);
+            }
+        });
+        solicitudesMenu.add(registradorMenuItem);
+
         jMenuBar1.add(solicitudesMenu);
+
+        jMenu1.setText("Registrador");
+
+        jMenuItem4.setText("Solicitudes");
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Activos");
+        jMenu1.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -187,6 +209,11 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         controller.solicitudEdicionShow();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void registradorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registradorMenuItemActionPerformed
+        // TODO add your handling code here:
+         controller.solicitudRegistradorShow();
+    }//GEN-LAST:event_registradorMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,11 +257,15 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenu Funcionarios;
     private javax.swing.JMenuItem dependenciasListadoMenuItem;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem registradorMenuItem;
     private javax.swing.JMenuItem secretariaMenuItem;
     private javax.swing.JMenu solicitudesMenu;
     private javax.swing.JMenuItem solicitudesMenuItem;

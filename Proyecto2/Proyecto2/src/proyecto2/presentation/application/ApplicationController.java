@@ -48,7 +48,9 @@ public class ApplicationController {
     public void solicitudEdicionShow(){
          Application.SOLICITUD_CONTROLLER.show();
     }
-    
+    public void solicitudRegistradorShow(){
+        Application.REGISTRADOR_CONTROLLER.show();
+    }
     public void enter(){
         this.reset();
         this.show();

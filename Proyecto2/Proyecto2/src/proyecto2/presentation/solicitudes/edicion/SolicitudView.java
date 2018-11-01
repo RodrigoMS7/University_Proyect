@@ -81,7 +81,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         text_Comprobante = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        comboBox_Tipo = new javax.swing.JComboBox<String>();
+        comboBox_Tipo = new javax.swing.JComboBox<>();
         label_Tipo = new javax.swing.JLabel();
         text_Fecha = new javax.swing.JTextField();
         labelComprobante = new javax.swing.JLabel();
@@ -191,47 +191,23 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 810, 270));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Compra", "Donación", "Producción" }));
+        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Donación", "Producción" }));
+        jPanel1.add(comboBox_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 39, -1, -1));
 
         label_Tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_Tipo.setText("Tipo");
+        jPanel1.add(label_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 41, -1, -1));
+        jPanel1.add(text_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 39, 81, -1));
 
         labelComprobante.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelComprobante.setText("Comprobante");
+        jPanel1.add(labelComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 42, -1, -1));
 
         label_Fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         label_Fecha.setText("Fecha dd/mm/yyyy");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(labelComprobante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(label_Fecha)
-                .addGap(18, 18, 18)
-                .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(label_Tipo)
-                .addGap(18, 18, 18)
-                .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(219, 219, 219))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_Tipo)
-                    .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelComprobante)
-                    .addComponent(label_Fecha))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
+        jPanel1.add(label_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 41, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 810, 100));
 
