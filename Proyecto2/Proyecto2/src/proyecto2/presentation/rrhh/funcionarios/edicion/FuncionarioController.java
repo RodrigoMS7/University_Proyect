@@ -54,7 +54,6 @@ public class FuncionarioController {
            Transaction t = session.beginTransaction();
         switch(model.getModo()){
             case Application.MODO_AGREGAR:
-//                proyecto2.logic.ModelGeneral.instance();
                 session.save(funcionario);
                 t.commit();
                 Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();                   

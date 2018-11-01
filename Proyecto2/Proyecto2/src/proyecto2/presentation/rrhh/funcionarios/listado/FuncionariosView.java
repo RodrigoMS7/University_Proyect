@@ -58,12 +58,6 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
         agregar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
 
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-        });
-
         funcionariosTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -75,6 +69,11 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        funcionariosTab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                funcionariosTabMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(funcionariosTab);
 
         IDlabl.setText("ID");
@@ -154,14 +153,6 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
             }
     }//GEN-LAST:event_buscarActionPerformed
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if (evt.getClickCount() == 2) {
-            int row = this.funcionariosTab.getSelectedRow();
-            int col = this.funcionariosTab.getSelectedColumn();
-            controller.editar(row, evt.getLocationOnScreen());
-        }
-    }//GEN-LAST:event_formMouseClicked
-
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
           try {
             controller.preAgregar(this.agregar.getLocationOnScreen());
@@ -174,6 +165,14 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
          int row = this.funcionariosTab.getSelectedRow();
         controller.borrar(row);
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void funcionariosTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionariosTabMouseClicked
+           if (evt.getClickCount() == 2) {
+            int row = this.funcionariosTab.getSelectedRow();
+            int col = this.funcionariosTab.getSelectedColumn();
+            controller.editar(row, evt.getLocationOnScreen());
+        }
+    }//GEN-LAST:event_funcionariosTabMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

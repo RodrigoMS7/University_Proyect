@@ -95,16 +95,16 @@ public class Application {
         applicationView.addInternalFrame(secretariaView);
         SECRETARIA_CONTROLLER=secretariaController;
 //        
-//        DependenciaModel dependenciaModel= new DependenciaModel();
-//        DependenciaView dependenciaView=new DependenciaView(applicationView,true);
-//        DependenciaController dependenciaController=new DependenciaController(dependenciaView,dependenciaModel,session);
-//        DEPENDENCIA_CONTROLLER=dependenciaController;
-//        
-//        DependenciasModel dependenciasModel= new DependenciasModel();
-//        DependenciasView dependenciasView=new DependenciasView();
-//        applicationView.addInternalFrame(dependenciasView);
-//        DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
-//        DEPENDENCIAS_CONTROLLER=dependenciasController;
+        DependenciaModel dependenciaModel= new DependenciaModel();
+        DependenciaView dependenciaView=new DependenciaView(applicationView,true);
+        DependenciaController dependenciaController=new DependenciaController(dependenciaView,dependenciaModel,session);
+        DEPENDENCIA_CONTROLLER=dependenciaController;
+        applicationView.addInternalFrame(dependenciaView);
+        DependenciasModel dependenciasModel= new DependenciasModel();
+        DependenciasView dependenciasView=new DependenciasView();
+        applicationView.addInternalFrame(dependenciasView);
+        DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
+        DEPENDENCIAS_CONTROLLER=dependenciasController;
 //        
         FuncionarioModel funcionarioModel = new FuncionarioModel();
         FuncionarioView funcionarioView = new FuncionarioView();
