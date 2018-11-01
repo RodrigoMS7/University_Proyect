@@ -57,11 +57,19 @@ public class Application {
     public static void main(String[] args) throws Exception {
         Session session = HibernateUtil.getSessionFactory().openSession();
         SessionUsuario ses = new SessionUsuario();
+<<<<<<< HEAD
         LoginModel loginModel = new LoginModel();
         LoginView loginView= new LoginView();
         LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
         LOGIN_CONTROLLER = logincontroller;
         //loginView.setVisible(true);
+=======
+//        LoginModel loginModel = new LoginModel();
+//        LoginView loginView= new LoginView();
+//        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
+//        LOGIN_CONTROLLER = logincontroller;
+//        loginView.setVisible(true);
+>>>>>>> fa97df17178b96634d1c141d1fc5dcd7c2ede8b3
         
         ApplicationModel applicationModel = new ApplicationModel();
         ApplicationView applicationView= new ApplicationView();
@@ -71,6 +79,7 @@ public class Application {
         applicationView.setVisible(true);
 //        
 //        
+<<<<<<< HEAD
 //        JefeModel personasModel = new JefeModel();
 //        JefeView personasView= new JefeView();
 //        //applicationView.addInternalFrame(personasView);
@@ -84,12 +93,28 @@ public class Application {
 //        applicationView.addInternalFrame(jefRegView);
 //  
 //        applicationView.addInternalFrame(personasView);
+=======
+        JefeModel personasModel = new JefeModel();
+        JefeView personasView= new JefeView();
+        //applicationView.addInternalFrame(personasView);
+        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
+        JEFE_CONTROLLER=personascontroller;
+        
+        JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
+        JefeRegistradorView jefRegView = new JefeRegistradorView();
+        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
+        JEFE_REGISTRADOR_CONTROLLER= jefRegController;
+        applicationView.addInternalFrame(jefRegView);
+  
+        applicationView.addInternalFrame(personasView);
+>>>>>>> fa97df17178b96634d1c141d1fc5dcd7c2ede8b3
 //        SolicitudModel solicitudModel = new SolicitudModel();
 //        SolicitudView solicitudView = new SolicitudView();
 //        SolicitudController solicitudController = new SolicitudController(solicitudView, solicitudModel, session, ses);
 //        //applicationView.addInternalFrame(solicitudView);
 //        SOLICITUD_CONTROLLER = solicitudController;
 //        solicitudView.setVisible(true);
+<<<<<<< HEAD
 //        
             RegistradorModel registradorModel=new RegistradorModel();
             RegistradorView registradorView=new RegistradorView();
@@ -110,12 +135,31 @@ public class Application {
         applicationView.addInternalFrame(dependenciaView);
         DEPENDENCIA_CONTROLLER=dependenciaController;
         
+=======
+//        
+//        
+        SecretariaModel secretariaModel=new SecretariaModel();
+        SecretariaView secretariaView=new SecretariaView();
+        SecretariaController secretariaController=new SecretariaController(secretariaView,secretariaModel,session);
+        applicationView.addInternalFrame(secretariaView);
+        SECRETARIA_CONTROLLER=secretariaController;
+//        
+        DependenciaModel dependenciaModel= new DependenciaModel();
+        DependenciaView dependenciaView=new DependenciaView(applicationView,true);
+        DependenciaController dependenciaController=new DependenciaController(dependenciaView,dependenciaModel,session);
+        DEPENDENCIA_CONTROLLER=dependenciaController;
+        applicationView.addInternalFrame(dependenciaView);
+>>>>>>> fa97df17178b96634d1c141d1fc5dcd7c2ede8b3
         DependenciasModel dependenciasModel= new DependenciasModel();
         DependenciasView dependenciasView=new DependenciasView();
         applicationView.addInternalFrame(dependenciasView);
         DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
         DEPENDENCIAS_CONTROLLER=dependenciasController;
+<<<<<<< HEAD
         
+=======
+//        
+>>>>>>> fa97df17178b96634d1c141d1fc5dcd7c2ede8b3
         FuncionarioModel funcionarioModel = new FuncionarioModel();
         FuncionarioView funcionarioView = new FuncionarioView();
         FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel, session);
@@ -127,7 +171,11 @@ public class Application {
         applicationView.addInternalFrame(funcionariosView);
         FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session,ses);
         FUNCIONARIOS_CONTROLLER = funcionariosController;
+<<<<<<< HEAD
        // applicationView.setVisible(true);
+=======
+        applicationView.setVisible(true);
+>>>>>>> fa97df17178b96634d1c141d1fc5dcd7c2ede8b3
         
     }
    

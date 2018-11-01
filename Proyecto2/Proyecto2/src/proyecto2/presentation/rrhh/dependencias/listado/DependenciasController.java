@@ -37,6 +37,13 @@ public class DependenciasController {
         model.setFilter(filter);
         this.refrescarBusqueda();
     }
+    
+     public void buscar() {
+        List<Dependencia> rows = proyecto2.logic.ModelGeneral.instance().searchAllDependencias();
+        model.setDependencias(rows);
+        model.commit();
+    }
+     
     public void refrescarBusqueda() throws Exception{
        
         List<Dependencia> rows=proyecto2.logic.ModelGeneral.instance().searchDependencias(model.getFilter());
@@ -73,6 +80,7 @@ public class DependenciasController {
     }
     
     public void show(){
+        buscar();
         view.setVisible(true);
     }
 

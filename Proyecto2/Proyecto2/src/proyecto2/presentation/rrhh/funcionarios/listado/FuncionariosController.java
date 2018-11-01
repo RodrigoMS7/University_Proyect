@@ -44,7 +44,11 @@ public class FuncionariosController {
         model.setFilter(filter);
         this.refrescarBusqueda();
     }
-    
+    public void buscar(){
+        List<Funcionario> rows = proyecto2.logic.ModelGeneral.instance().searchAllFuncionarios();
+        model.setFuncionarios(rows);
+        model.commit();
+    }
     public void refrescarBusqueda() throws Exception{
        List<Funcionario> rows = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
         model.setFuncionarios(rows);
@@ -94,6 +98,7 @@ public class FuncionariosController {
     }
     
     public void show(){
+        buscar();
         view.setVisible(true);
     }
 
