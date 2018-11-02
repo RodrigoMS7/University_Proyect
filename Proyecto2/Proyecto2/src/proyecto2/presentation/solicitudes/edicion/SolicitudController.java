@@ -6,7 +6,9 @@
 package proyecto2.presentation.solicitudes.edicion;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import proyecto2.Application;
@@ -36,22 +38,44 @@ public class SolicitudController {
         view.setModel(model);
     }
 
+    public SolicitudModel getModel() {
+        return model;
+    }
+
+    public void setModel(SolicitudModel model) {
+        this.model = model;
+    }
+
+    public SolicitudView getView() {
+        return view;
+    }
+
+    public void setView(SolicitudView view) {
+        this.view = view;
+    }
+
 //    public void buscar(Bien filter) throws Exception{
 //        model.setFilter(filter);
 //        this.refrescarBusqueda();
 //    }
+    
     public void refrescarTablaBien() throws Exception {
-        List<Bien> rows = model.getListaBienes();
-//        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().getAllBienes();
-        model.setBien(rows);
-        model.commit();
-//        if (rows.isEmpty()) {
-//            throw new Exception("Ningun dato coincide");
-//        }
-    }
-
-    public void guardarBien(Bien bien )  { 
-        model.agregaBien(bien);
+        List<Bien> rows;
+        switch (model.getModoS()) {
+            case Application.MODO_AGREGAR:
+                rows = model.getListaBienes();
+                model.setBien(rows);
+                model.commit();
+                break;
+            case Application.MODO_EDITAR:
+                rows = proyecto2.logic.ModelGeneral.instance().getBienesFromSolicitud(model.getCurrentS().getCodigo());
+                model.setBien(rows);
+                model.commit();
+                if (rows.isEmpty()) {
+                    throw new Exception("Ningun dato coincide");
+                }
+                break;
+        }
     }
     
     public void borrarBien(int row)throws Exception {  
@@ -65,7 +89,7 @@ public class SolicitudController {
 //        this.refrescarTablaBien();
     }
     
-    public void guardarSolicitud(Solicitud solicitud) throws Exception{ 
+    public void guardarSolicitud(Solicitud solicitud, int codigoSolicitud) throws Exception{ 
         Transaction t = session.beginTransaction();
         Usuario principal = (Usuario) sessU.getAttribute("User");
         String cod = proyecto2.logic.ModelGeneral.instance().getCodigoDependenciaDesdeLabor(principal.getFuncionario().getId());
@@ -82,7 +106,9 @@ public class SolicitudController {
                 model.commit();
                 break;
             case Application.MODO_EDITAR:
-                session.update(solicitud);
+                solicitud.setCodigo(codigoSolicitud);
+                solicitud.setDependencia(dep);
+                session.merge(solicitud);
                 t.commit();
                 //Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
                 break;
@@ -104,5 +130,25 @@ public class SolicitudController {
 
     public void hide(){
         view.setVisible(false);
+    }
+
+    int getCantidad() {
+        return model.sumaCantidad();
+    }
+
+    double getMonto() {
+        return model.sumaMontoTotal();
+    }
+
+//    void agregaBien2(int codigo) throws Exception {
+//        List<Bien> bien = proyecto2.logic.ModelGeneral.instance().getBienesFromSolicitud(codigo);
+//        for (Bien bienes: bien){
+//            model.agregaBien(bienes);
+//        }
+//        this.refrescarTablaBien();
+//    }
+
+    void guardarBien(Bien agregaBien) {
+        model.agregaBien(agregaBien);
     }
 }

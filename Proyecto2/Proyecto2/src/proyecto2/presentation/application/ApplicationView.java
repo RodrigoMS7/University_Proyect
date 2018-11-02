@@ -5,7 +5,10 @@
  */
 package proyecto2.presentation.application;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Observable;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 /**
@@ -16,6 +19,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
     ApplicationController controller;
     ApplicationModel model;
+    Dimension dim;
     
     public void setController(ApplicationController controller){
         this.controller=controller;
@@ -35,7 +39,10 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     }
     public ApplicationView() {
         initComponents();
-        this.setSize(this.getMaximumSize());
+        
+        this.setLocationRelativeTo(null);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.setSize(this.getMaximumSize());
     }
     @Override
     public void update(java.util.Observable updatedModel,Object parametros) {
@@ -48,7 +55,9 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     }
     
     public void addInternalFrame(JInternalFrame f){
-       this.desktopPane.add(f);
+       try{
+        this.desktopPane.add(f);
+       } catch(Exception ex){ }
    }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +69,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         DEPENDENCIAS = new javax.swing.JMenu();
         dependenciasListadoMenuItem = new javax.swing.JMenuItem();
@@ -73,16 +83,21 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(0, 0));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/ampliacion.png"))); // NOI18N
+
+        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addComponent(jLabel1)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1088, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         DEPENDENCIAS.setText("Dependencias");
@@ -154,11 +169,11 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane)
+            .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -185,51 +200,17 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     }//GEN-LAST:event_secretariaMenuItemActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        controller.solicitudEdicionShow();
+        controller.AdministradorSolicitudShow();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ApplicationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ApplicationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ApplicationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ApplicationView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ApplicationView().setVisible(true);
-            }
-        });
-    }
-
-    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu DEPENDENCIAS;
     private javax.swing.JMenu Funcionarios;
     private javax.swing.JMenuItem dependenciasListadoMenuItem;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

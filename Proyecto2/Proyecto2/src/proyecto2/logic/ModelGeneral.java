@@ -152,8 +152,23 @@ public class ModelGeneral {
     }
     
     
-     public List<Bien> getAllBienes(){
+    public List<Bien> getAllBienes(){
         String sql = "select * from bien";
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Bien> resultado = new ArrayList<Bien>();
+            while (rs.next()) {
+                Integer.parseInt(rs.getString("Cantidad"));
+                resultado.add(new Bien(rs.getString("Descripcion"), rs.getString("Marca"), rs.getString("Modelo"),Integer.parseInt(rs.getString("Cantidad")), Double.parseDouble(rs.getString("Precio"))));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    public List<Bien> getBienesFromSolicitud(int codigo){
+        String sql = "select * from bien where solicitud like " + codigo;
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Bien> resultado = new ArrayList<Bien>();
@@ -211,7 +226,7 @@ public class ModelGeneral {
        return 0;
     }
     
-      public String getCodigoDependenciaDesdeLabor(String id) throws Exception{
+    public String getCodigoDependenciaDesdeLabor(String id) throws Exception{
         String sql = "select dependencia from labor where funcionario= '"+id+"'";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
@@ -223,6 +238,19 @@ public class ModelGeneral {
         }
         return "";
     }
+    
+//    public Dependencia getCodigoDependenciaFromLabor(String id) throws Exception{
+//        String sql = "select dependencia from labor where funcionario= '"+id+"'";
+//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//                ResultSet rs = stm.executeQuery(sql);) {
+//            while (rs.next()) {
+//                String codigo = rs.getString("dependencia");
+//                return codigo;
+//            }
+//        } catch (SQLException e) {
+//        }
+//        return "";
+//    }
       
       
 
@@ -285,7 +313,7 @@ public class ModelGeneral {
 
       public List<Solicitud> searchByEstado(){
 //         String sql = "select * from solicitud where estado = 'recibido'";
-          String sql ="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where estado = 'recibido'";
+          String sql ="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where estado = 'Solicitud recibida'";
          try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                  ResultSet rs = stm.executeQuery(sql);) {
              List<Solicitud> resultado = new ArrayList<Solicitud>();
@@ -301,30 +329,30 @@ public class ModelGeneral {
         }
      }
       
-     public Labor searchLabor(String id){
-        String sql = "select * from labor where funcionario = " + id;
-
-        sql = String.format(sql, id);
-        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-                ResultSet rs = stm.executeQuery(sql);) {
-            Labor resultado = new Labor();
-            while (rs.next()) {
-                Dependencia dep = new Dependencia();
-                dep.setCodigo(rs.getString("codigo"));
-                dep.setNombre(rs.getString("nombre"));
-                Funcionario fun = new Funcionario();
-                fun.setId(rs.getString("id"));
-                fun.setNombre(rs.getString("nombre"));
-                Puesto pue = new Puesto();
-                pue.setIdPuesto(rs.getInt("id_puesto"));
-                pue.setNombre(rs.getString("nombre"));
-                resultado = new Labor(dep, fun, pue);
-            }
-            return resultado;
-        } catch (SQLException e) {
-            return null;
-        }
-    }
+//     public Labor searchLabor(String id){
+//        String sql = "select * from labor where funcionario = " + id;
+//
+//        sql = String.format(sql, id);
+//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//                ResultSet rs = stm.executeQuery(sql);) {
+//            Labor resultado = new Labor();
+//            while (rs.next()) {
+//                Dependencia dep = new Dependencia();
+//                dep.setCodigo(rs.getString("codigo"));
+//                dep.setNombre(rs.getString("nombre"));
+//                Funcionario fun = new Funcionario();
+//                fun.setId(rs.getString("id"));
+//                fun.setNombre(rs.getString("nombre"));
+//                Puesto pue = new Puesto();
+//                pue.setIdPuesto(rs.getInt("id_puesto"));
+//                pue.setNombre(rs.getString("nombre"));
+//                resultado = new Labor(dep, fun, pue);
+//            }
+//            return resultado;
+//        } catch (SQLException e) {
+//            return null;
+//        }
+//    }
      
      
     public List<Funcionario> getRegistradores() {
@@ -350,4 +378,20 @@ public class ModelGeneral {
 //        } catch (SQLException e) { }
 //        return 0;
 //    }
+
+    public List<Solicitud> searchSolicitudesFromDependencia(String id) throws Exception {
+        //String sql = "select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where nombre = '" + nombre + "'";
+        String sql = "select * from solicitud where dependencia = '" + this.getCodigoDependenciaDesdeLabor(id) + "'";
+        //sql = String.format(sql, filtro.getComprobante());
+        try(Statement stm=proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs=stm.executeQuery(sql);){
+            List<Solicitud> resultado = new ArrayList<Solicitud>();
+            while(rs.next()){
+               resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante")));
+            }
+            return resultado;
+        } catch(SQLException e){
+            return null;
+        }
+    }
 }

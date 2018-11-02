@@ -17,34 +17,48 @@ import proyecto2.logic.Usuario;
 
 /**
  *
- * @author oscar
+ * @author Rodrigo Meléndez
  */
-public class SolicitudesController {
+public class AdministradorSolicitudController {
     Session session;
-    SolicitudesView view;
-    SolicitudesModel model;
+    AdministradorSolicitudView view;
+    AdministradorSolicitudModel model;
     SessionUsuario sessionUsu;
     
-    public SolicitudesController(SolicitudesView view, SolicitudesModel model, Session session) {
+    public AdministradorSolicitudController(AdministradorSolicitudView view, AdministradorSolicitudModel model, Session session, SessionUsuario sessionUsu) {
         this.session=session;
         this.view = view;
         this.model = model;
+        this.sessionUsu = sessionUsu;
         view.setController(this);
         view.setModel(model);
     }
-     public void buscar(Solicitud filter) throws Exception{       
+    
+    public void buscar(Solicitud filter) throws Exception {       
         model.setFilter(filter);
         this.refrescarBusqueda();
     }
     
-    public void refrescarBusqueda() throws Exception{
-
+    public void refrescarBusqueda() throws Exception {
        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
-        model.setSolicitudes(rows);
-        model.commit();
-        if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
+       model.setSolicitudes(rows);
+       model.commit();
+       if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
 
-    }    
+    }
+
+    public void buscarFromDependencia() throws Exception {
+        this.refrescarTable();
+    }
+    
+    private void refrescarTable() throws Exception {
+       Usuario usuario = (Usuario) sessionUsu.getAttribute("User");
+       //String nombre = proyecto2.logic.ModelGeneral.instance().getCodigoDependenciaDesdeLabor(usuario.getFuncionario().getId());
+       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudesFromDependencia(usuario.getFuncionario().getId());
+       model.setSolicitudes(rows);
+       model.commit();
+       if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
+    }
 //
 //    public void preAgregar(Point at)throws Exception{      
 ////        Usuario principal = (Usuario) session.getAttribute(Application.USER_ATTRIBUTE);
@@ -94,5 +108,13 @@ public class SolicitudesController {
     
     public void hide(){
         view.setVisible(false);
-    }  
+    }
+
+    public AdministradorSolicitudView getView() {
+        return view;
+    }
+
+    Solicitud getSeleccionada(int row) {
+        return model.getSolicitudes().getRowAt(row); 
+    }
 }

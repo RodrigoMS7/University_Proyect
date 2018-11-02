@@ -87,12 +87,12 @@ public class SolicitudTableModel extends AbstractTableModel {
     private void initColNames() {
 
         colNames[CODIGO] = "Codigo";
+        colNames[COMPROBANTE] = "Comprobante";
         colNames[FECHA] = "Fecha";
         colNames[CANTIDAD] = "Cantidad";
         colNames[TIPO] = "Tipo";
         colNames[ESTADO] = "Estado";
         colNames[MONTO] = "Precio";
-        colNames[COMPROBANTE] = "Comprobante";
         colNames[DEPENDENCIA] = "Dependencia";
     }
 }

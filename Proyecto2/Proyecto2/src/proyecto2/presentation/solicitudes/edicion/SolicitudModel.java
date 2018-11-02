@@ -37,6 +37,22 @@ public class SolicitudModel extends java.util.Observable {
         listaBienes.add(bien);
         biens.add(bien);
     }
+    
+    public int sumaCantidad(){
+        int result = 0;
+        for(Bien bien: listaBienes) {
+            result += bien.getCantidad();
+        }
+        return result;
+    }
+    
+    public double sumaMontoTotal(){
+        double result = 0;
+        for(Bien bien: listaBienes) {
+            result += bien.getPrecio();
+        }
+        return result;
+    }
 
     public SolicitudBienTableModel getBienes() {
         return bienes;
