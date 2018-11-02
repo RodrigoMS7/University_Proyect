@@ -137,7 +137,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame implements java.
     }//GEN-LAST:event_guardarActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        // TODO add your handling code here:
+        controller.hide();
     }//GEN-LAST:event_cancelarActionPerformed
 
 
@@ -152,7 +152,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame implements java.
 
     @Override
     public void update(Observable o, Object arg) {
-        //this.limpiarErrores();
+        this.limpiarErrores();
         Funcionario actual = model.getCurrent(); //ver quien es actual??
         this.fromPersona(actual);
     }

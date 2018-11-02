@@ -196,7 +196,7 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
         
         //seleccionada.setEstado("por verificar");
         try{
-            controller.actualizar(seleccionada,"por verificar");
+            controller.actualizar(seleccionada,"porVerificar");
         }catch(Exception e){}
     }//GEN-LAST:event_aceptarButtonActionPerformed
    
@@ -205,6 +205,7 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
         try{
             int row=solicitudes.getSelectedRow();
             seleccionada= model.getSolicitudes().getRowAt(row);
+            System.out.print("click");
         }catch(Exception e){
         }
     }//GEN-LAST:event_solicitudesMouseClicked

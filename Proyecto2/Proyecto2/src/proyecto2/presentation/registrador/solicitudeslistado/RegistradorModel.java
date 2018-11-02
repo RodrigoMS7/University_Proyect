@@ -3,35 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.occb.jefe;
+package proyecto2.presentation.registrador.solicitudeslistado;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
-import proyecto2.logic.Funcionario;
 import proyecto2.logic.Solicitud;
 import proyecto2.presentation.SolicitudTableModel;
-
 /**
  *
- * @author Dani
+ * @author oscar
  */
-public class JefeModel extends java.util.Observable{
-
+public class RegistradorModel extends java.util.Observable{
     Solicitud filter;
     SolicitudTableModel solicitudes;
     Solicitud seleccionada;
-    Funcionario registrador;
 
-    public Funcionario getRegistrador() {
-        return registrador;
-    }
-
-    public void setRegistrador(Funcionario registrador) {
-        this.registrador = registrador;
-    }
-    
-    public JefeModel() {
+    public RegistradorModel() {
         this.reset();
     }
 
@@ -56,7 +44,9 @@ public class JefeModel extends java.util.Observable{
     }
     
     public void setSolicitudes(List<Solicitud> solicitudes) {
-        int[] cols={SolicitudTableModel.CODIGO,SolicitudTableModel.FECHA,SolicitudTableModel.CANTIDAD,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.MONTO,SolicitudTableModel.COMPROBANTE, SolicitudTableModel.DEPENDENCIA};
+        int[] cols={SolicitudTableModel.CODIGO,SolicitudTableModel.COMPROBANTE,SolicitudTableModel.DEPENDENCIA,
+        SolicitudTableModel.FECHA,SolicitudTableModel.TIPO,SolicitudTableModel.CANTIDAD,SolicitudTableModel.MONTO,
+        SolicitudTableModel.ESTADO};
         this.solicitudes= new SolicitudTableModel(cols,solicitudes);
     }
 
@@ -78,5 +68,7 @@ public class JefeModel extends java.util.Observable{
         setChanged();
         notifyObservers();
     }
-
+    public void setEstado(Solicitud s, String estado){
+        s.setEstado(estado);
+    }
 }

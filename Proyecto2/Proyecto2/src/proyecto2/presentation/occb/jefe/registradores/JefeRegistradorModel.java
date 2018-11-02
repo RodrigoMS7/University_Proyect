@@ -19,7 +19,21 @@ public class JefeRegistradorModel extends java.util.Observable {
    // Funcionario filter;
     FuncionarioTableModel funcionarios;
     Funcionario seleccionada;
+    int codigoSolicitud;
 
+    public void setFuncionarios(FuncionarioTableModel funcionarios) {
+        this.funcionarios = funcionarios;
+    }
+
+    public int getCodigoSolicitud() {
+        return codigoSolicitud;
+    }
+
+    public void setCodigoSolicitud(int codigoSolicitud) {
+        this.codigoSolicitud = codigoSolicitud;
+         this.commit();
+    }
+    
     public JefeRegistradorModel() {
         this.reset();
     }

@@ -22,6 +22,23 @@ public class SolicitudModel extends java.util.Observable {
     Bien seleccionado;
     Bien currentB;
     int modoB;
+    Solicitud filter;
+
+    public Solicitud getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Solicitud filter) {
+        this.filter = filter;
+    }
+
+    public Set getBiens() {
+        return biens;
+    }
+
+    public void setBiens(Set biens) {
+        this.biens = biens;
+    }
     Solicitud currentS;
     int modoS;  
     List<Bien> listaBienes;

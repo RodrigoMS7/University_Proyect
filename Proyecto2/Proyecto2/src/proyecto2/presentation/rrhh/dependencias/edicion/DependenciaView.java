@@ -105,8 +105,6 @@ public class DependenciaView extends javax.swing.JInternalFrame implements java.
         codigoTextField = new javax.swing.JTextField();
         nombreTextField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
         guardarButton.setText("guardar");
         guardarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +115,11 @@ public class DependenciaView extends javax.swing.JInternalFrame implements java.
         codigo.setText(" Codigo");
 
         cancelarButton.setText("cancelar");
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarButtonActionPerformed(evt);
+            }
+        });
 
         nombre.setText("Nombre");
 
@@ -175,6 +178,10 @@ public class DependenciaView extends javax.swing.JInternalFrame implements java.
         }else
             JOptionPane.showMessageDialog(this, "Datos invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_guardarButtonActionPerformed
+
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
+        controller.hide();
+    }//GEN-LAST:event_cancelarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

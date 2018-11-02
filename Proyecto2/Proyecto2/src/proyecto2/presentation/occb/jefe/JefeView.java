@@ -24,9 +24,9 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
         super("",false,true);
         initComponents();
     }
-       public void actualiza(){
-           controller.buscar();
-       }
+////       public void actualiza(){
+////           controller.buscar();
+////       }
     public JefeController getController() {
         return controller;
     }
@@ -154,7 +154,8 @@ public class JefeView extends javax.swing.JInternalFrame implements java.util.Ob
 
     private void buttonAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAsignarActionPerformed
         try {
-            controller.getRegistradores(buttonAsignar.getLocation());
+            int row = this.solicitudesTable.getSelectedRow();
+            controller.getRegistradores(buttonAsignar.getLocation(), row);
         } catch (Exception ex) {
             Logger.getLogger(JefeView.class.getName()).log(Level.SEVERE, null, ex);
         }

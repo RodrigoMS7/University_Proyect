@@ -69,6 +69,7 @@ public class SolicitudController {
                 break;
             case Application.MODO_EDITAR:
                 rows = proyecto2.logic.ModelGeneral.instance().getBienesFromSolicitud(model.getCurrentS().getCodigo());
+                //rows = proyecto2.logic.ModelGeneral.instance().getAllBienesSolicitud(model.getFilter());
                 model.setBien(rows);
                 model.commit();
                 if (rows.isEmpty()) {
@@ -77,18 +78,33 @@ public class SolicitudController {
                 break;
         }
     }
-    
-    public void borrarBien(int row)throws Exception {  
-//        Bien seleccionada = model.getBien().getRowAt(row); 
-//        try {
-//            proyecto2.logic.ModelGeneral.instance().borraBien(seleccionada);
-//        } catch (Exception ex) { }
-//        List<Bien> rowsMod = proyecto2.logic.ModelGeneral.instance().searchBien(model.getFilter());
-//        model.setBien(rowsMod);
-//        model.commit();
-//        this.refrescarTablaBien();
+
+    public void guardarBien(Bien bien )  { 
+        model.agregaBien(bien);
     }
     
+    public void borrarBien(int row)throws Exception { 
+        //Bien seleccionada = model.getBien().getRowAt(row);
+        //switch (model.getModoS()) {
+            //case Application.MODO_AGREGAR:
+                // seleccionada = model.getBien().getRowAt(row);
+                 //Falta
+                //break;
+            //case Application.MODO_EDITAR:
+                 //seleccionada = model.getBien().getRowAt(row);
+                //try {
+                    //proyecto2.logic.ModelGeneral.instance().borraBien(seleccionada);
+                //} catch (Exception ex) {
+                //}
+                //List<Bien> rowsMod = proyecto2.logic.ModelGeneral.instance().getAllBienesSolicitud(model.getFilter());
+               // model.setBien(rowsMod);
+                //model.commit();
+                //this.refrescarTablaBien();
+                //break;
+        //}
+    }
+    
+
     public void guardarSolicitud(Solicitud solicitud, int codigoSolicitud) throws Exception{ 
         Transaction t = session.beginTransaction();
         Usuario principal = (Usuario) sessU.getAttribute("User");
@@ -148,7 +164,7 @@ public class SolicitudController {
 //        this.refrescarTablaBien();
 //    }
 
-    void guardarBien(Bien agregaBien) {
-        model.agregaBien(agregaBien);
-    }
+    //void guardarBien(Bien agregaBien) {
+    //    model.agregaBien(agregaBien);
+    //}
 }

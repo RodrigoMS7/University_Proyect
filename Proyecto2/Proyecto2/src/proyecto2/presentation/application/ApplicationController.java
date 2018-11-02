@@ -55,7 +55,9 @@ public class ApplicationController {
         }
         Application.ADMINISTRADOR_SOLICITUD_CONTROLLER.show();
     }
-    
+    public void solicitudRegistradorShow(){
+        Application.REGISTRADOR_CONTROLLER.show();
+    }
     public void enter(){
         this.reset();
         this.show();

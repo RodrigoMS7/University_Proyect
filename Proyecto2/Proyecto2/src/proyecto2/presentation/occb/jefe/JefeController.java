@@ -40,7 +40,7 @@ public class JefeController {
     }
 
     public void buscar() {
-        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado();
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchSolicitudesPorVerificar();
         if (!rows.isEmpty()) {
             model.setSolicitudes(rows);
             model.commit();
@@ -48,16 +48,19 @@ public class JefeController {
     }
 
     public void refrescarBusqueda() throws Exception {
-        System.out.println(model.getFilter().getEstado());
-        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido", model.getFilter());
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("porVerificar", model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
-        if (rows.isEmpty()) {
-            throw new Exception("Ningún dato coincide");
-        }
+//        if (rows.isEmpty()) {
+//            throw new Exception("Ningún dato coincide");
+//        }
     }
 
-    public void getRegistradores(Point at) throws Exception {
+    public void getRegistradores(Point at, int row) throws Exception {
+        Solicitud seleccionada = model.getSolicitudes().getRowAt(row);
+////        model.setSeleccionada(seleccionada);
+        System.out.println(seleccionada.getCodigo());
+        Application.JEFE_REGISTRADOR_CONTROLLER.setCodigoSolicitud(seleccionada.getCodigo());
         Application.JEFE_REGISTRADOR_CONTROLLER.show(at);
     }
 

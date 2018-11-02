@@ -103,6 +103,11 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        dependenciasFld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dependenciasFldMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(dependenciasFld);
 
         agregarButton.setText("agregar");
@@ -163,15 +168,14 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        // TODO add your handling code here:
-       // if(this.validar()){
+        if(this.validar()){
             try{
                 controller.buscar(this.toDependencia());
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
             }
-        //}else
-          //  JOptionPane.showMessageDialog(this, "Debe indicar algún dato", "ERROR", JOptionPane.ERROR_MESSAGE); 
+        }else
+            JOptionPane.showMessageDialog(this, "Debe indicar algún dato", "ERROR", JOptionPane.ERROR_MESSAGE); 
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
@@ -188,6 +192,14 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
         int row = this.dependenciasFld.getSelectedRow();
         controller.borrar(row);
     }//GEN-LAST:event_eliminarButtonActionPerformed
+
+    private void dependenciasFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dependenciasFldMouseClicked
+          if (evt.getClickCount() == 2) {
+            int row = this.dependenciasFld.getSelectedRow();
+            int col = this.dependenciasFld.getSelectedColumn();
+            controller.editar(row, evt.getLocationOnScreen());
+        }
+    }//GEN-LAST:event_dependenciasFldMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

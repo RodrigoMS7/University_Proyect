@@ -8,9 +8,11 @@ package proyecto2.presentation.occb.jefe.registradores;
 import java.awt.Point;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import proyecto2.Application;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Funcionario;
+import proyecto2.logic.Solicitud;
 
 /**
  *
@@ -34,6 +36,9 @@ public class JefeRegistradorController {
         this.refrescarBusqueda();
     }
     
+     public void setCodigoSolicitud(int codigo){
+         model.setCodigoSolicitud(codigo);
+     }
     public void refrescarBusqueda() throws Exception{
        List<Funcionario> rows = proyecto2.logic.ModelGeneral.instance().getRegistradores();
         model.setFuncionarios(rows);
@@ -57,5 +62,15 @@ public class JefeRegistradorController {
     
     public void hide(){
         view.setVisible(false);
-    }       
+    }  
+    
+    public void asignaRegistradorAsolicitud(int row) throws Exception {
+        Funcionario seleccionada = model.getFuncionarios().getRowAt(row);
+        Transaction t = session.beginTransaction();
+        System.out.println(model.getCodigoSolicitud());
+        Solicitud solicitud = proyecto2.logic.ModelGeneral.instance().getSolicitud(model.getCodigoSolicitud());
+        solicitud.setFuncionario(seleccionada);
+        session.merge(solicitud);
+        t.commit();
+    }
 }
