@@ -80,6 +80,9 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         jLabel5 = new javax.swing.JLabel();
         label_showPassword = new javax.swing.JLabel();
         label_hidePassword = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,42 +92,51 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
 
         userLlabl.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         userLlabl.setText("Usuario");
-        getContentPane().add(userLlabl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 72, -1));
+        getContentPane().add(userLlabl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 72, -1));
 
         passwordLabl.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         passwordLabl.setText("Contraseña");
-        getContentPane().add(passwordLabl, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
+        getContentPane().add(passwordLabl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, -1, -1));
 
         userText.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        userText.setForeground(new java.awt.Color(153, 153, 153));
+        userText.setForeground(new java.awt.Color(102, 102, 102));
         userText.setText("Ingrese usuario...");
         userText.setBorder(null);
+        userText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        userText.setOpaque(false);
         userText.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 userTextMouseClicked(evt);
             }
         });
-        getContentPane().add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 160, 20));
+        getContentPane().add(userText, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 160, 20));
 
-        jButton1.setText("Ingresar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/Enter_ON_ver2.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/Enter_ON.png"))); // NOI18N
+        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/Enter_ON_ver2.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 90, 30));
 
-        label_textoContraseña.setForeground(new java.awt.Color(153, 153, 153));
+        label_textoContraseña.setForeground(new java.awt.Color(102, 102, 102));
         label_textoContraseña.setText("Contraseña...");
+        label_textoContraseña.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         label_textoContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 label_textoContraseñaMouseClicked(evt);
             }
         });
-        getContentPane().add(label_textoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 160, -1));
+        getContentPane().add(label_textoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 160, -1));
 
         passwordText.setForeground(new java.awt.Color(0, 0, 0));
         passwordText.setBorder(null);
+        passwordText.setOpaque(false);
         passwordText.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordTextMouseClicked(evt);
@@ -135,11 +147,11 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
                 passwordTextActionPerformed(evt);
             }
         });
-        getContentPane().add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 160, -1));
+        getContentPane().add(passwordText, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 160, -1));
 
-        passwordOculto.setText("jTextField1");
         passwordOculto.setBorder(null);
-        getContentPane().add(passwordOculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 160, -1));
+        passwordOculto.setOpaque(false);
+        getContentPane().add(passwordOculto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 160, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 270, 10));
@@ -197,11 +209,11 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 40));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/UNA1LINE_opt.jpg"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 70, 60));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/logo_UNA.png"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 70, 60));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/44948_opt.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/icons8_User_96px_2.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
 
         label_showPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/show_password_opt.png"))); // NOI18N
         label_showPassword.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -217,9 +229,9 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
                 label_showPasswordMouseExited(evt);
             }
         });
-        getContentPane().add(label_showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, -1, -1));
+        getContentPane().add(label_showPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, -1, -1));
 
-        label_hidePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/images_opt.png"))); // NOI18N
+        label_hidePassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/hide_password.png"))); // NOI18N
         label_hidePassword.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 label_hidePasswordMouseMoved(evt);
@@ -233,9 +245,18 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
                 label_hidePasswordMouseExited(evt);
             }
         });
-        getContentPane().add(label_hidePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, -1, -1));
+        getContentPane().add(label_hidePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 290, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/fondo-blanco.gif"))); // NOI18N
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 312, 270, 10));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/icons8_Key_32px.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/icons8_customer_32px_1.png"))); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/fondo-de-pantalla-abstracto-textura-azul-hd.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 410));
 
         pack();
@@ -303,7 +324,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     private void passwordTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTextMouseClicked
         if(this.userText.getText().isEmpty() /*|| this.userText.getText() == "Ingrese usuario"*/){
             this.userText.setText("Ingrese usuario...");
-            this.userText.setForeground(new java.awt.Color(153,153,153));
+            this.userText.setForeground(new java.awt.Color(102,102,102));
         }
     }//GEN-LAST:event_passwordTextMouseClicked
 
@@ -312,7 +333,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     }//GEN-LAST:event_label_showPasswordMouseMoved
 
     private void label_showPasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_showPasswordMouseExited
-        this.label_showPassword.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE));
+        this.label_showPassword.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, null));
     }//GEN-LAST:event_label_showPasswordMouseExited
 
     private void label_showPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_showPasswordMouseClicked
@@ -332,7 +353,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     }//GEN-LAST:event_label_hidePasswordMouseClicked
 
     private void label_hidePasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_hidePasswordMouseExited
-        this.label_hidePassword.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE));
+        this.label_hidePassword.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, null));
     }//GEN-LAST:event_label_hidePasswordMouseExited
 
     private void label_hidePasswordMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_hidePasswordMouseMoved
@@ -340,6 +361,11 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     }//GEN-LAST:event_label_hidePasswordMouseMoved
 
     private void label_textoContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_textoContraseñaMouseClicked
+        if(this.userText.getText().isEmpty() /*|| this.userText.getText() == "Ingrese usuario"*/){
+            this.userText.setText("Ingrese usuario...");
+            this.userText.setForeground(new java.awt.Color(102,102,102));
+        }
+        this.passwordText.requestFocus();
         this.label_textoContraseña.setVisible(false);
     }//GEN-LAST:event_label_textoContraseñaMouseClicked
 
@@ -384,10 +410,13 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel label_Exit;
     private javax.swing.JLabel label_Min;
     private javax.swing.JLabel label_hidePassword;

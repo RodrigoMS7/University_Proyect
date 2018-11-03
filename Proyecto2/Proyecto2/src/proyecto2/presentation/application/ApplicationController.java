@@ -6,6 +6,8 @@
 package proyecto2.presentation.application;
 
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Session;
 import proyecto2.Application;
 import proyecto2.SessionUsuario;
@@ -40,14 +42,23 @@ public class ApplicationController {
         Application.SOLICITUDES_CONTROLLER.show();
     }
     public void solicitudesJefeShow(){
-         Application.JEFE_CONTROLLER.show();
+        Application.JEFE_CONTROLLER.show();
     }
     public void solicitudesSecretariaShow(){
-         Application.SECRETARIA_CONTROLLER.show();
+        Application.SECRETARIA_CONTROLLER.show();
     }
-    public void solicitudEdicionShow(){
-         Application.SOLICITUD_CONTROLLER.show();
+    public void AdministradorSolicitudShow(){
+        try {
+            Application.ADMINISTRADOR_SOLICITUD_CONTROLLER.getView().toSolicitudFromDependencia();
+        } catch (Exception ex) {
+            Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Application.ADMINISTRADOR_SOLICITUD_CONTROLLER.show();
     }
+    public void solicitudRegistradorShow(){
+        Application.REGISTRADOR_CONTROLLER.show();
+    }
+    
     public void categoriaShow() {
         Application.CATEGORIAS_CONTROLLER.show();
     }

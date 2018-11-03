@@ -14,15 +14,15 @@ import proyecto2.logic.Solicitud;
 
 /**
  *
- * @author oscar
+ * @author Rodrigo Meléndez
  */
-public class SolicitudesModel extends java.util.Observable{
+public class AdministradorSolicitudModel extends java.util.Observable{
 
     Solicitud filter;
     SolicitudTableModel solicitudes;
     Solicitud seleccionada;
 
-    public SolicitudesModel() {
+    public AdministradorSolicitudModel() {
         this.reset();
     }
 
@@ -47,8 +47,8 @@ public class SolicitudesModel extends java.util.Observable{
     }
     
     public void setSolicitudes(List<Solicitud> solicitudes) {
-        int[] cols={SolicitudTableModel.CODIGO,SolicitudTableModel.FECHA,SolicitudTableModel.CANTIDAD,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.MONTO,SolicitudTableModel.COMPROBANTE};
-        this.solicitudes= new SolicitudTableModel(cols,solicitudes);
+        int[] cols={SolicitudTableModel.CODIGO, SolicitudTableModel.COMPROBANTE,SolicitudTableModel.FECHA,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.CANTIDAD,SolicitudTableModel.MONTO};
+        this.solicitudes= new SolicitudTableModel(cols, solicitudes);
     }
 
     public Solicitud getSeleccionada() {
