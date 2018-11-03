@@ -11,6 +11,9 @@ import java.util.List;
 import org.hibernate.Session;
 import proyecto2.data.HibernateUtil;
 import proyecto2.logic.Solicitud;
+import proyecto2.presentation.activos.listado.ActivosController;
+import proyecto2.presentation.activos.listado.ActivosModel;
+import proyecto2.presentation.activos.listado.ActivosView;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudController;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudModel;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudView;
@@ -152,6 +155,12 @@ public class Application {
         CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session,ses);
         CATEGORIAS_CONTROLLER = categoriasController;
         applicationView.addInternalFrame(categoriaView);
+        
+        ActivosModel activosModel = new ActivosModel();
+        ActivosView activosView= new ActivosView();
+        ActivosController activosController = new ActivosController(activosView,activosModel,session,ses);
+        ACTIVOS_CONTROLLER = activosController;
+        applicationView.addInternalFrame(activosView);
     }
    
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -170,6 +179,7 @@ public class Application {
     public static CategoriasController CATEGORIAS_CONTROLLER;
     public static AdministradorSolicitudController ADMINISTRADOR_SOLICITUD_CONTROLLER;
     public static RegistradorController REGISTRADOR_CONTROLLER;
+    public static ActivosController ACTIVOS_CONTROLLER;
 
     
     public static final int MODO_AGREGAR = 0;
