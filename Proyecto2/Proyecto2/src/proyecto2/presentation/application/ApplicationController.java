@@ -48,6 +48,9 @@ public class ApplicationController {
     public void solicitudEdicionShow(){
          Application.SOLICITUD_CONTROLLER.show();
     }
+    public void categoriaShow() {
+        Application.CATEGORIAS_CONTROLLER.show();
+    }
     
     public void enter(){
         this.reset();
@@ -72,4 +75,6 @@ public class ApplicationController {
         //Application.ESTADOS_CONTROLLER.hide();        
         view.setVisible(false);
     }   
+
+    
 }

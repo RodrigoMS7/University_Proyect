@@ -404,5 +404,37 @@ public class ModelGeneral {
             return null;
         }
     } 
+     public void borraCategoria(Categoria c){
+        Transaction t = ses.beginTransaction();
+        ses.delete(c);
+        t.commit();
+    }
 
+     public List<Categoria> searchAllCategoria() {
+        String sql = "select * from categoria";
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Categoria> resultado = new ArrayList<Categoria>();
+            while (rs.next()) {
+                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo") ));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+     }
+     public List<Categoria> searchCategoria(Categoria categoria) {
+        String sql = "select * from categoria where tipo like '%%%s%%'";
+        sql=String.format(sql, categoria.getTipo());
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Categoria> resultado = new ArrayList<Categoria>();
+            while (rs.next()) {
+                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo") ));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+     }
 }
