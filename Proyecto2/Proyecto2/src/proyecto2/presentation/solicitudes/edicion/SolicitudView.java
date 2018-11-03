@@ -5,11 +5,15 @@
  */
 package proyecto2.presentation.solicitudes.edicion;
 
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyecto2.Application;
 import proyecto2.logic.Bien;
@@ -21,8 +25,7 @@ import proyecto2.logic.Solicitud;
  *
  * @author Rodrigo Meléndez
  */
-public class SolicitudView extends javax.swing.JDialog implements java.util.Observer {
-
+public class SolicitudView extends javax.swing.JInternalFrame implements java.util.Observer {
     SolicitudModel model;
     SolicitudController controller;
 
@@ -42,12 +45,10 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     public void setController(SolicitudController controller) {
         this.controller = controller;
     }
-
     /**
-     * Creates new form SolicitudView
+     * Creates new form solicitud2
      */
     public SolicitudView() {
-        super(/*parent, modal*/);
         initComponents();
     }
 
@@ -60,90 +61,89 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label_Solicitud = new javax.swing.JLabel();
-        label_Bien = new javax.swing.JLabel();
-        label_Descripcion = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        label_Fecha = new javax.swing.JLabel();
+        text_Fecha = new javax.swing.JTextField();
+        label_Tipo = new javax.swing.JLabel();
+        comboBox_Tipo = new javax.swing.JComboBox<>();
+        label_Comprobante = new javax.swing.JLabel();
+        text_Comprobante = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_Bien = new javax.swing.JTable();
+        button_AgregaBien = new javax.swing.JButton();
+        button_EliminaBien = new javax.swing.JButton();
         text_Descripcion = new javax.swing.JTextField();
-        label_Marca = new javax.swing.JLabel();
-        label_Modelo = new javax.swing.JLabel();
         text_Marca = new javax.swing.JTextField();
-        text_Modelo = new javax.swing.JTextField();
-        label_Cantidad = new javax.swing.JLabel();
-        label_Precio = new javax.swing.JLabel();
         text_Cantidad = new javax.swing.JTextField();
         text_Precio = new javax.swing.JTextField();
-        button_EliminaBien = new javax.swing.JButton();
+        label_Descripcion = new javax.swing.JLabel();
+        label_Marca = new javax.swing.JLabel();
+        label_Modelo = new javax.swing.JLabel();
+        label_Cantidad = new javax.swing.JLabel();
+        label_Precio = new javax.swing.JLabel();
+        text_Modelo = new javax.swing.JTextField();
         button_Guardar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table_bien = new javax.swing.JTable();
-        button_AgregaBien = new javax.swing.JButton();
         button_Salir = new javax.swing.JButton();
-        text_Comprobante = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        comboBox_Tipo = new javax.swing.JComboBox<>();
-        label_Tipo = new javax.swing.JLabel();
-        text_Fecha = new javax.swing.JTextField();
-        labelComprobante = new javax.swing.JLabel();
-        label_Fecha = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label_Solicitud.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        label_Solicitud.setText("SOLICITUD");
-        getContentPane().add(label_Solicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 29, -1, -1));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Solicitud"));
 
-        label_Bien.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        label_Bien.setText("BIENES");
-        getContentPane().add(label_Bien, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 143, -1, -1));
+        label_Fecha.setText("Fecha");
 
-        label_Descripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        label_Descripcion.setText("Descripción");
-        getContentPane().add(label_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 172, -1, -1));
-        getContentPane().add(text_Descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 193, 118, -1));
-
-        label_Marca.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        label_Marca.setText("Marca");
-        getContentPane().add(label_Marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 171, -1, -1));
-
-        label_Modelo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        label_Modelo.setText("Modelo");
-        getContentPane().add(label_Modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 172, -1, -1));
-        getContentPane().add(text_Marca, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 193, 135, -1));
-        getContentPane().add(text_Modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 193, 137, -1));
-
-        label_Cantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        label_Cantidad.setText("Cantidad");
-        getContentPane().add(label_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 172, -1, -1));
-
-        label_Precio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        label_Precio.setText("Precio");
-        getContentPane().add(label_Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(613, 172, -1, -1));
-
-        text_Cantidad.setText("0");
-        getContentPane().add(text_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(483, 193, 118, -1));
-
-        text_Precio.setText("0.0");
-        getContentPane().add(text_Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(613, 193, 126, -1));
-
-        button_EliminaBien.setText("Eliminar");
-        button_EliminaBien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_EliminaBienActionPerformed(evt);
+        text_Fecha.setForeground(new java.awt.Color(153, 153, 153));
+        text_Fecha.setText("Ej.dd/mm/yyyy");
+        text_Fecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_FechaMouseClicked(evt);
             }
         });
-        getContentPane().add(button_EliminaBien, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 225, -1, -1));
 
-        button_Guardar.setText("Guardar");
-        button_Guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_GuardarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(button_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 420, -1, -1));
+        label_Tipo.setText("Tipo");
 
-        table_bien.setModel(new javax.swing.table.DefaultTableModel(
+        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        label_Comprobante.setText("Comprobante");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(label_Comprobante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(text_Comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(label_Fecha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(label_Tipo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBox_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_Tipo)
+                    .addComponent(text_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_Fecha)
+                    .addComponent(label_Comprobante)
+                    .addComponent(text_Comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 830, 80));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Bienes"));
+
+        table_Bien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -154,9 +154,7 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(table_bien);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 225, 688, 166));
+        jScrollPane1.setViewportView(table_Bien);
 
         button_AgregaBien.setText("Agregar");
         button_AgregaBien.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +162,115 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
                 button_AgregaBienActionPerformed(evt);
             }
         });
-        getContentPane().add(button_AgregaBien, new org.netbeans.lib.awtextra.AbsoluteConstraints(745, 187, -1, -1));
+
+        button_EliminaBien.setText("Eliminar");
+        button_EliminaBien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_EliminaBienActionPerformed(evt);
+            }
+        });
+
+        text_Cantidad.setForeground(new java.awt.Color(153, 153, 153));
+        text_Cantidad.setText("0");
+        text_Cantidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_CantidadMouseClicked(evt);
+            }
+        });
+
+        text_Precio.setForeground(new java.awt.Color(153, 153, 153));
+        text_Precio.setText("0.0");
+        text_Precio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                text_PrecioMouseClicked(evt);
+            }
+        });
+
+        label_Descripcion.setText("Descripción");
+
+        label_Marca.setText("Marca");
+
+        label_Modelo.setText("Modelo");
+
+        label_Cantidad.setText("Cantidad");
+
+        label_Precio.setText("Precio");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(text_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_Descripcion))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(text_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_Marca))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_Modelo)
+                            .addComponent(text_Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(text_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_Cantidad))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_Precio)
+                            .addComponent(text_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(button_AgregaBien))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(button_EliminaBien)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_Descripcion)
+                    .addComponent(label_Marca)
+                    .addComponent(label_Modelo)
+                    .addComponent(label_Cantidad)
+                    .addComponent(label_Precio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_AgregaBien)
+                    .addComponent(text_Modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(button_EliminaBien)))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 830, 300));
+
+        button_Guardar.setText("Guardar");
+        button_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_GuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(button_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 440, -1, -1));
 
         button_Salir.setText("Salir");
         button_Salir.addActionListener(new java.awt.event.ActionListener() {
@@ -172,52 +278,15 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
                 button_SalirActionPerformed(evt);
             }
         });
-        getContentPane().add(button_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 420, -1, -1));
-        getContentPane().add(text_Comprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 89, -1));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 268, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 810, 270));
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        comboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Compra", "Donación", "Producción" }));
-        jPanel1.add(comboBox_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 39, -1, -1));
-
-        label_Tipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        label_Tipo.setText("Tipo");
-        jPanel1.add(label_Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 41, -1, -1));
-        jPanel1.add(text_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(378, 39, 81, -1));
-
-        labelComprobante.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        labelComprobante.setText("Comprobante");
-        jPanel1.add(labelComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 42, -1, -1));
-
-        label_Fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        label_Fecha.setText("Fecha dd/mm/yyyy");
-        jPanel1.add(label_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 41, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 810, 100));
+        getContentPane().add(button_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_EliminaBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_EliminaBienActionPerformed
         try {
-            int row = this.table_bien.getSelectedRow();
-            int col = this.table_bien.getSelectedColumn();
+            int row = this.table_Bien.getSelectedRow();
+            int col = this.table_Bien.getSelectedColumn();
             this.controller.borrarBien(row); //Mandar una excepcion si agrega Dependencia es null
             JOptionPane.showMessageDialog(this, "Solicitud Eliminada Exitosamente", "OK", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
@@ -226,46 +295,104 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
     }//GEN-LAST:event_button_EliminaBienActionPerformed
 
     private void button_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_GuardarActionPerformed
-//        if (this.validarSolicitud()) {
+        if (this.validarSolicitud()) {
             try {
-                this.controller.guardarSolicitud(this.agregaSolicitud()); //Mandar una excepcion si agrega Dependencia es null
+                this.controller.guardarSolicitud(this.agregaSolicitud(), codigoSolicitud); //Mandar una excepcion si agrega Dependencia es null
                 JOptionPane.showMessageDialog(this, "Solicitud Agregada Exitosamente", "OK", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Datos invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
-//        }
+        } else {
+            JOptionPane.showMessageDialog(this, "Datos invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_button_GuardarActionPerformed
 
     private void button_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SalirActionPerformed
+        this.text_Comprobante.setText("");
+        this.text_Fecha.setForeground(new java.awt.Color(153,153,153));
+        this.text_Fecha.setText("Ej.dd/mm/yyyy");
+        this.controller.getModel().setListaBienes(new ArrayList<Bien>());
+        try {
+            if(this.controller.getModel().getModoS() == Application.MODO_EDITAR)
+               this.controller.getModel().setModoS(Application.MODO_AGREGAR); 
+            this.controller.refrescarTablaBien();
+        } catch (Exception ex) {
+            Logger.getLogger(SolicitudView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.controller.hide();
     }//GEN-LAST:event_button_SalirActionPerformed
 
     private void button_AgregaBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AgregaBienActionPerformed
         try {
+        if(this.validarBien()){
+            int ident = 0;
+            //this.controller.refrescarTablaBien();
+            this.controller.guardarBien(this.agregaBien());
+            this.text_Descripcion.setText("");
+            this.text_Marca.setText("");
+            this.text_Modelo.setText("");
+            this.text_Cantidad.setForeground(new java.awt.Color(153,153,153));
+            this.text_Precio.setForeground(new java.awt.Color(153,153,153));
+            this.text_Cantidad.setText("0");
+            this.text_Precio.setText("0.0");
+            if(this.controller.getModel().getModoS() == Application.MODO_EDITAR){
+                ident = 1;
+                this.controller.getModel().setModoS(Application.MODO_AGREGAR);
+            }
             this.controller.refrescarTablaBien();
-            this.controller.guardarBien(this.toBien());
+            if(this.controller.getModel().getModoS() == Application.MODO_AGREGAR && ident == 1){
+                ident = 0;
+                this.controller.getModel().setModoS(Application.MODO_EDITAR);
+            }
+            //this.controller.refrescarTablaBien();
+            
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Datos invalidos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_button_AgregaBienActionPerformed
 
+    private void text_CantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_CantidadMouseClicked
+        this.text_Cantidad.setForeground(Color.BLACK);
+        this.text_Cantidad.setText("");
+    }//GEN-LAST:event_text_CantidadMouseClicked
+
+    private void text_PrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_PrecioMouseClicked
+        this.text_Precio.setForeground(Color.BLACK);
+        this.text_Precio.setText("");
+    }//GEN-LAST:event_text_PrecioMouseClicked
+
+    private void text_FechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_text_FechaMouseClicked
+        this.text_Fecha.setForeground(Color.BLACK);
+        this.text_Fecha.setText("");
+    }//GEN-LAST:event_text_FechaMouseClicked
+
     private boolean validarSolicitud() {
         boolean error = true;
-        this.labelComprobante.setForeground(Application.COLOR_OK);
+        this.label_Comprobante.setForeground(Application.COLOR_OK);
         this.label_Fecha.setForeground(Application.COLOR_OK);
         if (this.text_Comprobante.getText().isEmpty()) {
-            this.labelComprobante.setForeground(Application.COLOR_ERROR);
+            this.label_Comprobante.setForeground(Application.COLOR_ERROR);
             error = false;
         }
         if (this.text_Fecha.getText().isEmpty()) {
             this.label_Fecha.setForeground(Application.COLOR_ERROR);
             error = false;
         }
-        if (!validarBien()) {
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+        try {
+            sdf.parse(this.text_Fecha.getText()); 
+        } catch (ParseException ex) {
+            this.label_Fecha.setForeground(Application.COLOR_ERROR);
             error = false;
+            JOptionPane.showMessageDialog(this, "Mal formato de la fecha (D/M/Y)", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+//        if (!validarBien()) {
+//            error = false;
+//        }
         return error;
     }
 
@@ -288,11 +415,11 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
             this.label_Modelo.setForeground(Application.COLOR_ERROR);
             error = false;
         }
-        if (Integer.parseInt(this.text_Cantidad.getText()) == 0) {
+        if (Integer.parseInt(this.text_Cantidad.getText()) == 0 || this.text_Cantidad.getText().isEmpty()) {
             this.label_Cantidad.setForeground(Application.COLOR_ERROR);
             error = false;
         }
-        if (Double.parseDouble(this.text_Precio.getText()) == 0.0) {
+        if (Double.parseDouble(this.text_Precio.getText()) == 0.0 || this.text_Precio.getText().isEmpty()) {
             this.label_Precio.setForeground(Application.COLOR_ERROR);
             error = false;
         }
@@ -310,12 +437,14 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
             JOptionPane.showMessageDialog(this, "Mal formato de la fecha (D/M/Y)", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         s.setTipoAdquisicion((String) this.comboBox_Tipo.getSelectedItem());
-        s.setEstado("recibida");
+        s.setEstado("Solicitud recibida");
+        s.setCantidad(controller.getCantidad());
+        s.setMonto(controller.getMonto());
 //        s.setBiens(new HashSet<Bien>(proyecto2.logic.ModelGeneral.instance().searchBien(this.controller.model.getFilter()))); //Como agregar los bienes
         return s;
     }
 
-      Bien toBien(){
+    Bien agregaBien(){
         Bien b=new Bien();
         b.setDescripcion(text_Descripcion.getText());
         b.setMarca(text_Marca.getText());
@@ -324,89 +453,22 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
         b.setPrecio(Double.parseDouble(text_Precio.getText()));
         return b;
     }
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton button_AgregaBien;
-    private javax.swing.JButton button_EliminaBien;
-    private javax.swing.JButton button_Guardar;
-    private javax.swing.JButton button_Salir;
-    private javax.swing.JComboBox<String> comboBox_Tipo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelComprobante;
-    private javax.swing.JLabel label_Bien;
-    private javax.swing.JLabel label_Cantidad;
-    private javax.swing.JLabel label_Descripcion;
-    private javax.swing.JLabel label_Fecha;
-    private javax.swing.JLabel label_Marca;
-    private javax.swing.JLabel label_Modelo;
-    private javax.swing.JLabel label_Precio;
-    private javax.swing.JLabel label_Solicitud;
-    private javax.swing.JLabel label_Tipo;
-    private javax.swing.JTable table_bien;
-    private javax.swing.JTextField text_Cantidad;
-    private javax.swing.JTextField text_Comprobante;
-    private javax.swing.JTextField text_Descripcion;
-    private javax.swing.JTextField text_Fecha;
-    private javax.swing.JTextField text_Marca;
-    private javax.swing.JTextField text_Modelo;
-    private javax.swing.JTextField text_Precio;
-    // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void update(Observable o, Object arg) {
-        this.limpiarErrores();
-        Solicitud actual = model.getCurrentS();
-        this.fromSolicitud(actual);
-        this.table_bien.setModel(model.getBien());
+    
+    int codigoSolicitud;
+    public void modifica(Solicitud s) throws Exception {
+        this.text_Comprobante.setText(s.getComprobante());
+        //this.text_Fecha.setText(s.getComprobante());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
+        this.text_Fecha.setText(sdf.format(s.getFecha()));
+        this.text_Fecha.setForeground(Color.BLACK);
+        this.comboBox_Tipo.setSelectedItem(s.getTipoAdquisicion());
+        if(controller.getModel().getModoS() == Application.MODO_EDITAR)
+            codigoSolicitud = s.getCodigo();
+        //this.controller.agregaBien2(s.getCodigo());
+        controller.refrescarTablaBien();
+        controller.getModel().setCurrentS(s);
     }
     
-    
-  
-    private boolean validarBien2() {
-        //probando 
-        boolean error = false;
-        Bien actual = model.getCurrentB();
-
-        this.label_Descripcion.setForeground(Application.COLOR_OK);
-        if (this.text_Descripcion.getText().isEmpty()) {
-            this.label_Descripcion.setForeground(Application.COLOR_ERROR);
-            error = true;
-        }
-
-        this.label_Marca.setForeground(Application.COLOR_OK);
-        if (this.text_Marca.getText().isEmpty()) {
-            this.label_Marca.setForeground(Application.COLOR_ERROR);
-            error = true;
-        }
-
-        this.label_Marca.setForeground(Application.COLOR_OK);
-        if (this.text_Modelo.getText().isEmpty()) {
-            this.label_Modelo.setForeground(Application.COLOR_ERROR);
-            error = true;
-        }
-
-        this.label_Cantidad.setForeground(Application.COLOR_OK);
-        if (Integer.parseInt(this.text_Cantidad.getText()) == 0) {
-            this.label_Cantidad.setForeground(Application.COLOR_ERROR);
-            error = true;
-        }
-
-        this.label_Precio.setForeground(Application.COLOR_OK);
-        if (Double.parseDouble(this.text_Precio.getText()) == 0.0) {
-            this.label_Precio.setForeground(Application.COLOR_ERROR);
-            error = true;
-        }
-        return !error;
-    }
-    
-    public void limpiarErrores() {
-        this.labelComprobante.setForeground(Application.COLOR_OK);
-        this.label_Fecha.setForeground(Application.COLOR_OK);
-    }
-
     public void fromSolicitud(Solicitud actual) { //NO SE SI FUNCIONE, TENGO DUDAS DE SU FUNCIONAMIENTO
         try {
 //            this.label_Comprobante.setEnabled(model.getModoS() == Application.MODO_AGREGAR);
@@ -427,5 +489,50 @@ public class SolicitudView extends javax.swing.JDialog implements java.util.Obse
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
+        
+    public void limpiarErrores() {
+        this.label_Comprobante.setForeground(Application.COLOR_OK);
+        this.label_Fecha.setForeground(Application.COLOR_OK);
+    }
+    
+//    public Labor buscaLabor(String id){
+//        return proyecto2.logic.ModelGeneral.instance().searchLabor(id);
+//    }
+    
+    @Override
+    public void update(Observable o, Object arg) {
+        this.limpiarErrores();
+        Solicitud actual = model.getCurrentS();
+        this.fromSolicitud(actual);
+        this.table_Bien.setModel(model.getBien());
+    }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_AgregaBien;
+    private javax.swing.JButton button_EliminaBien;
+    private javax.swing.JButton button_Guardar;
+    private javax.swing.JButton button_Salir;
+    private javax.swing.JComboBox<String> comboBox_Tipo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_Cantidad;
+    private javax.swing.JLabel label_Comprobante;
+    private javax.swing.JLabel label_Descripcion;
+    private javax.swing.JLabel label_Fecha;
+    private javax.swing.JLabel label_Marca;
+    private javax.swing.JLabel label_Modelo;
+    private javax.swing.JLabel label_Precio;
+    private javax.swing.JLabel label_Tipo;
+    private javax.swing.JTable table_Bien;
+    private javax.swing.JTextField text_Cantidad;
+    private javax.swing.JTextField text_Comprobante;
+    private javax.swing.JTextField text_Descripcion;
+    private javax.swing.JTextField text_Fecha;
+    private javax.swing.JTextField text_Marca;
+    private javax.swing.JTextField text_Modelo;
+    private javax.swing.JTextField text_Precio;
+    // End of variables declaration//GEN-END:variables
 
 }

@@ -11,6 +11,9 @@ import java.util.List;
 import org.hibernate.Session;
 import proyecto2.data.HibernateUtil;
 import proyecto2.logic.Solicitud;
+import proyecto2.presentation.administrador.listado.AdministradorSolicitudController;
+import proyecto2.presentation.administrador.listado.AdministradorSolicitudModel;
+import proyecto2.presentation.administrador.listado.AdministradorSolicitudView;
 import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.application.ApplicationModel;
 import proyecto2.presentation.application.ApplicationView;
@@ -62,16 +65,58 @@ public class Application {
         LoginView loginView= new LoginView();
         LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
         LOGIN_CONTROLLER = logincontroller;
+<<<<<<< HEAD
         loginView.setVisible(true);
+=======
+        //loginView.setVisible(true);
+
+//        LoginModel loginModel = new LoginModel();
+//        LoginView loginView= new LoginView();
+//        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
+//        LOGIN_CONTROLLER = logincontroller;
+//        loginView.setVisible(true);
+
+>>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
         
         ApplicationModel applicationModel = new ApplicationModel();
         ApplicationView applicationView= new ApplicationView();
         ApplicationController applicationController = new ApplicationController(applicationView,applicationModel,session,ses);
         APPLICATION_CONTROLLER = applicationController;
+
+//       
+//        //applicationView.setVisible(true);
+
        
+<<<<<<< HEAD
        // applicationView.setVisible(true);
 //        
 //        
+=======
+        applicationView.setVisible(true);
+
+//        
+//        
+//        JefeModel personasModel = new JefeModel();
+//        JefeView personasView= new JefeView();
+//        //applicationView.addInternalFrame(personasView);
+//        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
+//        JEFE_CONTROLLER=personascontroller;
+//        
+//        JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
+//        JefeRegistradorView jefRegView = new JefeRegistradorView();
+//        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
+//        JEFE_REGISTRADOR_CONTROLLER= jefRegController;
+//        applicationView.addInternalFrame(jefRegView);
+//  
+//        applicationView.addInternalFrame(personasView);
+
+        SolicitudModel solicitudModel = new SolicitudModel();
+        SolicitudView solicitudView = new SolicitudView();
+        SolicitudController solicitudController = new SolicitudController(solicitudView, solicitudModel, session, ses);
+        applicationView.addInternalFrame(solicitudView);
+        SOLICITUD_CONTROLLER = solicitudController;
+        //solicitudView.setVisible(true);
+>>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
 
         JefeModel personasModel = new JefeModel();
         JefeView personasView= new JefeView();
@@ -86,6 +131,10 @@ public class Application {
         applicationView.addInternalFrame(jefRegView);
   
         applicationView.addInternalFrame(personasView);
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
 //        SolicitudModel solicitudModel = new SolicitudModel();
 //        SolicitudView solicitudView = new SolicitudView();
 //        SolicitudController solicitudController = new SolicitudController(solicitudView, solicitudModel, session, ses);
@@ -106,6 +155,7 @@ public class Application {
         applicationView.addInternalFrame(registradorView);
         REGISTRADOR_CONTROLLER= registradorController;
         
+<<<<<<< HEAD
             
         SecretariaModel secretariaModel=new SecretariaModel();
         SecretariaView secretariaView=new SecretariaView();
@@ -118,6 +168,10 @@ public class Application {
         DependenciaController dependenciaController=new DependenciaController(dependenciaView,dependenciaModel,session);
         DEPENDENCIA_CONTROLLER=dependenciaController;
         applicationView.addInternalFrame(dependenciaView);
+=======
+//        
+//        
+>>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
 
         DependenciasModel dependenciasModel= new DependenciasModel();
         DependenciasView dependenciasView=new DependenciasView();
@@ -125,11 +179,18 @@ public class Application {
         DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
         DEPENDENCIAS_CONTROLLER=dependenciasController;
 
+<<<<<<< HEAD
+=======
+//        
+
+>>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
         FuncionarioModel funcionarioModel = new FuncionarioModel();
         FuncionarioView funcionarioView = new FuncionarioView();
         FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel, session);
         FUNCIONARIO_CONTROLLER = funcionarioController;
         applicationView.addInternalFrame(funcionarioView);
+
+//
 
         FuncionariosModel funcionariosModel = new FuncionariosModel();
         FuncionariosView funcionariosView = new FuncionariosView();
@@ -137,7 +198,25 @@ public class Application {
         FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session,ses);
         FUNCIONARIOS_CONTROLLER = funcionariosController;
 
+<<<<<<< HEAD
        // applicationView.setVisible(true);
+=======
+        //applicationView.setVisible(true);
+
+          AdministradorSolicitudView administradorSolicitudView = new AdministradorSolicitudView();
+          AdministradorSolicitudModel administradorSolicitudModel = new AdministradorSolicitudModel();
+          AdministradorSolicitudController administradorSolicitudController = new AdministradorSolicitudController(administradorSolicitudView, administradorSolicitudModel, session, ses);
+          applicationView.addInternalFrame(administradorSolicitudView);
+          ADMINISTRADOR_SOLICITUD_CONTROLLER = administradorSolicitudController;
+          //administradorSolicitudView.setVisible(true);
+          //administradorSolicitudController.show();
+          //ADMINISTRADOR_SOLICITUD_CONTROLLER.show();
+
+       // applicationView.setVisible(true);
+
+        applicationView.setVisible(true);
+
+>>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
         
     }
    
@@ -153,7 +232,9 @@ public class Application {
     public static SolicitudController SOLICITUD_CONTROLLER;
     public static SecretariaController SECRETARIA_CONTROLLER;
     public static JefeRegistradorController JEFE_REGISTRADOR_CONTROLLER;
+    public static AdministradorSolicitudController ADMINISTRADOR_SOLICITUD_CONTROLLER;
     public static RegistradorController REGISTRADOR_CONTROLLER;
+    
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;
@@ -161,7 +242,7 @@ public class Application {
     public static final Color COLOR_ERROR = Color.red;
     public static final Color COLOR_OK = Color.black;
 
-    public static  final String  ROL_NOTAUTHORIZED="No Autorizado!";
-    public static  final String  USER_ATTRIBUTE="User";
+    public static  final String  ROL_NOTAUTHORIZED = "No Autorizado!";
+    public static  final String  USER_ATTRIBUTE = "User";
 
 }
