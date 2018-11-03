@@ -459,10 +459,7 @@ public class ModelGeneral {
         }
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f81efbe7669a9bcf7fe76a0780b6c334bd1418e2
      public List<Categoria> searchAllCategoria() {
         String sql = "select * from categoria";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -490,11 +487,6 @@ public class ModelGeneral {
             return null;
         }
      }
-<<<<<<< HEAD
-
-=======
-     
->>>>>>> f81efbe7669a9bcf7fe76a0780b6c334bd1418e2
 //    public int getUltimoCodigoSolicitud(){ BORRAR
 //        String sql = "select * from solicitud";
 //        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
