@@ -16,7 +16,10 @@ public class Activo  implements java.io.Serializable {
     public Activo() {
     }
 
-	
+    public Activo(String codigo, Labor labor){
+        this.codigo=codigo;
+        this.labor=labor;
+    }
     public Activo(String codigo) {
         this.codigo = codigo;
     }

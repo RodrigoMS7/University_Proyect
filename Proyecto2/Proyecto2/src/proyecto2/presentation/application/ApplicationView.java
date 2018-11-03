@@ -86,11 +86,15 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         solicitudesRegistrador = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        activosMenu = new javax.swing.JMenu();
+        activosMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/ampliacion.png"))); // NOI18N
+
+        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
@@ -102,7 +106,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1088, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         DEPENDENCIAS.setText("Dependencias");
 
@@ -198,6 +201,18 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         jMenuBar1.add(jMenu1);
 
+        activosMenu.setText("Activos");
+
+        activosMenuItem.setText("Listado");
+        activosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activosMenuItemActionPerformed(evt);
+            }
+        });
+        activosMenu.add(activosMenuItem);
+
+        jMenuBar1.add(activosMenu);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -252,6 +267,11 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         controller.categoriaShow();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void activosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activosMenuItemActionPerformed
+        // TODO add your handling code here:
+        controller.activosShow();
+    }//GEN-LAST:event_activosMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -290,6 +310,8 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu DEPENDENCIAS;
     private javax.swing.JMenu Funcionarios;
+    private javax.swing.JMenu activosMenu;
+    private javax.swing.JMenuItem activosMenuItem;
     private javax.swing.JMenuItem dependenciasListadoMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
