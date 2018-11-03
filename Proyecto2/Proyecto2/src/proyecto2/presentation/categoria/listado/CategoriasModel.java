@@ -8,6 +8,7 @@ package proyecto2.presentation.categoria.listado;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
+import proyecto2.logic.Bien;
 import proyecto2.logic.Categoria;
 
 /**
@@ -19,6 +20,15 @@ public class CategoriasModel extends java.util.Observable{
     Categoria filter;
     CategoriaTableModel categorias;
     Categoria seleccionada;
+    int codBien;
+
+    public int getCodBien() {
+        return codBien;
+    }
+
+    public void setCodBien(int codBien) {
+        this.codBien = codBien;
+    }
 
     public CategoriaTableModel getCategorias() {
         return categorias;

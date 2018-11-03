@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import proyecto2.data.HibernateUtil;
+import proyecto2.logic.Categoria;
 import proyecto2.logic.Solicitud;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudController;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudModel;
@@ -18,6 +19,9 @@ import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.application.ApplicationModel;
 import proyecto2.presentation.application.ApplicationView;
 import proyecto2.presentation.bien.edicion.BienController;
+import proyecto2.presentation.bien.listado.BienesController;
+import proyecto2.presentation.bien.listado.BienesModel;
+import proyecto2.presentation.bien.listado.BienesView;
 import proyecto2.presentation.categoria.edicion.CategoriaController;
 import proyecto2.presentation.categoria.listado.CategoriasController;
 import proyecto2.presentation.categoria.listado.CategoriasModel;
@@ -60,21 +64,23 @@ import proyecto2.presentation.solicitudes.listado.SolicitudesController;
  * @author Rodrigo Meléndez
  */
 public class Application {
-    
+
     public static void main(String[] args) throws Exception {
+//        Categoria catBD = proyecto2.logic.ModelGeneral.instance().getCategoria(1);
+//        System.out.println(catBD.getConsecutivo());
         Session session = HibernateUtil.getSessionFactory().openSession();
         SessionUsuario ses = new SessionUsuario();
 
         LoginModel loginModel = new LoginModel();
-        LoginView loginView= new LoginView();
-        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
+        LoginView loginView = new LoginView();
+        LoginController logincontroller = new LoginController(loginView, loginModel, session, ses);
         LOGIN_CONTROLLER = logincontroller;
 
         loginView.setVisible(true);
 
         ApplicationModel applicationModel = new ApplicationModel();
-        ApplicationView applicationView= new ApplicationView();
-        ApplicationController applicationController = new ApplicationController(applicationView,applicationModel,session,ses);
+        ApplicationView applicationView = new ApplicationView();
+        ApplicationController applicationController = new ApplicationController(applicationView, applicationModel, session, ses);
         APPLICATION_CONTROLLER = applicationController;
 
         SolicitudModel solicitudModel = new SolicitudModel();
@@ -84,44 +90,43 @@ public class Application {
         SOLICITUD_CONTROLLER = solicitudController;
         //solicitudView.setVisible(true);
 
-
         JefeModel personasModel = new JefeModel();
-        JefeView personasView= new JefeView();
+        JefeView personasView = new JefeView();
         //applicationView.addInternalFrame(personasView);
-        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
-        JEFE_CONTROLLER=personascontroller;
-        
+        JefeController personascontroller = new JefeController(personasView, personasModel, session, ses);
+        JEFE_CONTROLLER = personascontroller;
+
         JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
         JefeRegistradorView jefRegView = new JefeRegistradorView();
-        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
-        JEFE_REGISTRADOR_CONTROLLER= jefRegController;
+        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session, ses);
+        JEFE_REGISTRADOR_CONTROLLER = jefRegController;
         applicationView.addInternalFrame(jefRegView);
-  
+
         applicationView.addInternalFrame(personasView);
 
         RegistradorModel registradorModel = new RegistradorModel();
         RegistradorView registradorView = new RegistradorView();
-        RegistradorController registradorController= new RegistradorController(registradorView,registradorModel,session,ses);
+        RegistradorController registradorController = new RegistradorController(registradorView, registradorModel, session, ses);
         applicationView.addInternalFrame(registradorView);
-        REGISTRADOR_CONTROLLER= registradorController;
+        REGISTRADOR_CONTROLLER = registradorController;
 
-        SecretariaModel secretariaModel=new SecretariaModel();
-        SecretariaView secretariaView=new SecretariaView();
-        SecretariaController secretariaController=new SecretariaController(secretariaView,secretariaModel,session);
+        SecretariaModel secretariaModel = new SecretariaModel();
+        SecretariaView secretariaView = new SecretariaView();
+        SecretariaController secretariaController = new SecretariaController(secretariaView, secretariaModel, session);
         applicationView.addInternalFrame(secretariaView);
-        SECRETARIA_CONTROLLER=secretariaController;
+        SECRETARIA_CONTROLLER = secretariaController;
 //        
-        DependenciaModel dependenciaModel= new DependenciaModel();
-        DependenciaView dependenciaView=new DependenciaView(applicationView,true);
-        DependenciaController dependenciaController=new DependenciaController(dependenciaView,dependenciaModel,session);
-        DEPENDENCIA_CONTROLLER=dependenciaController;
+        DependenciaModel dependenciaModel = new DependenciaModel();
+        DependenciaView dependenciaView = new DependenciaView(applicationView, true);
+        DependenciaController dependenciaController = new DependenciaController(dependenciaView, dependenciaModel, session);
+        DEPENDENCIA_CONTROLLER = dependenciaController;
         applicationView.addInternalFrame(dependenciaView);
 
-        DependenciasModel dependenciasModel= new DependenciasModel();
-        DependenciasView dependenciasView=new DependenciasView();
+        DependenciasModel dependenciasModel = new DependenciasModel();
+        DependenciasView dependenciasView = new DependenciasView();
         applicationView.addInternalFrame(dependenciasView);
-        DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
-        DEPENDENCIAS_CONTROLLER=dependenciasController;
+        DependenciasController dependenciasController = new DependenciasController(dependenciasView, dependenciasModel, session, ses);
+        DEPENDENCIAS_CONTROLLER = dependenciasController;
 
         FuncionarioModel funcionarioModel = new FuncionarioModel();
         FuncionarioView funcionarioView = new FuncionarioView();
@@ -132,28 +137,32 @@ public class Application {
         FuncionariosModel funcionariosModel = new FuncionariosModel();
         FuncionariosView funcionariosView = new FuncionariosView();
         applicationView.addInternalFrame(funcionariosView);
-        FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session,ses);
+        FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session, ses);
         FUNCIONARIOS_CONTROLLER = funcionariosController;
 
-
-          AdministradorSolicitudView administradorSolicitudView = new AdministradorSolicitudView();
-          AdministradorSolicitudModel administradorSolicitudModel = new AdministradorSolicitudModel();
-          AdministradorSolicitudController administradorSolicitudController = new AdministradorSolicitudController(administradorSolicitudView, administradorSolicitudModel, session, ses);
-          applicationView.addInternalFrame(administradorSolicitudView);
-          ADMINISTRADOR_SOLICITUD_CONTROLLER = administradorSolicitudController;
+        AdministradorSolicitudView administradorSolicitudView = new AdministradorSolicitudView();
+        AdministradorSolicitudModel administradorSolicitudModel = new AdministradorSolicitudModel();
+        AdministradorSolicitudController administradorSolicitudController = new AdministradorSolicitudController(administradorSolicitudView, administradorSolicitudModel, session, ses);
+        applicationView.addInternalFrame(administradorSolicitudView);
+        ADMINISTRADOR_SOLICITUD_CONTROLLER = administradorSolicitudController;
           //administradorSolicitudView.setVisible(true);
-          //administradorSolicitudController.show();
-          //ADMINISTRADOR_SOLICITUD_CONTROLLER.show();
+        //administradorSolicitudController.show();
+        //ADMINISTRADOR_SOLICITUD_CONTROLLER.show();
 
        // applicationView.setVisible(true);
-        
         CategoriasModel categoriasModel = new CategoriasModel();
         CategoriasView categoriaView = new CategoriasView();
-        CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session,ses);
+        CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session, ses);
         CATEGORIAS_CONTROLLER = categoriasController;
         applicationView.addInternalFrame(categoriaView);
+
+        BienesModel bienesModel = new BienesModel();
+        BienesView bienesView = new BienesView();
+        BienesController bienesController = new BienesController(bienesView, bienesModel, session, ses);
+        BIENES_CONTROLLER = bienesController;
+        applicationView.addInternalFrame(bienesView);
     }
-   
+
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
     public static FuncionariosController FUNCIONARIOS_CONTROLLER;
     public static DependenciaController DEPENDENCIA_CONTROLLER;
@@ -170,16 +179,16 @@ public class Application {
     public static CategoriasController CATEGORIAS_CONTROLLER;
     public static AdministradorSolicitudController ADMINISTRADOR_SOLICITUD_CONTROLLER;
     public static RegistradorController REGISTRADOR_CONTROLLER;
+    public static BienesController BIENES_CONTROLLER;
 
-    
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;
-    
+
     public static final Color COLOR_ERROR = Color.red;
     public static final Color COLOR_OK = Color.black;
 
-    public static  final String  ROL_NOTAUTHORIZED = "No Autorizado!";
-    public static  final String  USER_ATTRIBUTE = "User";
+    public static final String ROL_NOTAUTHORIZED = "No Autorizado!";
+    public static final String USER_ATTRIBUTE = "User";
 
 }

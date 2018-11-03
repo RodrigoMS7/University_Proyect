@@ -8,6 +8,7 @@ package proyecto2.presentation.registrador.solicitudeslistado;
 import java.awt.Point;
 import java.util.List;
 import org.hibernate.Session;
+import proyecto2.Application;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Solicitud;
 import proyecto2.logic.Usuario;
@@ -49,6 +50,11 @@ public class RegistradorController {
         model.commit();
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
 
+    }
+    
+    public void muestraBien(int row){
+        Solicitud seleccionada = model.getSolicitudes().getRowAt(row);
+        Application.BIENES_CONTROLLER.show(seleccionada);
     }
     
     public void reset(){

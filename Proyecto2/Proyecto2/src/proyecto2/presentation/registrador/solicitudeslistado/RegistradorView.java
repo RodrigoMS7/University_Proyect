@@ -64,7 +64,7 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
         comprobante = new javax.swing.JLabel();
         comprobanteFld = new javax.swing.JTextField();
         estado = new javax.swing.JLabel();
-        estadosComboBox = new javax.swing.JComboBox<>();
+        estadosComboBox = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -79,6 +79,11 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        solicitudes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                solicitudesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(solicitudes);
 
         buscarButton.setText("Buscar");
@@ -94,7 +99,7 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
         estado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         estado.setText("Estado");
 
-        estadosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "por verificar", "por rotular", "procesada" }));
+        estadosComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "por verificar", "por rotular", "procesada" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,6 +147,14 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
         }
     }//GEN-LAST:event_buscarButtonActionPerformed
+
+    private void solicitudesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_solicitudesMouseClicked
+         if (evt.getClickCount() == 2) {
+            int row = this.solicitudes.getSelectedRow();
+            controller.muestraBien(row);
+            controller.hide();
+        }
+    }//GEN-LAST:event_solicitudesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

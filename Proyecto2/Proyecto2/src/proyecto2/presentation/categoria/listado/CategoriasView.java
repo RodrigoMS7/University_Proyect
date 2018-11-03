@@ -6,6 +6,8 @@
 package proyecto2.presentation.categoria.listado;
 
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import proyecto2.logic.Categoria;
@@ -58,6 +60,7 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
         agregarButton = new javax.swing.JButton();
         tipoBuscar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        asignaCat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -95,6 +98,13 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
             }
         });
 
+        asignaCat.setText("Asignar");
+        asignaCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignaCatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,19 +113,20 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(asignaCat))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tipoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
-                .addContainerGap(101, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(agregarButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(agregarButton)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,9 +138,15 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(agregarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(asignaCat)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -159,9 +176,21 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
             }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void asignaCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignaCatActionPerformed
+        int row = this.categoriaTable.getSelectedRow();
+        try {
+            controller.agregaActivos(row);
+             JOptionPane.showMessageDialog(this, "Asignacion exitosa", "OK", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Bien ya tiene categoria asignada", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(CategoriasView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_asignaCatActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarButton;
+    private javax.swing.JButton asignaCat;
     private javax.swing.JTable categoriaTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

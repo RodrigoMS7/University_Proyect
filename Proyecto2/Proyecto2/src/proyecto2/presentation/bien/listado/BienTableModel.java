@@ -6,13 +6,14 @@
 package proyecto2.presentation.bien.listado;
 
 import java.util.List;
+import javax.swing.table.AbstractTableModel;
 import proyecto2.logic.Bien;
 
 /**
  *
  * @author Rodrigo Meléndez
  */
-public class BienTableModel {
+public class BienTableModel extends AbstractTableModel {
     List<Bien> rows;
     int[] cols;
 
@@ -45,6 +46,7 @@ public class BienTableModel {
             case MODELO: return bien.getModelo();
             case CANTIDAD: return bien.getCantidad();
             case PRECIO: return bien.getPrecio();
+            case CODIGO: return bien.getCodigo();
             default: return "";
         }
     }    
@@ -58,6 +60,7 @@ public class BienTableModel {
     public static final int MODELO = 2;
     public static final int CANTIDAD = 3;
     public static final int PRECIO = 4;
+    public static final int CODIGO = 5;
     
     String[] colNames = new String[10];
     private void initColNames(){
@@ -66,5 +69,6 @@ public class BienTableModel {
         colNames[MODELO]= "Modelo";
         colNames[CANTIDAD]= "Cantidad";
         colNames[PRECIO]= "Precio";
+        colNames[CODIGO]= "Codigo";
     }
 }

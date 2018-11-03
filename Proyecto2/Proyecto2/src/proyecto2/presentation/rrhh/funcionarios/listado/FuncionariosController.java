@@ -57,27 +57,12 @@ public class FuncionariosController {
     }    
 
     public void preAgregar(Point at)throws Exception{      
-//        Usuario principal = (Usuario) sessionUsuario.getAttribute("User");
-//               System.out.println("jpa");
-//
-//       System.out.println(principal.getUsername());
-//        if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(principal.getFuncionario().getId()) != "Administrador" ){
-//           throw new Exception(Application.ROL_NOTAUTHORIZED);
-//        }
         Application.FUNCIONARIO_CONTROLLER.reset(Application.MODO_AGREGAR, new Funcionario()); //modo agregar se setea aqui
         Application.FUNCIONARIO_CONTROLLER.show(at);
     }
     
     public void editar(int row, Point at){       
         Funcionario seleccionada = model.getFuncionarios().getRowAt(row); 
-//        Usuario principal = (Usuario) session.getAttribute(Application.USER_ATTRIBUTE);
-        int modo;
-//        if ( Arrays.asList(Application.ROL_MANAGER, Application.ROL_SUPERVISOR).contains(principal.getRol())){
-//            modo=Application.MODO_EDITAR;
-//        }
-//        else{
-//            modo=Application.MODO_CONSULTAR;            
-//        }
         Application.FUNCIONARIO_CONTROLLER.reset(Application.MODO_EDITAR, seleccionada);
         Application.FUNCIONARIO_CONTROLLER.show(at);
     }
@@ -91,6 +76,7 @@ public class FuncionariosController {
         List<Funcionario> rowsMod = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
         model.setFuncionarios(rowsMod);
         model.commit();
+        buscar();
     }
 
     public void reset(){
