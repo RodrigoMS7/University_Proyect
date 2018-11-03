@@ -514,5 +514,28 @@ public class ModelGeneral {
             return null;
         }
     }
-
+    
+    
+    public List<Activo> searchActivos(Activo filtro){
+        String sql="select * from activo a inner join labor l on a.labor = l.id_labor inner join dependencia d on l.dependencia = d.codigo inner join funcionario f on l.funcionario = f.id";
+        try(Statement stm= proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs= stm.executeQuery(sql);){
+            List<Activo> resultado = new ArrayList<Activo>();
+            while(rs.next()){
+                //´probando
+                Dependencia d = new Dependencia();
+                d.setCodigo(rs.getString("codigo"));
+                d.setNombre(rs.getString("nombre"));
+                
+                Funcionario f=new Funcionario();
+                f.setId(rs.getString("id"));
+                
+                Labor l=new Labor(d,f);
+                
+                resultado.add(new Activo(rs.getString("codigo"),l));
+            }
+            return resultado;
+        }catch(SQLException e){}
+        return null;
+    }
 }
