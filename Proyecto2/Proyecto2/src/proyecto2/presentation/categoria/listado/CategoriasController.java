@@ -59,23 +59,13 @@ public class CategoriasController {
         t.commit();
     }
 
-    public void borrar(int row){  
-        Categoria seleccionada = model.getCategorias().getRowAt(row); 
-        try {
-            proyecto2.logic.ModelGeneral.instance().borraCategoria(seleccionada);
-        } catch (Exception ex) { 
-        }
-//        List<Categoria> rowsMod = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
-//        model.setFuncionarios(rowsMod);
-        model.commit();
-    }
 
     public void reset(){
         model.reset();
     }
     
     public void show(){
-//        buscar();
+        buscar();
         view.setVisible(true);
     }
 
