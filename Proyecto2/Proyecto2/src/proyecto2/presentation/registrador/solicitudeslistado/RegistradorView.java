@@ -94,7 +94,7 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
         estado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         estado.setText("Estado");
 
-        estadosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "recibido", "por verificar", "rechazado", "por rotular", "procesada" }));
+        estadosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "por verificar", "por rotular", "procesada" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
