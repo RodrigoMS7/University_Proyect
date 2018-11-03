@@ -441,7 +441,6 @@ public class ModelGeneral {
         t.commit();
     }
 
-<<<<<<< HEAD
     public List<Solicitud> solicitudesRegistradorSearch(String estado,String id, Solicitud filter){
         String sql="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where s.estado='"+estado+"' and funcionario='"+id+"'";
         
@@ -460,7 +459,7 @@ public class ModelGeneral {
         }
     }
 
-=======
+
      public List<Categoria> searchAllCategoria() {
         String sql = "select * from categoria";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -488,7 +487,7 @@ public class ModelGeneral {
             return null;
         }
      }
->>>>>>> 8469699d89eb6f1d9b021689cb3ed926c47c2ac0
+     
 //    public int getUltimoCodigoSolicitud(){ BORRAR
 //        String sql = "select * from solicitud";
 //        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
