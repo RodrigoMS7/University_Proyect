@@ -65,50 +65,13 @@ public class Application {
         LoginView loginView= new LoginView();
         LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
         LOGIN_CONTROLLER = logincontroller;
-<<<<<<< HEAD
+
         loginView.setVisible(true);
-=======
-        //loginView.setVisible(true);
 
-//        LoginModel loginModel = new LoginModel();
-//        LoginView loginView= new LoginView();
-//        LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
-//        LOGIN_CONTROLLER = logincontroller;
-//        loginView.setVisible(true);
-
->>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
-        
         ApplicationModel applicationModel = new ApplicationModel();
         ApplicationView applicationView= new ApplicationView();
         ApplicationController applicationController = new ApplicationController(applicationView,applicationModel,session,ses);
         APPLICATION_CONTROLLER = applicationController;
-
-//       
-//        //applicationView.setVisible(true);
-
-       
-<<<<<<< HEAD
-       // applicationView.setVisible(true);
-//        
-//        
-=======
-        applicationView.setVisible(true);
-
-//        
-//        
-//        JefeModel personasModel = new JefeModel();
-//        JefeView personasView= new JefeView();
-//        //applicationView.addInternalFrame(personasView);
-//        JefeController personascontroller = new JefeController(personasView,personasModel,session,ses);
-//        JEFE_CONTROLLER=personascontroller;
-//        
-//        JefeRegistradorModel jefRegModel = new JefeRegistradorModel();
-//        JefeRegistradorView jefRegView = new JefeRegistradorView();
-//        JefeRegistradorController jefRegController = new JefeRegistradorController(jefRegView, jefRegModel, session,ses);
-//        JEFE_REGISTRADOR_CONTROLLER= jefRegController;
-//        applicationView.addInternalFrame(jefRegView);
-//  
-//        applicationView.addInternalFrame(personasView);
 
         SolicitudModel solicitudModel = new SolicitudModel();
         SolicitudView solicitudView = new SolicitudView();
@@ -116,7 +79,7 @@ public class Application {
         applicationView.addInternalFrame(solicitudView);
         SOLICITUD_CONTROLLER = solicitudController;
         //solicitudView.setVisible(true);
->>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
+
 
         JefeModel personasModel = new JefeModel();
         JefeView personasView= new JefeView();
@@ -131,32 +94,13 @@ public class Application {
         applicationView.addInternalFrame(jefRegView);
   
         applicationView.addInternalFrame(personasView);
-<<<<<<< HEAD
-=======
-        
->>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
-//        SolicitudModel solicitudModel = new SolicitudModel();
-//        SolicitudView solicitudView = new SolicitudView();
-//        SolicitudController solicitudController = new SolicitudController(solicitudView, solicitudModel, session, ses);
-//        //applicationView.addInternalFrame(solicitudView);
-//        SOLICITUD_CONTROLLER = solicitudController;
-//        solicitudView.setVisible(true);
 
-//        
-//        RegistradorModel registradorModel=new RegistradorModel();
-//        RegistradorView registradorView=new RegistradorView();
-//        RegistradorController registradorController=new RegistradorController(registradorView,registradorModel,session,ses);
-//        applicationView.addInternalFrame(registradorView);
-//        REGISTRADOR_CONTROLLER=registradorController;
-            //registradorView.setVisible(true);
         RegistradorModel registradorModel = new RegistradorModel();
         RegistradorView registradorView = new RegistradorView();
         RegistradorController registradorController= new RegistradorController(registradorView,registradorModel,session,ses);
         applicationView.addInternalFrame(registradorView);
         REGISTRADOR_CONTROLLER= registradorController;
-        
-<<<<<<< HEAD
-            
+
         SecretariaModel secretariaModel=new SecretariaModel();
         SecretariaView secretariaView=new SecretariaView();
         SecretariaController secretariaController=new SecretariaController(secretariaView,secretariaModel,session);
@@ -168,10 +112,6 @@ public class Application {
         DependenciaController dependenciaController=new DependenciaController(dependenciaView,dependenciaModel,session);
         DEPENDENCIA_CONTROLLER=dependenciaController;
         applicationView.addInternalFrame(dependenciaView);
-=======
-//        
-//        
->>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
 
         DependenciasModel dependenciasModel= new DependenciasModel();
         DependenciasView dependenciasView=new DependenciasView();
@@ -179,18 +119,11 @@ public class Application {
         DependenciasController dependenciasController = new DependenciasController(dependenciasView,dependenciasModel,session,ses);
         DEPENDENCIAS_CONTROLLER=dependenciasController;
 
-<<<<<<< HEAD
-=======
-//        
-
->>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
         FuncionarioModel funcionarioModel = new FuncionarioModel();
         FuncionarioView funcionarioView = new FuncionarioView();
         FuncionarioController funcionarioController = new FuncionarioController(funcionarioView, funcionarioModel, session);
         FUNCIONARIO_CONTROLLER = funcionarioController;
         applicationView.addInternalFrame(funcionarioView);
-
-//
 
         FuncionariosModel funcionariosModel = new FuncionariosModel();
         FuncionariosView funcionariosView = new FuncionariosView();
@@ -198,10 +131,6 @@ public class Application {
         FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session,ses);
         FUNCIONARIOS_CONTROLLER = funcionariosController;
 
-<<<<<<< HEAD
-       // applicationView.setVisible(true);
-=======
-        //applicationView.setVisible(true);
 
           AdministradorSolicitudView administradorSolicitudView = new AdministradorSolicitudView();
           AdministradorSolicitudModel administradorSolicitudModel = new AdministradorSolicitudModel();
@@ -213,10 +142,6 @@ public class Application {
           //ADMINISTRADOR_SOLICITUD_CONTROLLER.show();
 
        // applicationView.setVisible(true);
-
-        applicationView.setVisible(true);
-
->>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
         
     }
    

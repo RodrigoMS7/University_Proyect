@@ -435,7 +435,7 @@ public class ModelGeneral {
             return null;
         }
     } 
-<<<<<<< HEAD
+
     public List<Solicitud> solicitudesRegistradorSearch(String estado,String id, Solicitud filter){
         String sql="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where s.estado='"+estado+"' and funcionario='"+id+"'";
         
@@ -450,7 +450,9 @@ public class ModelGeneral {
             }
             return resultado;
         }catch(SQLException e){
-=======
+            return null;
+        }
+    }
 
 //    public int getUltimoCodigoSolicitud(){ BORRAR
 //        String sql = "select * from solicitud";
@@ -474,7 +476,7 @@ public class ModelGeneral {
             }
             return resultado;
         } catch(SQLException e){
->>>>>>> 3c2d439b2ad8909a59b4677f2a107f6589314d65
+
             return null;
         }
     }
