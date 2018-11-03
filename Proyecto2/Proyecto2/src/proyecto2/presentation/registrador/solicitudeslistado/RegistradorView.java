@@ -135,13 +135,7 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
         // TODO add your handling code here:
         try{
-            //controller.buscar(this.estadosComboBox);
-            //String selected_text = ComboBox.getItemAt(ComboBox.getSelectedIndex());
-            //probando
            
-            //estadosList.getSelectedItem()
-           //controller.buscar(estados);
-          
            String selected_text= estadosComboBox.getItemAt(estadosComboBox.getSelectedIndex());
            controller.buscar(selected_text);
         }catch(Exception e){
