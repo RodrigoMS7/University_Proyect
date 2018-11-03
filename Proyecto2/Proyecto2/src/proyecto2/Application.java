@@ -18,6 +18,10 @@ import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.application.ApplicationModel;
 import proyecto2.presentation.application.ApplicationView;
 import proyecto2.presentation.bien.edicion.BienController;
+import proyecto2.presentation.categoria.edicion.CategoriaController;
+import proyecto2.presentation.categoria.listado.CategoriasController;
+import proyecto2.presentation.categoria.listado.CategoriasModel;
+import proyecto2.presentation.categoria.listado.CategoriasView;
 import proyecto2.presentation.login_usuario.LoginController;
 import proyecto2.presentation.login_usuario.LoginModel;
 import proyecto2.presentation.login_usuario.LoginView;
@@ -143,6 +147,11 @@ public class Application {
 
        // applicationView.setVisible(true);
         
+        CategoriasModel categoriasModel = new CategoriasModel();
+        CategoriasView categoriaView = new CategoriasView();
+        CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session,ses);
+        CATEGORIAS_CONTROLLER = categoriasController;
+        applicationView.addInternalFrame(categoriaView);
     }
    
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -157,8 +166,11 @@ public class Application {
     public static SolicitudController SOLICITUD_CONTROLLER;
     public static SecretariaController SECRETARIA_CONTROLLER;
     public static JefeRegistradorController JEFE_REGISTRADOR_CONTROLLER;
+    public static CategoriaController CATEGORIA_CONTROLLER;
+    public static CategoriasController CATEGORIAS_CONTROLLER;
     public static AdministradorSolicitudController ADMINISTRADOR_SOLICITUD_CONTROLLER;
     public static RegistradorController REGISTRADOR_CONTROLLER;
+
     
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;

@@ -58,6 +58,11 @@ public class ApplicationController {
     public void solicitudRegistradorShow(){
         Application.REGISTRADOR_CONTROLLER.show();
     }
+    
+    public void categoriaShow() {
+        Application.CATEGORIAS_CONTROLLER.show();
+    }
+    
     public void enter(){
         this.reset();
         this.show();
@@ -81,4 +86,6 @@ public class ApplicationController {
         //Application.ESTADOS_CONTROLLER.hide();        
         view.setVisible(false);
     }   
+
+    
 }
