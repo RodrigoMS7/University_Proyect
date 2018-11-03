@@ -7,6 +7,7 @@ package proyecto2.presentation.bien.listado;
 
 import java.util.Observable;
 import javax.swing.JOptionPane;
+import proyecto2.Application;
 import proyecto2.logic.Bien;
 
 /**
@@ -19,7 +20,6 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
 
     public BienesView() {
         initComponents();
-        //this.setLoca(null);
     }
 
     public BienesModel getModel() {
@@ -49,17 +49,13 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        text_descripcion = new javax.swing.JTextField();
-        text_marca = new javax.swing.JTextField();
-        text_modelo = new javax.swing.JTextField();
-        text_cantidad = new javax.swing.JTextField();
-        button_Agrega = new javax.swing.JButton();
+        bienes = new javax.swing.JTable();
         button_Buscar = new javax.swing.JButton();
         button_Salir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        buttonFunc = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        bienes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,22 +66,7 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        text_modelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                text_modeloActionPerformed(evt);
-            }
-        });
-
-        text_cantidad.setText("0");
-
-        button_Agrega.setText("Agregar");
-        button_Agrega.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_AgregaActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(bienes);
 
         button_Buscar.setText("Buscar");
         button_Buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,8 +82,12 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Busca Bien");
+        buttonFunc.setText("Asigna Categoria");
+        buttonFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFuncActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,72 +95,62 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonFunc))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(button_Agrega)
-                        .addGap(47, 47, 47)
-                        .addComponent(button_Buscar)
-                        .addGap(50, 50, 50)
-                        .addComponent(button_Salir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(text_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(text_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(text_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(text_cantidad))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(216, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(button_Buscar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(button_Salir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 121, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(text_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(text_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(button_Agrega)
                     .addComponent(button_Buscar)
-                    .addComponent(button_Salir))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(buttonFunc)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(button_Salir)
+                .addGap(19, 19, 19))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void text_modeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_modeloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_modeloActionPerformed
-
-    private void button_AgregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AgregaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button_AgregaActionPerformed
-
-    private void button_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_BuscarActionPerformed
-        try{
-                //this.controller.buscar(this.toBien());
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
-            }
-    }//GEN-LAST:event_button_BuscarActionPerformed
-
     private void button_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_button_SalirActionPerformed
+
+    private void button_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_BuscarActionPerformed
+        try{
+            //this.controller.buscar(this.toBien());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_button_BuscarActionPerformed
+
+    private void buttonFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFuncActionPerformed
+        int row = bienes.getSelectedRow();
+        Bien seleccionada = model.getBienes().getRowAt(row);
+        Application.CATEGORIAS_CONTROLLER.setCodBbien(seleccionada.getCodigo());
+        Application.CATEGORIAS_CONTROLLER.show();
+    }//GEN-LAST:event_buttonFuncActionPerformed
 
 //    Bien toBien(){
 ////        Bien result = new Bien();
@@ -184,20 +159,16 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton button_Agrega;
+    private javax.swing.JTable bienes;
+    private javax.swing.JButton buttonFunc;
     private javax.swing.JButton button_Buscar;
     private javax.swing.JButton button_Salir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField text_cantidad;
-    private javax.swing.JTextField text_descripcion;
-    private javax.swing.JTextField text_marca;
-    private javax.swing.JTextField text_modelo;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        bienes.setModel(model.getBienes());
     }
 }

@@ -57,7 +57,7 @@ public class CategoriaTableModel extends AbstractTableModel {
     String[] colNames = new String[2];
     private void initColNames(){
         colNames[CONSECUTIVO]= "Consecutivo";
-        colNames[TIPO]= "Tipo";
+        colNames[TIPO]= "Tipo"; 
     }
     
 }

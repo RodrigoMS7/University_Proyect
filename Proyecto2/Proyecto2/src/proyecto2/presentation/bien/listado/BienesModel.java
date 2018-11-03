@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 import proyecto2.logic.Bien;
+import proyecto2.logic.Solicitud;
 
 /**
  *
@@ -18,6 +19,24 @@ public class BienesModel extends java.util.Observable {
     Bien filter; 
     BienTableModel bienes;
     Bien seleccionado;
+    Solicitud solicitud;
+
+    public BienTableModel getBienes() {
+        return bienes;
+    }
+
+    public void setBienes(BienTableModel bienes) {
+        this.bienes = bienes;
+    }
+
+    public Solicitud getsolicitud() {
+        return solicitud;
+    }
+
+    public void setsolicitud(Solicitud sol) {
+        this.solicitud = sol;
+        commit();
+    }
 
     public BienesModel() {
         this.reset();
@@ -32,7 +51,7 @@ public class BienesModel extends java.util.Observable {
     }
     
     public void setBien(List<Bien> bienes){
-        int[] cols = {BienTableModel.DESCRIPCION,BienTableModel.MARCA,BienTableModel.MODELO,BienTableModel.CANTIDAD,BienTableModel.PRECIO};
+        int[] cols = {BienTableModel.CODIGO,BienTableModel.DESCRIPCION,BienTableModel.MARCA,BienTableModel.MODELO,BienTableModel.CANTIDAD,BienTableModel.PRECIO};
         this.bienes = new BienTableModel(cols, bienes);    
     }
     

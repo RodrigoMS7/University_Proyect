@@ -51,19 +51,19 @@ public class FuncionarioController {
     }  
     
      public void guardar(Funcionario funcionario) throws Exception{ 
-           Transaction t = session.beginTransaction();
+        Transaction t = session.beginTransaction();
         switch(model.getModo()){
             case Application.MODO_AGREGAR:
                 session.save(funcionario);
                 t.commit();
-                Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();                   
+                Application.FUNCIONARIOS_CONTROLLER.buscar();
                 model.setCurrent(new Funcionario());
                 model.commit();   
                 break;
             case Application.MODO_EDITAR:
                 session.merge(funcionario);
                  t.commit();
-                Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();               
+                Application.FUNCIONARIOS_CONTROLLER.buscar();
                 break;
         }   
     } 

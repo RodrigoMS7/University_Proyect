@@ -88,13 +88,25 @@ public class ModelGeneral {
         return d;
     }
     
+      public Bien getBien(int codigo) throws Exception{
+        Bien b = (Bien) ses.get(Bien.class, codigo);
+//        Hibernate.initialize(b.getActivos());
+        ses.evict(b);
+        return b;
+    }
+    
     public  Solicitud getSolicitud(int codigo) throws Exception{
         Solicitud s = (Solicitud) ses.get(Solicitud.class, codigo);
         Hibernate.initialize(s.getBiens());
         ses.evict(s);
         return s;
     }
-    
+     public Categoria getCategoria(int codigo) throws Exception{
+        Categoria s = (Categoria) ses.get(Categoria.class, codigo);
+        ses.evict(s);
+        return s;
+    }
+     
     public void agregarSolicitud(Solicitud solicitud){
         Transaction t = ses.beginTransaction();
         ses.persist(solicitud);
@@ -167,6 +179,7 @@ public class ModelGeneral {
     
     //public List<Bien> getAllBienes(){
     //    String sql = "select * from bien";
+    ///**************************
      public List<Bien> getAllBienesSolicitud(Solicitud solicitud){
         String sql = "select * from bien where solicitud="+solicitud.getCodigo();
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -175,6 +188,21 @@ public class ModelGeneral {
             while (rs.next()) {
                 Integer.parseInt(rs.getString("Cantidad"));
                 resultado.add(new Bien(rs.getString("Descripcion"), rs.getString("Marca"), rs.getString("Modelo"),Integer.parseInt(rs.getString("Cantidad")), Double.parseDouble(rs.getString("Precio"))));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+     
+     public List<Bien> getAllBienesCategoria(Solicitud solicitud){
+        String sql = "select * from bien where solicitud="+solicitud.getCodigo();
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Bien> resultado = new ArrayList<Bien>();
+            while (rs.next()) {
+                Integer.parseInt(rs.getString("Cantidad"));
+                resultado.add(new Bien(rs.getInt("codigo"),rs.getString("Descripcion"), rs.getString("Marca"), rs.getString("Modelo"),Integer.parseInt(rs.getString("Cantidad")), Double.parseDouble(rs.getString("Precio"))));
             }
             return resultado;
         } catch (SQLException e) {
@@ -466,7 +494,7 @@ public class ModelGeneral {
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Categoria> resultado = new ArrayList<Categoria>();
             while (rs.next()) {
-                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo") ));
+                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo"),rs.getInt("id_categoria")));
             }
             return resultado;
         } catch (SQLException e) {
@@ -480,7 +508,7 @@ public class ModelGeneral {
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Categoria> resultado = new ArrayList<Categoria>();
             while (rs.next()) {
-                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo") ));
+                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo"), rs.getInt("id_categoria") ));
             }
             return resultado;
         } catch (SQLException e) {
@@ -515,7 +543,6 @@ public class ModelGeneral {
         }
     }
     
-    
     public List<Activo> searchActivos(Activo filtro){
         String sql="select * from activo a inner join labor l on a.labor = l.id_labor inner join dependencia d on l.dependencia = d.codigo inner join funcionario f on l.funcionario = f.id";
         try(Statement stm= proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -538,4 +565,5 @@ public class ModelGeneral {
         }catch(SQLException e){}
         return null;
     }
+
 }

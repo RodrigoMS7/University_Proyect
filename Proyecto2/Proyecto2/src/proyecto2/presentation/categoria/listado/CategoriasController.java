@@ -6,10 +6,14 @@
 package proyecto2.presentation.categoria.listado;
 
 import java.awt.Point;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import proyecto2.SessionUsuario;
+import proyecto2.logic.Activo;
+import proyecto2.logic.Bien;
 import proyecto2.logic.Categoria;
 
 /**
@@ -59,7 +63,7 @@ public class CategoriasController {
         t.commit();
     }
 
-
+ 
     public void reset(){
         model.reset();
     }
@@ -69,10 +73,10 @@ public class CategoriasController {
         view.setVisible(true);
     }
 
-    public void show(Point position){
-        view.setLocation(position);
-        this.show();
-    }   
+//    public void show(Point position){
+//        view.setLocation(position);
+//        this.show();
+//    }   
     
     public void hide(){
         view.setVisible(false);
@@ -87,5 +91,34 @@ public class CategoriasController {
         t.commit();
        // Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();
         model.commit();
+    }
+    
+    public void agregaActivos(int row) throws Exception{
+        Transaction t = session.beginTransaction();
+        Bien bien = proyecto2.logic.ModelGeneral.instance().getBien(model.getCodBien());
+        Categoria categoria = model.getCategorias().getRowAt(row);
+        Categoria catBD = proyecto2.logic.ModelGeneral.instance().getCategoria(categoria.getIdCategoria());
+        if(bien.getCategoria() != null) throw new Exception("Al bien ya se le asigno categoria");
+        for(int i =0; i<bien.getCantidad(); i++){
+            Activo activo = new Activo();
+            
+            StringBuilder sb = new StringBuilder();
+            sb.append(categoria.getTipo().subSequence(0, 2));
+            sb.append(categoria.getConsecutivo());
+            activo.setCodigo(sb.toString());
+            
+            activo.setBien(bien);
+            categoria.setConsecutivo(categoria.getConsecutivo()+1);
+            session.save(activo);
+        }
+        catBD.setConsecutivo(catBD.getConsecutivo()+bien.getCantidad());
+        bien.setCategoria(catBD);
+        session.merge(bien);
+        session.merge(catBD);
+        t.commit();
+    }
+    
+    public void setCodBbien(int codBien){
+        model.setCodBien(codBien);
     }
 }

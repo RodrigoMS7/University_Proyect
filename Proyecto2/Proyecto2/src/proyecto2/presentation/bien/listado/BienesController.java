@@ -8,7 +8,9 @@ package proyecto2.presentation.bien.listado;
 import java.awt.Point;
 import java.util.List;
 import org.hibernate.Session;
+import proyecto2.SessionUsuario;
 import proyecto2.logic.Bien;
+import proyecto2.logic.Solicitud;
 
 /**
  *
@@ -18,23 +20,24 @@ public class BienesController {
     Session session;
     BienesView view;
     BienesModel model;
+    SessionUsuario ses;
 
-    public BienesController(BienesView view, BienesModel model, Session session){
+    public BienesController(BienesView view, BienesModel model, Session session, SessionUsuario ses){
         this.session=session;
         this.view = view;
         this.model = model;
+        this.ses = ses;
         view.setController(this);
         view.setModel(model);
     }
 
-    public void buscar(Bien filter) throws Exception{
-        model.setFilter(filter);
+    public void buscar(){
         this.refrescarBusqueda();
     }
-    public void refrescarBusqueda() throws Exception{
-//        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().searchBien(model.getFilter());
-//        model.setBien(rows);
-//        model.commit();
+    public void refrescarBusqueda() {
+        List<Bien> rows = proyecto2.logic.ModelGeneral.instance().getAllBienesCategoria(model.getsolicitud());
+        model.setBien(rows);
+        model.commit();
 //        if(rows.isEmpty()) throw new Exception("Ningun dato coincide");
     }
 
@@ -52,14 +55,13 @@ public class BienesController {
         model.reset();
     }
 
-    public void show(){
+    public void show(Solicitud sol){
+        model.setsolicitud(sol);
+        buscar();
         view.setVisible(true);
     }
 
-    public void show(Point position){
-        view.setLocation(position);
-        this.show();
-    }
+  
 
     public void hide(){
         view.setVisible(false);
