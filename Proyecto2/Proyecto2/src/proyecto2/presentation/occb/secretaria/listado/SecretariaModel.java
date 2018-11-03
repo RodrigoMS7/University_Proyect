@@ -71,4 +71,7 @@ public class SecretariaModel extends java.util.Observable{
     public void setEstado(Solicitud s, String estado){
         s.setEstado(estado);
     }
+    public void setMotivo(Solicitud s, String motivo){
+        s.setMotivioRechazo(motivo);
+    }
 }

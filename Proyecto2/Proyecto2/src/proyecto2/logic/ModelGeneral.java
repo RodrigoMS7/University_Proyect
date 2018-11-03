@@ -404,5 +404,21 @@ public class ModelGeneral {
             return null;
         }
     } 
-
+    public List<Solicitud> solicitudesRegistradorSearch(String estado,String id, Solicitud filter){
+        String sql="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where s.estado='"+estado+"' and funcionario='"+id+"'";
+        
+        try(Statement stm=proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs=stm.executeQuery(sql);){
+            List<Solicitud> resultado= new ArrayList<Solicitud>();
+            while(rs.next()){
+                Dependencia d = new Dependencia();
+                d.setCodigo(rs.getString("codigo"));
+                d.setNombre(rs.getString("nombre"));
+                resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante"),d));
+            }
+            return resultado;
+        }catch(SQLException e){
+            return null;
+        }
+    }
 }

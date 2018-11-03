@@ -174,21 +174,37 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
     Solicitud seleccionada;
     private void rechazarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rechazarButtonActionPerformed
         // TODO add your handling code here:
-        
+        JTextField motivo=new JTextField();
+        Object[] message={"Motivo de rechazo: ",motivo};
+        int Option = JOptionPane.showConfirmDialog(null, message,"Motivo",JOptionPane.OK_CANCEL_OPTION);
+//        try{
+//            
+//            if(motivo.getText().isEmpty()){
+//                JOptionPane.showMessageDialog(null, "Error, debe digitar un motivo");
+//                return;
+//            }
+//            else {
+//                seleccionada.setMotivioRechazo(motivo.getText());
+//                //seleccionada.setEstado("rechazada");
+//                controller.actualizar(seleccionada,"rechazada");
+//            }
+//        }catch(Exception e){ }
+
+        //probando 
         try{
-            JTextField motivo=new JTextField();
-            Object[] message={"Motivo de rechazo: ",motivo};
-            JOptionPane.showConfirmDialog(null, message,"Motivo",JOptionPane.OK_OPTION);
             if(motivo.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Error, debe digitar un motivo");
                 return;
             }
-            else {
-                seleccionada.setMotivioRechazo(motivo.getText());
-                //seleccionada.setEstado("rechazada");
-                controller.actualizar(seleccionada,"rechazada");
-            }
-        }catch(Exception e){ }
+        }catch(Exception e){}
+        
+        if(Option == JOptionPane.OK_OPTION){
+            try{
+                controller.actualizarMotivo(seleccionada, "rechazado", motivo.getText());
+            }catch(Exception e){}
+        }
+        
+        
     }//GEN-LAST:event_rechazarButtonActionPerformed
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed

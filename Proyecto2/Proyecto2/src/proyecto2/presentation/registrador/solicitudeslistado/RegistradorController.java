@@ -10,6 +10,7 @@ import java.util.List;
 import org.hibernate.Session;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Solicitud;
+import proyecto2.logic.Usuario;
 
 /**
  *
@@ -29,14 +30,21 @@ public class RegistradorController {
         view.setController(this);
         view.setModel(model);
     }
-    public void buscar(List<String> lista) throws Exception{       
-        this.refrescarBusqueda(lista);
+    public void buscar(String estado) throws Exception{       
+        this.refrescarBusqueda(estado);
     }
-    
-    public void refrescarBusqueda(List<String> lista) throws Exception{
-
+    public void buscarInicio() {
+        Usuario usuario = (Usuario) sessionUsu.getAttribute("User");
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().solicitudesDeRegistrador(usuario.getFuncionario().getId());
+        if (!rows.isEmpty()) {
+            model.setSolicitudes(rows);
+            model.commit();
+        }
+    }
+    public void refrescarBusqueda(String estado) throws Exception{
+        Usuario usuario = (Usuario) sessionUsu.getAttribute("User");
         //List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("verificado",model.getFilter());
-       List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().findSolicitudByEstado(lista, model.getFilter());
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().solicitudesRegistradorSearch(estado,usuario.getFuncionario().getId(),model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
@@ -49,9 +57,10 @@ public class RegistradorController {
     
     public void show(){
         view.setVisible(true);
+        buscarInicio();
     }
 
-    public void show(Point position){
+    public void show(Point position) {
         view.setLocation(position);
         this.show();
     }   
@@ -59,6 +68,5 @@ public class RegistradorController {
     public void hide(){
         view.setVisible(false);
     }  
-    
     
 }

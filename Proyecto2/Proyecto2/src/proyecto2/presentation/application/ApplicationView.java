@@ -73,7 +73,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuItem3 = new javax.swing.JMenuItem();
         registradorMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        solicitudesRegistrador = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -162,8 +162,13 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         jMenu1.setText("Registrador");
 
-        jMenuItem4.setText("Solicitudes");
-        jMenu1.add(jMenuItem4);
+        solicitudesRegistrador.setText("Solicitudes");
+        solicitudesRegistrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitudesRegistradorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(solicitudesRegistrador);
 
         jMenuItem5.setText("Activos");
         jMenu1.add(jMenuItem5);
@@ -212,8 +217,13 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
     private void registradorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registradorMenuItemActionPerformed
         // TODO add your handling code here:
-         controller.solicitudRegistradorShow();
+         //controller.solicitudRegistradorShow();
     }//GEN-LAST:event_registradorMenuItemActionPerformed
+
+    private void solicitudesRegistradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesRegistradorActionPerformed
+        // TODO add your handling code here:
+        controller.solicitudRegistradorShow();
+    }//GEN-LAST:event_solicitudesRegistradorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,11 +273,11 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem registradorMenuItem;
     private javax.swing.JMenuItem secretariaMenuItem;
     private javax.swing.JMenu solicitudesMenu;
     private javax.swing.JMenuItem solicitudesMenuItem;
+    private javax.swing.JMenuItem solicitudesRegistrador;
     // End of variables declaration//GEN-END:variables
 }
