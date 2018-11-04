@@ -208,11 +208,9 @@ public class SecretariaView extends javax.swing.JInternalFrame implements java.u
     }//GEN-LAST:event_rechazarButtonActionPerformed
 
     private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
-        // TODO add your handling code here:
-        
-        //seleccionada.setEstado("por verificar");
+
         try{
-            controller.actualizar(seleccionada,"porVerificar");
+            controller.actualizar(seleccionada,"por verificar");
         }catch(Exception e){}
     }//GEN-LAST:event_aceptarButtonActionPerformed
    

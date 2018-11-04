@@ -22,7 +22,7 @@ public class ApplicationController {
     ApplicationModel model;
     Session session;
     SessionUsuario sessUsu;
-    
+    Usuario usuario;
     public ApplicationController(ApplicationView view, ApplicationModel model, Session session, SessionUsuario sessUsu) {
         this.session=session;
         this.sessUsu = sessUsu;
@@ -32,7 +32,24 @@ public class ApplicationController {
         view.setModel(model);
     }
     
-    public void dependenciasShow(){
+    public void setUsuario(Usuario us) {
+        usuario = us;
+    }
+    public void habilitaBotones() throws Exception {
+        if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(usuario.getFuncionario().getId()).equals("Administrador")) {
+            view.habilitaAdministrador();
+        }
+         if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(usuario.getFuncionario().getId()).equals("Registrador")) {
+            view.habilitaRegistrador();
+        }
+          if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(usuario.getFuncionario().getId()).equals("Secretaria")) {
+            view.habilitaSecretario();
+        }
+           if (proyecto2.logic.ModelGeneral.instance().getRolUsuario(usuario.getFuncionario().getId()).equals("Jefe de OCCB")) {
+            view.habilitaJefe();
+        }
+    }
+    public void dependenciasShow() throws Exception {
         Application.DEPENDENCIAS_CONTROLLER.show();
     }
     public void funcionariosShow(){
@@ -63,11 +80,18 @@ public class ApplicationController {
         Application.CATEGORIAS_CONTROLLER.show();
     }
     public void activosShow(){
-        Application.ACTIVOS_CONTROLLER.show();
+//        Application.ACTIVOS_CONTROLLER.show();
     }
+
     public void laborsShow() throws Exception{
-        Application.LABOR_CONTROLLER.show();
+        Application.LABORS_CONTROLLER.show();
     }
+
+    
+//     void showBien() {
+//         Application.BIENES_CONTROLLER.show();
+//     }
+
     public void enter(){
         this.reset();
         this.show();
@@ -91,6 +115,8 @@ public class ApplicationController {
         //Application.ESTADOS_CONTROLLER.hide();        
         view.setVisible(false);
     }   
+
+   
 
     
 }

@@ -21,10 +21,10 @@ import proyecto2.presentation.administrador.listado.AdministradorSolicitudView;
 import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.application.ApplicationModel;
 import proyecto2.presentation.application.ApplicationView;
-import proyecto2.presentation.bien.edicion.BienController;
-import proyecto2.presentation.bien.listado.BienesController;
-import proyecto2.presentation.bien.listado.BienesModel;
-import proyecto2.presentation.bien.listado.BienesView;
+import proyecto2.presentation.registrador.bien.edicion.BienController;
+import proyecto2.presentation.registrador.bien.listado.BienesController;
+import proyecto2.presentation.registrador.bien.listado.BienesModel;
+import proyecto2.presentation.registrador.bien.listado.BienesView;
 import proyecto2.presentation.categoria.edicion.CategoriaController;
 import proyecto2.presentation.categoria.listado.CategoriasController;
 import proyecto2.presentation.categoria.listado.CategoriasModel;
@@ -60,6 +60,12 @@ import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioView;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosModel;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosView;
+import proyecto2.presentation.rrhh.labor.LaborController;
+import proyecto2.presentation.rrhh.labor.LaborModel;
+import proyecto2.presentation.rrhh.labor.LaborView;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaController;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaModel;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaView;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
 import proyecto2.presentation.solicitudes.edicion.SolicitudView;
@@ -169,11 +175,13 @@ public class Application {
         ACTIVOS_CONTROLLER = activosController;
         applicationView.addInternalFrame(activosView);
 
-        LaborsModel laborModel = new LaborsModel();
-        LaborsView laborView= new LaborsView();
-        LaborsController laborController = new LaborsController(laborView,laborModel,session,ses);
-        LABOR_CONTROLLER = laborController;
-        applicationView.addInternalFrame(laborView);
+
+        LaborsModel laborsModel = new LaborsModel();
+        LaborsView laborsView= new LaborsView();
+        LaborsController laborsController = new LaborsController(laborsView,laborsModel,session,ses);
+        LABORS_CONTROLLER = laborsController;
+        applicationView.addInternalFrame(laborsView);
+
 
         BienesModel bienesModel = new BienesModel();
         BienesView bienesView = new BienesView();
@@ -181,6 +189,18 @@ public class Application {
         BIENES_CONTROLLER = bienesController;
         applicationView.addInternalFrame(bienesView);
 
+        
+        FuncionariosDependenciaModel funcDepModel = new FuncionariosDependenciaModel();
+        FuncionariosDependenciaView funcDepView = new FuncionariosDependenciaView();
+        FuncionariosDependenciaController funcDepController = new FuncionariosDependenciaController(funcDepView,funcDepModel, session, ses);
+        FUNCIONARIOS_DEPENDENCIA_CONTROLLER = funcDepController;
+        applicationView.addInternalFrame(funcDepView);
+        
+        LaborModel laborModel = new LaborModel();
+        LaborView laborView = new LaborView();
+        LaborController laborController = new LaborController(laborView, laborModel, session,ses);
+        applicationView.addInternalFrame(laborView);
+        LABOR_CONTOLLER = laborController; 
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -201,8 +221,9 @@ public class Application {
     public static RegistradorController REGISTRADOR_CONTROLLER;
     public static ActivosController ACTIVOS_CONTROLLER;
     public static BienesController BIENES_CONTROLLER;
-    public static LaborsController LABOR_CONTROLLER;
-
+    public static LaborsController LABORS_CONTROLLER;
+    public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
+    public static LaborController LABOR_CONTOLLER;
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;

@@ -3,25 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.rrhh.funcionarios.listado;
+package proyecto2.presentation.rrhh.labor;
 
 import proyecto2.presentation.rrhh.FuncionarioTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import proyecto2.logic.Funcionario;
+import proyecto2.logic.Puesto;
 
 /**
  *
  * @author oscar
  */
-public class FuncionariosModel extends java.util.Observable{
+public class LaborModel extends java.util.Observable{
 
     Funcionario filter;
     FuncionarioTableModel funcionarios;
     Funcionario seleccionada;
+    String codigoDependencia;
+    ComboBoxModel<Puesto> puestos;
+    
+    
+    public ComboBoxModel<Puesto> getPuestos() {
+        return puestos;
+    }
 
-    public FuncionariosModel() {
+    public void reset(List<Puesto> puestos){      
+        setPuestos(puestos);
+    }
+    
+    public void setPuestos(List<Puesto> puestos) {
+        List<Puesto> es;
+        this.puestos = new DefaultComboBoxModel(puestos.toArray());
+        this.commit();    
+    }
+    public LaborModel() {
         this.reset();
     }
 
@@ -33,6 +52,15 @@ public class FuncionariosModel extends java.util.Observable{
         this.commit();
     }
 
+    public String getCodigoDependencia() {
+        return codigoDependencia;
+    }
+
+    public void setCodigoDependencia(String codigoDependencia) {
+        this.codigoDependencia = codigoDependencia;
+        commit();
+    }
+    
     public Funcionario getFilter() {
         return filter;
     }

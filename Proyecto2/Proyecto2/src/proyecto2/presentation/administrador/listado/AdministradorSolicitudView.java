@@ -5,6 +5,7 @@
  */
 package proyecto2.presentation.administrador.listado;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import proyecto2.presentation.solicitudes.listado.*;
 import java.util.Observable;
@@ -70,6 +71,7 @@ public class AdministradorSolicitudView extends javax.swing.JInternalFrame imple
         button_Eliminar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_Comprobante.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -114,6 +116,11 @@ public class AdministradorSolicitudView extends javax.swing.JInternalFrame imple
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 576, 90));
 
         button_Eliminar.setText("eliminar");
+        button_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_EliminarActionPerformed(evt);
+            }
+        });
         getContentPane().add(button_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, -1, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Solicitudes"));
@@ -168,6 +175,16 @@ public class AdministradorSolicitudView extends javax.swing.JInternalFrame imple
             }
         }
     }//GEN-LAST:event_table_SolicitudMouseClicked
+
+    private void button_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_EliminarActionPerformed
+        int row = this.table_Solicitud.getSelectedRow();
+        
+        try {
+            controller.borrar(row);
+        } catch (ParseException ex) {
+            Logger.getLogger(AdministradorSolicitudView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_button_EliminarActionPerformed
 
        public void limpiarErrores(){
         this.label_Comprobante.setForeground(Application.COLOR_OK);
