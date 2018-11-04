@@ -6,6 +6,11 @@
 package proyecto2.presentation.activosGeneral;
 
 import java.util.Observable;
+import javax.swing.JOptionPane;
+import proyecto2.logic.Activo;
+import proyecto2.logic.Solicitud;
+import proyecto2.presentation.administrador.listado.AdministradorSolicitudController;
+import proyecto2.presentation.administrador.listado.AdministradorSolicitudModel;
 
 /**
  *
@@ -13,11 +18,31 @@ import java.util.Observable;
  */
 public class ActivoGeneralView extends javax.swing.JInternalFrame implements java.util.Observer{
 
+    ActivoGeneralController controller;
+    ActivoGeneralModel model;
+    
     /**
      * Creates new form ActivoGeneralView
      */
     public ActivoGeneralView() {
         initComponents();
+    }
+    
+    public ActivoGeneralController getController() {
+        return controller;
+    }
+
+    public void setController(ActivoGeneralController controller) {
+        this.controller = controller;
+    }
+
+    public ActivoGeneralModel getModel() {
+        return model;
+    }
+
+    public void setModel(ActivoGeneralModel model) {
+        this.model = model;
+         model.addObserver(this);
     }
 
     /**
@@ -29,14 +54,27 @@ public class ActivoGeneralView extends javax.swing.JInternalFrame implements jav
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        text_Busca = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_Activo = new javax.swing.JTable();
+        box_clasificacion = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(text_Busca, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 197, -1));
 
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_Activo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -47,49 +85,74 @@ public class ActivoGeneralView extends javax.swing.JInternalFrame implements jav
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_Activo);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 578, 120));
+
+        box_clasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Categoría", "Descripción", "Dependencia", "Responsable" }));
+        getContentPane().add(box_clasificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
+
+        jLabel1.setText("Búsqueda mediante: ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+            this.controller.buscar(this.toActivoFromSearch());
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+//    public void limpiarErrores(){
+//        this.label_Comprobante.setForeground(Application.COLOR_OK);
+//    }
+    
+//    public void fromActivo(Activo filtro){
+//        if(this.box_clasificacion.getSelectedItem() == "Código")
+//            text_Busca.setText(filtro.getCodigo());
+//        
+//    }
+//    
+    Activo toActivoFromSearch(){
+        Activo result = new Activo();
+        if(this.box_clasificacion.getSelectedItem() == "Código")
+            result.setCodigo(this.text_Busca.getText());
+        if(this.box_clasificacion.getSelectedItem() == "Categoría")
+            result.getBien().getCategoria().setTipo(this.text_Busca.getText());
+        if(this.box_clasificacion.getSelectedItem() == "Descripción")
+            result.getBien().setDescripcion(this.text_Busca.getText());
+        if(this.box_clasificacion.getSelectedItem() == "Dependencia")
+            result.getLabor().getDependencia().setNombre(this.text_Busca.getText());
+        if(this.box_clasificacion.getSelectedItem() == "Responsable")
+            result.getLabor().getFuncionario().setNombre(this.text_Busca.getText());
+        return result;
+    }
+   
+    public void toSolicitudFromActivo() throws Exception {
+        //Labor labor = proyecto2.logic.ModelGeneral.instance().searchLabor(Application.LOGIN_CONTROLLER.getLoginModel().getCurrent().getFuncionario().getId());
+        try{
+        this.controller.buscarFromActivo();
+        } catch(Exception ex){ }
+    }
+    
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //this.limpiarErrores();
+        //Activo filtro = model.getFilter();
+        //this.fromActivo(filtro);
+        table_Activo.setModel(model.getActivos());
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> box_clasificacion;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable table_Activo;
+    private javax.swing.JTextField text_Busca;
     // End of variables declaration//GEN-END:variables
 }

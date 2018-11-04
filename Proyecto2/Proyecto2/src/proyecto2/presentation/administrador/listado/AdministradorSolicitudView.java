@@ -5,6 +5,7 @@
  */
 package proyecto2.presentation.administrador.listado;
 
+import java.awt.Point;
 import java.text.ParseException;
 import java.util.ArrayList;
 import proyecto2.presentation.solicitudes.listado.*;
@@ -151,7 +152,7 @@ public class AdministradorSolicitudView extends javax.swing.JInternalFrame imple
 
     private void button_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AgregarActionPerformed
         Application.SOLICITUD_CONTROLLER.getModel().setModoS(Application.MODO_AGREGAR);
-        Application.SOLICITUD_CONTROLLER.show();
+        Application.SOLICITUD_CONTROLLER.show(new Point(300, 300));
     }//GEN-LAST:event_button_AgregarActionPerformed
 
     private void table_SolicitudMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_SolicitudMouseClicked
@@ -178,12 +179,17 @@ public class AdministradorSolicitudView extends javax.swing.JInternalFrame imple
 
     private void button_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_EliminarActionPerformed
         int row = this.table_Solicitud.getSelectedRow();
-        
-        try {
-            controller.borrar(row);
-        } catch (ParseException ex) {
-            Logger.getLogger(AdministradorSolicitudView.class.getName()).log(Level.SEVERE, null, ex);
+        Solicitud solicitud = this.controller.getSeleccionada(row);
+        if("Solicitud recibida".equals(solicitud.getEstado())){       
+            try {
+                controller.borrar(row);
+            } catch (ParseException ex) {
+                Logger.getLogger(AdministradorSolicitudView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        else{
+                JOptionPane.showMessageDialog(this, "La solicitud ya fue aceptada, no es posible hacer eliminarla", "Advertencia", JOptionPane.INFORMATION_MESSAGE); 
+            }
     }//GEN-LAST:event_button_EliminarActionPerformed
 
        public void limpiarErrores(){
@@ -200,10 +206,10 @@ public class AdministradorSolicitudView extends javax.swing.JInternalFrame imple
         return result;
     }
     
-    public void toSolicitudFromDependencia() throws Exception {
+    public void toSolicitudFromSolicitud() throws Exception {
         //Labor labor = proyecto2.logic.ModelGeneral.instance().searchLabor(Application.LOGIN_CONTROLLER.getLoginModel().getCurrent().getFuncionario().getId());
         try{
-        this.controller.buscarFromDependencia();
+        this.controller.buscarFromSolicitud();
         } catch(Exception ex){ }
     }
 

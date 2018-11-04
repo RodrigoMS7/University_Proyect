@@ -8,11 +8,13 @@ package proyecto2.presentation.administrador.listado;
 import proyecto2.presentation.solicitudes.listado.*;
 import java.awt.Point;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
 import proyecto2.Application;
 import proyecto2.SessionUsuario;
+import proyecto2.logic.Bien;
 import proyecto2.logic.Solicitud;
 import proyecto2.logic.Usuario;
 
@@ -48,7 +50,7 @@ public class AdministradorSolicitudController {
 
     }
 
-    public void buscarFromDependencia() throws Exception {
+    public void buscarFromSolicitud() throws Exception {
         this.refrescarTable();
     }
     
@@ -87,6 +89,7 @@ public class AdministradorSolicitudController {
     public void borrar(int row) throws ParseException{  
         Solicitud seleccionada = model.getSolicitudes().getRowAt(row); 
         try {
+            proyecto2.logic.ModelGeneral.instance().deleteBienFromSolicitud(seleccionada.getCodigo());
             proyecto2.logic.ModelGeneral.instance().borrarSolicitud(seleccionada);
         } catch (Exception ex) { }
         List<Solicitud> rowsMod = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());

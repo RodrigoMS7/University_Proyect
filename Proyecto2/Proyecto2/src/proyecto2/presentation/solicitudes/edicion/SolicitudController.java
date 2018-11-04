@@ -70,6 +70,7 @@ public class SolicitudController {
             case Application.MODO_EDITAR:
                 rows = proyecto2.logic.ModelGeneral.instance().getBienesFromSolicitud(model.getCurrentS().getCodigo());
                 //rows = proyecto2.logic.ModelGeneral.instance().getAllBienesSolicitud(model.getFilter());
+                model.setListaBienes(rows);
                 model.setBien(rows);
                 model.commit();
                 if (rows.isEmpty()) {

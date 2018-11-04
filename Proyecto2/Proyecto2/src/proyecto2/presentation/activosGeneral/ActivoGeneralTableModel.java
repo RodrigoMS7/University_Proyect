@@ -44,16 +44,28 @@ public class ActivoGeneralTableModel extends AbstractTableModel {
         Activo activo = rows.get(row);
         switch(cols[col]){
             case CODIGO : return activo.getCodigo();
+            case CATEGORIA:
+            {
+                if(activo.getBien().getCategoria() != null)
+                    return activo.getBien().getCategoria().getTipo();
+                else return "Sin asignar";
+            }
+            case DESCRIPCION:
+            {
+                if(activo.getBien() != null)
+                    return activo.getBien().getDescripcion();
+                else return "Sin asignar";
+            }
             case DEPENDENCIA: 
             {
                 if(activo.getLabor().getDependencia()!=null)
                     return activo.getLabor().getDependencia().getNombre();
                 else return "Sin asignar";
             }
-            case FUNCIONARIO:
+            case FUNCIONARIO_RESPONSABLE:
             {
                 if(activo.getLabor().getFuncionario()!=null)
-                    return activo.getLabor().getFuncionario().getId();
+                    return activo.getLabor().getFuncionario().getNombre();
                 else return "Sin asignar";
             }
             default: return "";
@@ -63,14 +75,19 @@ public class ActivoGeneralTableModel extends AbstractTableModel {
         return rows.get(row);
     }
 
-    String[] colNames=new String[3];
-    public static final int CODIGO=0;
-    public static final int DEPENDENCIA = 1;
-    public static final int FUNCIONARIO =2;
+    String[] colNames=new String[6];
+    public static final int CODIGO = 0;
+    public static final int CATEGORIA = 1;
+    public static final int DESCRIPCION = 2;
+    public static final int DEPENDENCIA = 3;
+    public static final int FUNCIONARIO_RESPONSABLE = 4;
+    //public static final int  = 5;
 
     private void initColNames(){
         colNames[CODIGO]="Codigo";
+        colNames[CATEGORIA]="Categoría";
+        colNames[DESCRIPCION]="Descripción";
         colNames[DEPENDENCIA]="Dependencia";
-        colNames[FUNCIONARIO]="Funcionario";
+        colNames[FUNCIONARIO_RESPONSABLE]="Funcionario responsable";
     }
 }

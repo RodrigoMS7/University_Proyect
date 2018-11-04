@@ -49,7 +49,7 @@ public class ApplicationController {
     }
     public void AdministradorSolicitudShow(){
         try {
-            Application.ADMINISTRADOR_SOLICITUD_CONTROLLER.getView().toSolicitudFromDependencia();
+            Application.ADMINISTRADOR_SOLICITUD_CONTROLLER.getView().toSolicitudFromSolicitud();
         } catch (Exception ex) {
             Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,6 +65,16 @@ public class ApplicationController {
     public void activosShow(){
         Application.ACTIVOS_CONTROLLER.show();
     }
+    
+    void activosGeneralShow() {
+        try {
+            Application.ACTIVO_GENERAL_CONTROLLER.getView().toSolicitudFromActivo();
+        } catch (Exception ex) {
+            Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Application.ACTIVO_GENERAL_CONTROLLER.show();
+    }
+    
     public void enter(){
         this.reset();
         this.show();
