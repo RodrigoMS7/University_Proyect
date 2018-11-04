@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.rrhh.funcionarios.listado;
+package proyecto2.presentation.rrhh.listado;
 
 import proyecto2.presentation.rrhh.FuncionarioTableModel;
 import java.util.ArrayList;
@@ -15,14 +15,24 @@ import proyecto2.logic.Funcionario;
  *
  * @author oscar
  */
-public class FuncionariosModel extends java.util.Observable{
+public class FuncionariosDependenciaModel extends java.util.Observable{
 
     Funcionario filter;
     FuncionarioTableModel funcionarios;
     Funcionario seleccionada;
+    String codigoDependencia;
 
-    public FuncionariosModel() {
+    public FuncionariosDependenciaModel() {
         this.reset();
+    }
+
+    public String getCodigoDependencia() {
+        return codigoDependencia;
+    }
+
+    public void setCodigoDependencia(String codigoDependencia) {
+        this.codigoDependencia = codigoDependencia;
+        commit();
     }
 
     public void reset(){ 

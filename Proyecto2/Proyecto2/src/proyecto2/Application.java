@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 import proyecto2.data.HibernateUtil;
+import proyecto2.logic.Categoria;
 import proyecto2.logic.Solicitud;
 import proyecto2.presentation.activos.listado.ActivosController;
 import proyecto2.presentation.activos.listado.ActivosModel;
@@ -23,10 +24,14 @@ import proyecto2.presentation.administrador.listado.AdministradorSolicitudView;
 import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.application.ApplicationModel;
 import proyecto2.presentation.application.ApplicationView;
-import proyecto2.presentation.bien.edicion.BienController;
-import proyecto2.presentation.bien.listado.BienesController;
-import proyecto2.presentation.bien.listado.BienesModel;
-import proyecto2.presentation.bien.listado.BienesView;
+//import proyecto2.presentation.bien.edicion.BienController;
+//import proyecto2.presentation.bien.listado.BienesController;
+//import proyecto2.presentation.bien.listado.BienesModel;
+//import proyecto2.presentation.bien.listado.BienesView;
+import proyecto2.presentation.registrador.bien.edicion.BienController;
+import proyecto2.presentation.registrador.bien.listado.BienesController;
+import proyecto2.presentation.registrador.bien.listado.BienesModel;
+import proyecto2.presentation.registrador.bien.listado.BienesView;
 import proyecto2.presentation.categoria.edicion.CategoriaController;
 import proyecto2.presentation.categoria.listado.CategoriasController;
 import proyecto2.presentation.categoria.listado.CategoriasModel;
@@ -59,6 +64,12 @@ import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioView;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosModel;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosView;
+import proyecto2.presentation.rrhh.labor.LaborController;
+import proyecto2.presentation.rrhh.labor.LaborModel;
+import proyecto2.presentation.rrhh.labor.LaborView;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaController;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaModel;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaView;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
 import proyecto2.presentation.solicitudes.edicion.SolicitudView;
@@ -69,7 +80,7 @@ import proyecto2.presentation.solicitudes.listado.SolicitudesController;
  * @author Rodrigo Meléndez
  */
 public class Application {
-    
+
     public static void main(String[] args) throws Exception {
 //        Categoria catBD = proyecto2.logic.ModelGeneral.instance().getCategoria(1);
 //        System.out.println(catBD.getConsecutivo());
@@ -182,6 +193,18 @@ public class Application {
         applicationView.addInternalFrame(activoGeneralView);
         //activoGeneralView.setVisible(true);
 
+        FuncionariosDependenciaModel funcDepModel = new FuncionariosDependenciaModel();
+        FuncionariosDependenciaView funcDepView = new FuncionariosDependenciaView();
+        FuncionariosDependenciaController funcDepController = new FuncionariosDependenciaController(funcDepView,funcDepModel, session, ses);
+        FUNCIONARIOS_DEPENDENCIA_CONTROLLER = funcDepController;
+        applicationView.addInternalFrame(funcDepView);
+        
+        LaborModel laborModel = new LaborModel();
+        LaborView laborView = new LaborView();
+        LaborController laborController = new LaborController(laborView, laborModel, session,ses);
+        applicationView.addInternalFrame(laborView);
+        LABOR_CONTOLLER = laborController; 
+
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -204,6 +227,8 @@ public class Application {
     public static BienesController BIENES_CONTROLLER;
     public static ActivoGeneralController ACTIVO_GENERAL_CONTROLLER;
 
+    public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
+    public static LaborController LABOR_CONTOLLER;
 
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;

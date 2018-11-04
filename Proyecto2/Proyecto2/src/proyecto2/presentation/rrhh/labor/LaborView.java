@@ -3,40 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.rrhh.funcionarios.listado;
+package proyecto2.presentation.rrhh.labor;
 
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import proyecto2.Application;
 import proyecto2.logic.Funcionario;
+import proyecto2.logic.Puesto;
 
 /**
  *
  * @author Dani
  */
-public class FuncionariosView extends javax.swing.JInternalFrame implements java.util.Observer {
+public class LaborView extends javax.swing.JInternalFrame implements java.util.Observer {
 
-    FuncionariosController controller;
-    FuncionariosModel model;
-    public FuncionariosView() throws Exception {
+    LaborController controller;
+    LaborModel model;
+    public LaborView() throws Exception {
         super("", false, true);
         initComponents();
     }
 
-    public FuncionariosController getController() {
+    public LaborController getController() {
         return controller;
     }
 
-    public void setController(FuncionariosController controller) {
+    public void setController(LaborController controller) {
         this.controller = controller;
     }
 
-    public FuncionariosModel getModel() {
+    public LaborModel getModel() {
         return model;
     }
 
-    public void setModel(FuncionariosModel model) {
+    public void setModel(LaborModel model) {
         this.model = model;
         model.addObserver(this);
     }
@@ -55,8 +58,8 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
         IDlabl = new javax.swing.JLabel();
         idTxtField = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
-        agregar = new javax.swing.JButton();
-        eliminar = new javax.swing.JButton();
+        puesto = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -87,17 +90,10 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
             }
         });
 
-        agregar.setText("agregar");
-        agregar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Agregar Funcionario a Dependencia");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarActionPerformed(evt);
-            }
-        });
-
-        eliminar.setText("eliminar");
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -109,39 +105,38 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(IDlabl)
                         .addGap(18, 18, 18)
                         .addComponent(idTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buscar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 20, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eliminar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(agregar, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
+                        .addComponent(buscar)))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IDlabl)
-                    .addComponent(idTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscar))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(agregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(eliminar))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(IDlabl)
+                            .addComponent(idTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buscar))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,45 +150,42 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
             }
     }//GEN-LAST:event_buscarActionPerformed
 
-    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-          try {
-            controller.preAgregar(this.agregar.getLocationOnScreen());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
-        }
-    }//GEN-LAST:event_agregarActionPerformed
-
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-         int row = this.funcionariosTab.getSelectedRow();
-        controller.borrar(row);
-    }//GEN-LAST:event_eliminarActionPerformed
-
     private void funcionariosTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionariosTabMouseClicked
         if (evt.getClickCount() == 2) {
             int row = this.funcionariosTab.getSelectedRow();
             int col = this.funcionariosTab.getSelectedColumn();
             controller.editar(row, evt.getLocationOnScreen());
-            System.out.println("....");
         }
     }//GEN-LAST:event_funcionariosTabMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int row = funcionariosTab.getSelectedRow();
+        try {
+            controller.agregaLabor(row,(Puesto)puesto.getSelectedItem());
+        } catch (Exception ex) {
+            Logger.getLogger(LaborView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel IDlabl;
-    private javax.swing.JButton agregar;
     private javax.swing.JButton buscar;
-    private javax.swing.JButton eliminar;
     private javax.swing.JTable funcionariosTab;
     private javax.swing.JTextField idTxtField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox puesto;
     // End of variables declaration//GEN-END:variables
 
+   
     @Override
     public void update(Observable o, Object arg) {
         this.limpiarErrores();
         Funcionario filtro = model.getFilter();
         this.fromFuncionario(filtro);
         this.funcionariosTab.setModel(model.getFuncionarios());
+        this.puesto.setModel(model.getPuestos());
     }
     
       boolean validar(){
@@ -220,8 +212,6 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
       public void limpiarErrores(){
        this.IDlabl.setForeground(Application.COLOR_OK); 
    }
-      
-      public void ocultaBotones(){
-          this.agregar.setVisible(false);
-      }
+     
+     
 }
