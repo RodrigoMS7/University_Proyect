@@ -89,8 +89,8 @@ public class CategoriasController {
         Transaction t = session.beginTransaction();
         session.save(categoria);
         t.commit();
-       // Application.FUNCIONARIOS_CONTROLLER.refrescarBusqueda();
         model.commit();
+        buscar();
     }
     
     public void agregaActivos(int row) throws Exception{

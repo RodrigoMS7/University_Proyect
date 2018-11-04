@@ -39,7 +39,7 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
     public void setController(CategoriasController controller) {
         this.controller = controller;
     }
-    
+
     public CategoriasView() {
         super("", false, true);
         initComponents();
@@ -157,30 +157,30 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
     }//GEN-LAST:event_agregarButtonActionPerformed
 
     private void categoriaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriaTableMouseClicked
-       if(evt.getClickCount()==2){
-           int row = this.categoriaTable.getSelectedRow();
-           JTextField tipo = new JTextField();
-           Object[] message = {"Tipo: ", tipo};
-           int Option = JOptionPane.showConfirmDialog(null, message, "Categoria", JOptionPane.OK_CANCEL_OPTION);
-           if (Option == JOptionPane.OK_OPTION) {
-               controller.editar(row, tipo.getText());
-           } 
-       }
+        if (evt.getClickCount() == 2) {
+            int row = this.categoriaTable.getSelectedRow();
+            JTextField tipo = new JTextField();
+            Object[] message = {"Tipo: ", tipo};
+            int Option = JOptionPane.showConfirmDialog(null, message, "Categoria", JOptionPane.OK_CANCEL_OPTION);
+            if (Option == JOptionPane.OK_OPTION) {
+                controller.editar(row, tipo.getText());
+            }
+        }
     }//GEN-LAST:event_categoriaTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           try {
-                controller.buscar(this.toCategoria());
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
-            }
+        try {
+            controller.buscar(this.toCategoria());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void asignaCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignaCatActionPerformed
         int row = this.categoriaTable.getSelectedRow();
         try {
             controller.agregaActivos(row);
-             JOptionPane.showMessageDialog(this, "Asignacion exitosa", "OK", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Asignacion exitosa", "OK", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Bien ya tiene categoria asignada", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(CategoriasView.class.getName()).log(Level.SEVERE, null, ex);
@@ -204,16 +204,18 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
 //        this.fromFuncionario(filtro);
         this.categoriaTable.setModel(model.getFuncionarios());
     }
-    
+
     public void agregarActividad() {
         JTextField tipo = new JTextField();
         Object[] message = {"Tipo: ", tipo};
         int Option = JOptionPane.showConfirmDialog(null, message, "Categoria", JOptionPane.OK_CANCEL_OPTION);
         if (Option == JOptionPane.OK_OPTION) {
+            JOptionPane.showMessageDialog(this, "Datos registrados", "OK", JOptionPane.INFORMATION_MESSAGE);
             controller.agregaCategoria(tipo.getText());
         }
     }
-      Categoria toCategoria() {
+
+    Categoria toCategoria() {
         Categoria result = new Categoria();
         result.setTipo(tipoBuscar.getText());
         return result;

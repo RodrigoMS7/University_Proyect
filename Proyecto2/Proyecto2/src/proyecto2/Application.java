@@ -57,6 +57,7 @@ import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioView;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosModel;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosView;
+import proyecto2.presentation.rrhh.labor.FuncionariosDependenciaController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
 import proyecto2.presentation.solicitudes.edicion.SolicitudView;
@@ -139,6 +140,7 @@ public class Application {
 
         FuncionariosModel funcionariosModel = new FuncionariosModel();
         FuncionariosView funcionariosView = new FuncionariosView();
+        funcionariosView.ocultaBotones();
         applicationView.addInternalFrame(funcionariosView);
         FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session, ses);
         FUNCIONARIOS_CONTROLLER = funcionariosController;
@@ -158,21 +160,18 @@ public class Application {
         CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session, ses);
         CATEGORIAS_CONTROLLER = categoriasController;
         applicationView.addInternalFrame(categoriaView);
-<<<<<<< HEAD
         
         ActivosModel activosModel = new ActivosModel();
         ActivosView activosView= new ActivosView();
         ActivosController activosController = new ActivosController(activosView,activosModel,session,ses);
         ACTIVOS_CONTROLLER = activosController;
         applicationView.addInternalFrame(activosView);
-=======
 
         BienesModel bienesModel = new BienesModel();
         BienesView bienesView = new BienesView();
         BienesController bienesController = new BienesController(bienesView, bienesModel, session, ses);
         BIENES_CONTROLLER = bienesController;
         applicationView.addInternalFrame(bienesView);
->>>>>>> 6993dfa3eaee212166d9604974e81a7c4af1d087
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -191,12 +190,11 @@ public class Application {
     public static CategoriasController CATEGORIAS_CONTROLLER;
     public static AdministradorSolicitudController ADMINISTRADOR_SOLICITUD_CONTROLLER;
     public static RegistradorController REGISTRADOR_CONTROLLER;
-<<<<<<< HEAD
     public static ActivosController ACTIVOS_CONTROLLER;
-=======
     public static BienesController BIENES_CONTROLLER;
->>>>>>> 6993dfa3eaee212166d9604974e81a7c4af1d087
-
+    public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
+    
+    
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;

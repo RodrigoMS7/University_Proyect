@@ -63,7 +63,7 @@ public class ApplicationController {
         Application.CATEGORIAS_CONTROLLER.show();
     }
     public void activosShow(){
-        Application.ACTIVOS_CONTROLLER.show();
+//        Application.ACTIVOS_CONTROLLER.show();
     }
     public void enter(){
         this.reset();

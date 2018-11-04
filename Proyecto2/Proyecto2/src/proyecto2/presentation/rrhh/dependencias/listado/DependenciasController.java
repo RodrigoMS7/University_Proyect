@@ -92,4 +92,9 @@ public class DependenciasController {
     public void hide(){
         view.setVisible(false);
     }     
+    
+    public void listaFuncionariosDependencia(int row){
+        Dependencia dep= model.getDependencias().getRowAt(row); 
+        Application.FUNCIONARIOS_DEPENDENCIA_CONTROLLER.show();
+    }
 }

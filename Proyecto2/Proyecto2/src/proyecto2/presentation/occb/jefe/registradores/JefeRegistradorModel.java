@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observer;
 import proyecto2.logic.Funcionario;
-import proyecto2.presentation.rrhh.funcionarios.listado.FuncionarioTableModel;
+import proyecto2.presentation.rrhh.FuncionarioTableModel;
 
 /**
  *
