@@ -6,6 +6,8 @@
 package proyecto2.presentation.activos.listado;
 
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyecto2.Application;
 import proyecto2.logic.Activo;
@@ -52,6 +54,8 @@ public class ActivosView extends javax.swing.JInternalFrame implements java.util
         result.setCodigo(codigo.getText());
         return result;
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,9 +67,11 @@ public class ActivosView extends javax.swing.JInternalFrame implements java.util
 
         jScrollPane1 = new javax.swing.JScrollPane();
         activos = new javax.swing.JTable();
-        codigo = new javax.swing.JLabel();
         codigoFld = new javax.swing.JTextField();
         buscarButton = new javax.swing.JButton();
+        codigo = new javax.swing.JLabel();
+        asignarFuncionarioButton = new javax.swing.JButton();
+        imprimirButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -80,10 +86,12 @@ public class ActivosView extends javax.swing.JInternalFrame implements java.util
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        activos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                activosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(activos);
-
-        codigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        codigo.setText("Codigo:");
 
         buscarButton.setText("Buscar");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -92,35 +100,57 @@ public class ActivosView extends javax.swing.JInternalFrame implements java.util
             }
         });
 
+        codigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        codigo.setText("Codigo:");
+
+        asignarFuncionarioButton.setText("Asignar funcionario");
+        asignarFuncionarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignarFuncionarioButtonActionPerformed(evt);
+            }
+        });
+
+        imprimirButton.setText("Imprimir ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(codigo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(codigoFld, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buscarButton)
+                .addGap(141, 141, 141))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(codigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(codigoFld, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(asignarFuncionarioButton)
+                        .addGap(28, 28, 28)
+                        .addComponent(imprimirButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigo)
-                    .addComponent(codigoFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarButton))
-                .addGap(59, 59, 59)
+                    .addComponent(buscarButton)
+                    .addComponent(codigoFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(asignarFuncionarioButton)
+                    .addComponent(imprimirButton))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,12 +165,35 @@ public class ActivosView extends javax.swing.JInternalFrame implements java.util
         }
     }//GEN-LAST:event_buscarButtonActionPerformed
 
+    private void asignarFuncionarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarFuncionarioButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            int row = this.activos.getSelectedRow();
+            controller.getLabores(asignarFuncionarioButton.getLocation(), row);
+        } catch (Exception ex) {
+           // Logger.getLogger(JefeView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_asignarFuncionarioButtonActionPerformed
+    Activo seleccionado;
+    private void activosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activosMouseClicked
+        // TODO add your handling code here:
+         try{
+            int row=activos.getSelectedRow();
+            seleccionado= model.getActivos().getRowAt(row);
+           
+        }catch(Exception e){
+        }
+        
+    }//GEN-LAST:event_activosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable activos;
+    private javax.swing.JButton asignarFuncionarioButton;
     private javax.swing.JButton buscarButton;
     private javax.swing.JLabel codigo;
     private javax.swing.JTextField codigoFld;
+    private javax.swing.JButton imprimirButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

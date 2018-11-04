@@ -29,6 +29,9 @@ import proyecto2.presentation.categoria.edicion.CategoriaController;
 import proyecto2.presentation.categoria.listado.CategoriasController;
 import proyecto2.presentation.categoria.listado.CategoriasModel;
 import proyecto2.presentation.categoria.listado.CategoriasView;
+import proyecto2.presentation.labor.listado.LaborsController;
+import proyecto2.presentation.labor.listado.LaborsModel;
+import proyecto2.presentation.labor.listado.LaborsView;
 import proyecto2.presentation.login_usuario.LoginController;
 import proyecto2.presentation.login_usuario.LoginModel;
 import proyecto2.presentation.login_usuario.LoginView;
@@ -158,21 +161,26 @@ public class Application {
         CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session, ses);
         CATEGORIAS_CONTROLLER = categoriasController;
         applicationView.addInternalFrame(categoriaView);
-<<<<<<< HEAD
+
         
         ActivosModel activosModel = new ActivosModel();
         ActivosView activosView= new ActivosView();
         ActivosController activosController = new ActivosController(activosView,activosModel,session,ses);
         ACTIVOS_CONTROLLER = activosController;
         applicationView.addInternalFrame(activosView);
-=======
+
+        LaborsModel laborModel = new LaborsModel();
+        LaborsView laborView= new LaborsView();
+        LaborsController laborController = new LaborsController(laborView,laborModel,session,ses);
+        LABOR_CONTROLLER = laborController;
+        applicationView.addInternalFrame(laborView);
 
         BienesModel bienesModel = new BienesModel();
         BienesView bienesView = new BienesView();
         BienesController bienesController = new BienesController(bienesView, bienesModel, session, ses);
         BIENES_CONTROLLER = bienesController;
         applicationView.addInternalFrame(bienesView);
->>>>>>> 6993dfa3eaee212166d9604974e81a7c4af1d087
+
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -191,11 +199,9 @@ public class Application {
     public static CategoriasController CATEGORIAS_CONTROLLER;
     public static AdministradorSolicitudController ADMINISTRADOR_SOLICITUD_CONTROLLER;
     public static RegistradorController REGISTRADOR_CONTROLLER;
-<<<<<<< HEAD
     public static ActivosController ACTIVOS_CONTROLLER;
-=======
     public static BienesController BIENES_CONTROLLER;
->>>>>>> 6993dfa3eaee212166d9604974e81a7c4af1d087
+    public static LaborsController LABOR_CONTROLLER;
 
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;

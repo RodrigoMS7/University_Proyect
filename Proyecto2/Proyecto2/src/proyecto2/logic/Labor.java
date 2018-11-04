@@ -19,7 +19,7 @@ public class Labor  implements java.io.Serializable {
 
     public Labor() {
     }
-
+    
 	
     public Labor(Dependencia dependencia, Funcionario funcionario) {
         this.dependencia = dependencia;
@@ -38,7 +38,11 @@ public class Labor  implements java.io.Serializable {
        this.puesto = puesto;
        this.activos = activos;
     }
-   
+   public Labor(int idLabor,Dependencia dependencia, Funcionario funcionario){
+       this.idLabor=idLabor;
+       this.dependencia = dependencia;
+       this.funcionario = funcionario;
+   }
     public Integer getIdLabor() {
         return this.idLabor;
     }

@@ -65,6 +65,9 @@ public class ApplicationController {
     public void activosShow(){
         Application.ACTIVOS_CONTROLLER.show();
     }
+    public void laborsShow() throws Exception{
+        Application.LABOR_CONTROLLER.show();
+    }
     public void enter(){
         this.reset();
         this.show();

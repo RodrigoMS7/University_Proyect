@@ -8,6 +8,8 @@ package proyecto2.presentation.application;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
@@ -88,6 +90,8 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuItem4 = new javax.swing.JMenuItem();
         activosMenu = new javax.swing.JMenu();
         activosMenuItem = new javax.swing.JMenuItem();
+        laboresMenu = new javax.swing.JMenu();
+        laboresMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -213,6 +217,18 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         jMenuBar1.add(activosMenu);
 
+        laboresMenu.setText("Labores");
+
+        laboresMenuItem.setText("Listado");
+        laboresMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laboresMenuItemActionPerformed(evt);
+            }
+        });
+        laboresMenu.add(laboresMenuItem);
+
+        jMenuBar1.add(laboresMenu);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,6 +288,15 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         controller.activosShow();
     }//GEN-LAST:event_activosMenuItemActionPerformed
 
+    private void laboresMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laboresMenuItemActionPerformed
+        try {
+            // TODO add your handling code here:
+            controller.laborsShow();
+        } catch (Exception ex) {
+            Logger.getLogger(ApplicationView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_laboresMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,6 +348,8 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu laboresMenu;
+    private javax.swing.JMenuItem laboresMenuItem;
     private javax.swing.JMenuItem registradorMenuItem;
     private javax.swing.JMenuItem secretariaMenuItem;
     private javax.swing.JMenu solicitudesMenu;

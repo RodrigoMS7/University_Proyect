@@ -8,6 +8,7 @@ package proyecto2.presentation.activos.listado;
 import java.awt.Point;
 import java.util.List;
 import org.hibernate.Session;
+import proyecto2.Application;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Activo;
 
@@ -58,5 +59,13 @@ public class ActivosController {
     
     public void hide(){
         view.setVisible(false);
-    }    
+    }   
+    
+    public void getLabores(Point at, int row) throws Exception {
+        Activo seleccionado = model.getActivos().getRowAt(row);
+        Application.LABOR_CONTROLLER.setCodigoActivo(seleccionado.getCodigo());
+        Application.LABOR_CONTROLLER.show(at);
+        
+    }
+    
 }

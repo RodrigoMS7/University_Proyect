@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.activos.listado;
+package proyecto2.presentation.labor.listado;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import proyecto2.logic.Activo;
+import proyecto2.logic.Labor;
+
 
 /**
  *
  * @author oscar
  */
-public class ActivoTableModel extends AbstractTableModel{
+public class LaborTableModel extends AbstractTableModel{
 
-    List<Activo> rows;
+    List<Labor> rows;
     int[] cols;
     
-    public ActivoTableModel(int[] cols,List<Activo> rows){
+    public LaborTableModel(int[] cols,List<Labor> rows){
         this.cols=cols;
         this.rows = rows;
         initColNames();
@@ -36,41 +37,42 @@ public class ActivoTableModel extends AbstractTableModel{
     public String getColumnName(int col){
         return colNames[cols[col]];
     }
-    //codigo 
-    //dependencia y funcionario si tienen
-    //si no tienen entonces sin asignar
+   
     @Override
     public Object getValueAt(int row, int col) {
-        Activo activo = rows.get(row);
+        Labor labor = rows.get(row);
         switch(cols[col]){
-            case CODIGO : return activo.getCodigo();
+            case ID : return labor.getIdLabor();
             case DEPENDENCIA: 
-//            {
-//                if(activo.getLabor().getDependencia()!=null)
-//                    return activo.getLabor().getDependencia().getCodigo();
-//                else return "Sin asignar";
-//            }
-//            case FUNCIONARIO:
-//            {
-//                if(activo.getLabor().getFuncionario()!=null)
-//                    return activo.getLabor().getFuncionario().getId();
-//                else return "Sin asignar";
-//            }
+            {
+                if(labor.getDependencia()!=null)
+                    return labor.getDependencia().getCodigo();
+                else return "Sin asignar";
+            }
+            case FUNCIONARIO:
+            {
+                if(labor.getFuncionario()!=null)
+                    return labor.getFuncionario().getId();
+                else return "Sin asignar";
+            }
+//            case DEPENDENCIA: return labor.getDependencia().getCodigo();
+//            case FUNCIONARIO: return labor.getFuncionario().getId();
             default: return "";
         }
     }
-    public Activo getRowAt(int row){
+    public Labor getRowAt(int row){
         return rows.get(row);
     }
     
     String[] colNames=new String[3];
-    public static final int CODIGO=0;
+    public static final int ID=0;
     public static final int DEPENDENCIA = 1;
     public static final int FUNCIONARIO =2;
     
     private void initColNames(){
-        colNames[CODIGO]="Codigo";
+        colNames[ID]="Id";
         colNames[DEPENDENCIA]="Dependencia";   
         colNames[FUNCIONARIO]="Funcionario";   
     }
+    
 }
