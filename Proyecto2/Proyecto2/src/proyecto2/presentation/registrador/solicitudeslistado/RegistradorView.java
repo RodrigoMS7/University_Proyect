@@ -5,6 +5,8 @@
  */
 package proyecto2.presentation.registrador.solicitudeslistado;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import javax.swing.JOptionPane;
 
@@ -62,7 +64,7 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
         comprobante = new javax.swing.JLabel();
         comprobanteFld = new javax.swing.JTextField();
         estado = new javax.swing.JLabel();
-        estadosComboBox = new javax.swing.JComboBox<>();
+        estadosComboBox = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -77,6 +79,11 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        solicitudes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                solicitudesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(solicitudes);
 
         buscarButton.setText("Buscar");
@@ -92,27 +99,25 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
         estado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         estado.setText("Estado");
 
-        estadosComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recibida", "PorVerificar", "Rechazada", "PorRotular", "Procesada" }));
+        estadosComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "por verificar", "por rotular", "procesada" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(comprobante)
-                        .addGap(2, 2, 2)
-                        .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(estado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(estadosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscarButton)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(comprobante)
+                .addGap(2, 2, 2)
+                .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(estado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(estadosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buscarButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,11 +127,11 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
                     .addComponent(comprobante)
                     .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(estado)
-                    .addComponent(estadosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                    .addComponent(buscarButton)
+                    .addComponent(estadosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(93, 93, 93)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,11 +140,21 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
         // TODO add your handling code here:
         try{
-           // controller.buscar(this.estadosComboBox.);
+           
+           String selected_text= estadosComboBox.getItemAt(estadosComboBox.getSelectedIndex());
+           controller.buscar(selected_text);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
         }
     }//GEN-LAST:event_buscarButtonActionPerformed
+
+    private void solicitudesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_solicitudesMouseClicked
+         if (evt.getClickCount() == 2) {
+            int row = this.solicitudes.getSelectedRow();
+            controller.muestraBien(row);
+            controller.hide();
+        }
+    }//GEN-LAST:event_solicitudesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

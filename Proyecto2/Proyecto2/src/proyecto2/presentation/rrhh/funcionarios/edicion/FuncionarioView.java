@@ -58,7 +58,7 @@ public class FuncionarioView extends javax.swing.JInternalFrame implements java.
         guardar = new java.awt.Button();
         cancelar = new java.awt.Button();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         idlabel.setText("ID");
 

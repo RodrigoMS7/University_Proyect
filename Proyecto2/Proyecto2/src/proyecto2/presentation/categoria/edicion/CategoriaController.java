@@ -3,28 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.rrhh.funcionarios.edicion;
+package proyecto2.presentation.categoria.edicion;
 
 import java.awt.Point;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import proyecto2.Application;
-import proyecto2.logic.Funcionario;
-
+import proyecto2.SessionUsuario;
+import proyecto2.logic.Categoria;
 
 /**
  *
- * @author oscar
+ * @author Dani
  */
-public class FuncionarioController {
-    FuncionarioView view;
-    FuncionarioModel model;
+public class CategoriaController {
+    CategoriaView view;
+    CategoriaModel model;
     Session session; 
-    public FuncionarioController(FuncionarioView view, FuncionarioModel model, Session session) {
+    SessionUsuario ses;
+    
+    public CategoriaController(CategoriaView view, CategoriaModel model, Session session, SessionUsuario ses) {
         this.view = view;
         this.model = model;
         this.session = session;
-        
+        this.ses = ses;
         view.setController(this);
         view.setModel(model);
     }
@@ -33,7 +35,7 @@ public class FuncionarioController {
         model.reset();
     }
     
-    public void reset(int modo, Funcionario current){
+    public void reset(int modo, Categoria current){
         model.reset(modo, current);
     }    
     
@@ -50,23 +52,21 @@ public class FuncionarioController {
         view.setVisible(false);
     }  
     
-     public void guardar(Funcionario funcionario) throws Exception{ 
-        Transaction t = session.beginTransaction();
+     public void guardar(Categoria categoria) throws Exception{ 
+           Transaction t = session.beginTransaction();
         switch(model.getModo()){
             case Application.MODO_AGREGAR:
-                session.save(funcionario);
+                session.save(categoria);
                 t.commit();
-                Application.FUNCIONARIOS_CONTROLLER.buscar();
-                model.setCurrent(new Funcionario());
+                Application.CATEGORIAS_CONTROLLER.refrescarBusqueda();                   
+                model.setCurrent(new Categoria());
                 model.commit();   
                 break;
             case Application.MODO_EDITAR:
-                session.merge(funcionario);
+                session.merge(categoria);
                  t.commit();
-                Application.FUNCIONARIOS_CONTROLLER.buscar();
+                Application.CATEGORIAS_CONTROLLER.refrescarBusqueda();               
                 break;
         }   
     } 
-  
-      
 }

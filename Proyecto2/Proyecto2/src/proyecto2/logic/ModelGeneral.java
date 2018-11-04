@@ -88,13 +88,25 @@ public class ModelGeneral {
         return d;
     }
     
+      public Bien getBien(int codigo) throws Exception{
+        Bien b = (Bien) ses.get(Bien.class, codigo);
+//        Hibernate.initialize(b.getActivos());
+        ses.evict(b);
+        return b;
+    }
+    
     public  Solicitud getSolicitud(int codigo) throws Exception{
         Solicitud s = (Solicitud) ses.get(Solicitud.class, codigo);
         Hibernate.initialize(s.getBiens());
         ses.evict(s);
         return s;
     }
-    
+     public Categoria getCategoria(int codigo) throws Exception{
+        Categoria s = (Categoria) ses.get(Categoria.class, codigo);
+        ses.evict(s);
+        return s;
+    }
+     
     public void agregarSolicitud(Solicitud solicitud){
         Transaction t = ses.beginTransaction();
         ses.persist(solicitud);
@@ -173,6 +185,7 @@ public class ModelGeneral {
     
     //public List<Bien> getAllBienes(){
     //    String sql = "select * from bien";
+    ///**************************
      public List<Bien> getAllBienesSolicitud(Solicitud solicitud){
         String sql = "select * from bien where solicitud="+solicitud.getCodigo();
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -181,6 +194,21 @@ public class ModelGeneral {
             while (rs.next()) {
                 Integer.parseInt(rs.getString("Cantidad"));
                 resultado.add(new Bien(rs.getString("Descripcion"), rs.getString("Marca"), rs.getString("Modelo"),Integer.parseInt(rs.getString("Cantidad")), Double.parseDouble(rs.getString("Precio"))));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+     
+     public List<Bien> getAllBienesCategoria(Solicitud solicitud){
+        String sql = "select * from bien where solicitud="+solicitud.getCodigo();
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Bien> resultado = new ArrayList<Bien>();
+            while (rs.next()) {
+                Integer.parseInt(rs.getString("Cantidad"));
+                resultado.add(new Bien(rs.getInt("codigo"),rs.getString("Descripcion"), rs.getString("Marca"), rs.getString("Modelo"),Integer.parseInt(rs.getString("Cantidad")), Double.parseDouble(rs.getString("Precio"))));
             }
             return resultado;
         } catch (SQLException e) {
@@ -441,6 +469,58 @@ public class ModelGeneral {
             return null;
         }
     } 
+     public void borraCategoria(Categoria c){
+        Transaction t = ses.beginTransaction();
+        ses.delete(c);
+        t.commit();
+    }
+
+    public List<Solicitud> solicitudesRegistradorSearch(String estado,String id, Solicitud filter){
+        String sql="select * from solicitud s inner join dependencia d on s.dependencia = d.codigo where s.estado='"+estado+"' and funcionario='"+id+"'";
+        
+        try(Statement stm=proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs=stm.executeQuery(sql);){
+            List<Solicitud> resultado= new ArrayList<Solicitud>();
+            while(rs.next()){
+                Dependencia d = new Dependencia();
+                d.setCodigo(rs.getString("codigo"));
+                d.setNombre(rs.getString("nombre"));
+                resultado.add(new Solicitud(Integer.parseInt(rs.getString("codigo")),rs.getDate("fecha"),Integer.parseInt(rs.getString("cantidad")),rs.getString("tipoAdquisicion"),rs.getString("estado"),Double.parseDouble(rs.getString("monto")),rs.getString("comprobante"),d));
+            }
+            return resultado;
+        }catch(SQLException e){
+            return null;
+        }
+    }
+
+
+     public List<Categoria> searchAllCategoria() {
+        String sql = "select * from categoria";
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Categoria> resultado = new ArrayList<Categoria>();
+            while (rs.next()) {
+                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo"),rs.getInt("id_categoria")));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+     }
+     public List<Categoria> searchCategoria(Categoria categoria) {
+        String sql = "select * from categoria where tipo like '%%%s%%'";
+        sql=String.format(sql, categoria.getTipo());
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Categoria> resultado = new ArrayList<Categoria>();
+            while (rs.next()) {
+                resultado.add(new Categoria(rs.getInt("consecutivo"),rs.getString("tipo"), rs.getInt("id_categoria") ));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+     }
 
 //    public int getUltimoCodigoSolicitud(){ BORRAR
 //        String sql = "select * from solicitud";
@@ -464,7 +544,32 @@ public class ModelGeneral {
             }
             return resultado;
         } catch(SQLException e){
+
             return null;
         }
     }
+    
+    public List<Activo> searchActivos(Activo filtro){
+        String sql="select * from activo a inner join labor l on a.labor = l.id_labor inner join dependencia d on l.dependencia = d.codigo inner join funcionario f on l.funcionario = f.id";
+        try(Statement stm= proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs= stm.executeQuery(sql);){
+            List<Activo> resultado = new ArrayList<Activo>();
+            while(rs.next()){
+                //´probando
+                Dependencia d = new Dependencia();
+                d.setCodigo(rs.getString("codigo"));
+                d.setNombre(rs.getString("nombre"));
+                
+                Funcionario f=new Funcionario();
+                f.setId(rs.getString("id"));
+                
+                Labor l=new Labor(d,f);
+                
+                resultado.add(new Activo(rs.getString("codigo"),l));
+            }
+            return resultado;
+        }catch(SQLException e){}
+        return null;
+    }
+
 }

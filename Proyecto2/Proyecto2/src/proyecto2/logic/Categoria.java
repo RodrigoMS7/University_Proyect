@@ -24,6 +24,11 @@ public class Categoria  implements java.io.Serializable {
        this.tipo = tipo;
        this.biens = biens;
     }
+     public Categoria(Integer consecutivo, String tipo, int id) {
+       this.consecutivo = consecutivo;
+       this.tipo = tipo;
+       this.idCategoria =id;
+    }
    
     public Integer getIdCategoria() {
         return this.idCategoria;

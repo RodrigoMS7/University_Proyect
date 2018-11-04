@@ -83,8 +83,11 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuItem3 = new javax.swing.JMenuItem();
         registradorMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        solicitudesRegistrador = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        activosMenu = new javax.swing.JMenu();
+        activosMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
@@ -177,13 +180,38 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         jMenu1.setText("Registrador");
 
-        jMenuItem4.setText("Solicitudes");
-        jMenu1.add(jMenuItem4);
+        solicitudesRegistrador.setText("Solicitudes");
+        solicitudesRegistrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitudesRegistradorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(solicitudesRegistrador);
 
         jMenuItem5.setText("Activos");
         jMenu1.add(jMenuItem5);
 
+        jMenuItem4.setText("categoria");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
         jMenuBar1.add(jMenu1);
+
+        activosMenu.setText("Activos");
+
+        activosMenuItem.setText("Listado");
+        activosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activosMenuItemActionPerformed(evt);
+            }
+        });
+        activosMenu.add(activosMenuItem);
+
+        jMenuBar1.add(activosMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -227,8 +255,22 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
     private void registradorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registradorMenuItemActionPerformed
         // TODO add your handling code here:
-         controller.solicitudRegistradorShow();
+         //controller.solicitudRegistradorShow();
     }//GEN-LAST:event_registradorMenuItemActionPerformed
+
+    private void solicitudesRegistradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesRegistradorActionPerformed
+        // TODO add your handling code here:
+        controller.solicitudRegistradorShow();
+    }//GEN-LAST:event_solicitudesRegistradorActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        controller.categoriaShow();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void activosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activosMenuItemActionPerformed
+        // TODO add your handling code here:
+        controller.activosShow();
+    }//GEN-LAST:event_activosMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +310,8 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu DEPENDENCIAS;
     private javax.swing.JMenu Funcionarios;
+    private javax.swing.JMenu activosMenu;
+    private javax.swing.JMenuItem activosMenuItem;
     private javax.swing.JMenuItem dependenciasListadoMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
@@ -283,5 +327,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenuItem secretariaMenuItem;
     private javax.swing.JMenu solicitudesMenu;
     private javax.swing.JMenuItem solicitudesMenuItem;
+    private javax.swing.JMenuItem solicitudesRegistrador;
     // End of variables declaration//GEN-END:variables
 }

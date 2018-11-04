@@ -5,10 +5,12 @@
  */
 package proyecto2.presentation.activos.edicion;
 
+import org.hibernate.Session;
+
 /**
  *
  * @author Dani
  */
 public class ActivoController {
-    
+
 }

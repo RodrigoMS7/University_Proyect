@@ -53,8 +53,14 @@ public class SecretariaController {
         t.commit();
         Application.SECRETARIA_CONTROLLER.refrescarBusqueda();
     }
-    public void actualizarMotivo(Solicitud s, String estado)throws Exception{
-         Transaction t=session.beginTransaction();
+    public void actualizarMotivo(Solicitud s, String estado,String motivo)throws Exception{
+        Transaction t=session.beginTransaction();
+        Solicitud sol = proyecto2.logic.ModelGeneral.instance().getSolicitud(s.getCodigo());
+        model.setEstado(sol, estado);
+        model.setMotivo(s, motivo);
+        session.merge(sol);
+        t.commit();
+        Application.SECRETARIA_CONTROLLER.refrescarBusqueda();
     }
     public void reset(){
         model.reset();

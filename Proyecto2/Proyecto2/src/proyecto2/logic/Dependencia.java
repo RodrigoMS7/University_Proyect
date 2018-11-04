@@ -27,6 +27,8 @@ public class Dependencia  implements java.io.Serializable {
     public Dependencia(String codigo) {
         this.codigo = codigo;
     }
+    
+    
     public Dependencia(String codigo, String nombre, Set solicituds, Set labors) {
        this.codigo = codigo;
        this.nombre = nombre;

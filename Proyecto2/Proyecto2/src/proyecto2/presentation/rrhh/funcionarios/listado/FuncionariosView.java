@@ -58,6 +58,8 @@ public class FuncionariosView extends javax.swing.JInternalFrame implements java
         agregar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+
         funcionariosTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
