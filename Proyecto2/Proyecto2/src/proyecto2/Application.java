@@ -58,6 +58,8 @@ import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosModel;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosView;
 import proyecto2.presentation.rrhh.labor.FuncionariosDependenciaController;
+import proyecto2.presentation.rrhh.labor.FuncionariosDependenciaModel;
+import proyecto2.presentation.rrhh.labor.FuncionariosDependenciaView;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
 import proyecto2.presentation.solicitudes.edicion.SolicitudView;
@@ -140,7 +142,6 @@ public class Application {
 
         FuncionariosModel funcionariosModel = new FuncionariosModel();
         FuncionariosView funcionariosView = new FuncionariosView();
-        funcionariosView.ocultaBotones();
         applicationView.addInternalFrame(funcionariosView);
         FuncionariosController funcionariosController = new FuncionariosController(funcionariosView, funcionariosModel, session, ses);
         FUNCIONARIOS_CONTROLLER = funcionariosController;
@@ -160,6 +161,7 @@ public class Application {
         CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session, ses);
         CATEGORIAS_CONTROLLER = categoriasController;
         applicationView.addInternalFrame(categoriaView);
+
         
         ActivosModel activosModel = new ActivosModel();
         ActivosView activosView= new ActivosView();
@@ -167,11 +169,18 @@ public class Application {
         ACTIVOS_CONTROLLER = activosController;
         applicationView.addInternalFrame(activosView);
 
+
         BienesModel bienesModel = new BienesModel();
         BienesView bienesView = new BienesView();
         BienesController bienesController = new BienesController(bienesView, bienesModel, session, ses);
         BIENES_CONTROLLER = bienesController;
         applicationView.addInternalFrame(bienesView);
+        
+        FuncionariosDependenciaModel funcDepModel = new FuncionariosDependenciaModel();
+        FuncionariosDependenciaView funcDepView = new FuncionariosDependenciaView();
+        FuncionariosDependenciaController funcDepController = new FuncionariosDependenciaController(funcDepView,funcDepModel, session, ses);
+        FUNCIONARIOS_DEPENDENCIA_CONTROLLER = funcDepController;
+        applicationView.addInternalFrame(funcDepView);
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -193,8 +202,8 @@ public class Application {
     public static ActivosController ACTIVOS_CONTROLLER;
     public static BienesController BIENES_CONTROLLER;
     public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
-    
-    
+
+
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;

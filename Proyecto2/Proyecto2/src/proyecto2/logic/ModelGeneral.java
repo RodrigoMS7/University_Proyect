@@ -176,6 +176,12 @@ public class ModelGeneral {
         t.commit();        
     }
     
+    public void borrarSolicitud(Solicitud solicitud) {
+        Transaction t = ses.beginTransaction();
+        ses.delete(solicitud);
+        t.commit(); 
+    }
+    
     
     //public List<Bien> getAllBienes(){
     //    String sql = "select * from bien";
@@ -567,7 +573,7 @@ public class ModelGeneral {
     }
 
       public List<Funcionario> searchAllFuncionariosFromDependencia(String codigo){
-        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ="+codigo;
+        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ='"+codigo+"'";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Funcionario> resultado = new ArrayList<Funcionario>();
@@ -581,7 +587,7 @@ public class ModelGeneral {
     }
       
       public List<Funcionario> searchAllFuncionariosFromDependencia(String codigo, Funcionario func){
-        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ="+codigo+" and f.id like '%%%s%%'";
+        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ='"+codigo+"' and f.id like '%%%s%%'";
         sql = String.format(sql, func.getId());
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {

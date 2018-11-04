@@ -75,7 +75,9 @@ public class FuncionariosDependenciaController {
         view.setLocation(position);
         this.show();
     }   
-    
+    public void setCodigoDependencia(String codigo){
+        model.setCodigoDependencia(codigo);
+    }
     public void hide(){
         view.setVisible(false);
     }       

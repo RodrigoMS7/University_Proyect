@@ -94,7 +94,8 @@ public class DependenciasController {
     }     
     
     public void listaFuncionariosDependencia(int row){
-        Dependencia dep= model.getDependencias().getRowAt(row); 
+        Dependencia dep= model.getDependencias().getRowAt(row);
+        Application.FUNCIONARIOS_DEPENDENCIA_CONTROLLER.setCodigoDependencia(dep.getCodigo());
         Application.FUNCIONARIOS_DEPENDENCIA_CONTROLLER.show();
     }
 }
