@@ -65,7 +65,7 @@ public class Application {
         LoginView loginView= new LoginView();
         LoginController logincontroller = new LoginController(loginView,loginModel,session, ses);
         LOGIN_CONTROLLER = logincontroller;
-        //loginView.setVisible(true);
+        loginView.setVisible(true);
 
 //        LoginModel loginModel = new LoginModel();
 //        LoginView loginView= new LoginView();
@@ -83,7 +83,7 @@ public class Application {
 //        //applicationView.setVisible(true);
 
        
-        applicationView.setVisible(true);
+        //applicationView.setVisible(true);
 
 //        
 //        
@@ -187,7 +187,7 @@ public class Application {
 
        // applicationView.setVisible(true);
 
-        applicationView.setVisible(true);
+        //applicationView.setVisible(true);
 
         
     }

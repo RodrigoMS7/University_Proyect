@@ -164,6 +164,12 @@ public class ModelGeneral {
         t.commit();        
     }
     
+    public void borrarSolicitud(Solicitud solicitud) {
+        Transaction t = ses.beginTransaction();
+        ses.delete(solicitud);
+        t.commit(); 
+    }
+    
     
     //public List<Bien> getAllBienes(){
     //    String sql = "select * from bien";

@@ -7,6 +7,7 @@ package proyecto2.presentation.administrador.listado;
 
 import proyecto2.presentation.solicitudes.listado.*;
 import java.awt.Point;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.Session;
@@ -83,15 +84,15 @@ public class AdministradorSolicitudController {
 //        Application.FUNCIONARIO_CONTROLLER.show(at);
 //    }
 //
-//    public void borrar(int row){  
-//        Funcionario seleccionada = model.getFuncionarios().getRowAt(row); 
-//        try {
-//            proyecto2.logic.ModelGeneral.instance().eliminaFuncionario(seleccionada);
-//        } catch (Exception ex) { }
-//        List<Funcionario> rowsMod = proyecto2.logic.ModelGeneral.instance().searchFuncionarios(model.getFilter());
-//        model.setFuncionarios(rowsMod);
-//        model.commit();
-//    }
+    public void borrar(int row) throws ParseException{  
+        Solicitud seleccionada = model.getSolicitudes().getRowAt(row); 
+        try {
+            proyecto2.logic.ModelGeneral.instance().borrarSolicitud(seleccionada);
+        } catch (Exception ex) { }
+        List<Solicitud> rowsMod = proyecto2.logic.ModelGeneral.instance().searchSolicitudes(model.getFilter());
+        model.setSolicitudes(rowsMod);
+        model.commit();
+    }
 
     public void reset(){
         model.reset();
