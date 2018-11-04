@@ -37,12 +37,10 @@ public class SecretariaController {
     }
     
     public void refrescarBusqueda() throws Exception{
-
-        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("recibido",model.getFilter());
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("Solicitud recibida",model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
         if (rows.isEmpty()) throw new Exception("Ningún dato coincide");
-
     }
     
     public void actualizar(Solicitud s, String estado)throws Exception{

@@ -98,4 +98,10 @@ public class DependenciasController {
         Application.FUNCIONARIOS_DEPENDENCIA_CONTROLLER.setCodigoDependencia(dep.getCodigo());
         Application.FUNCIONARIOS_DEPENDENCIA_CONTROLLER.show();
     }
+
+    void asignaFuncionario(int row) {
+        Dependencia dep= model.getDependencias().getRowAt(row);
+        Application.LABOR_CONTOLLER.setCodigoDependencia(dep.getCodigo());
+        Application.LABOR_CONTOLLER.show();     
+    }
 }

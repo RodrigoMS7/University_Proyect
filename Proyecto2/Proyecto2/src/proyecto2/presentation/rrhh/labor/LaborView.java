@@ -6,37 +6,40 @@
 package proyecto2.presentation.rrhh.labor;
 
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import proyecto2.Application;
 import proyecto2.logic.Funcionario;
+import proyecto2.logic.Puesto;
 
 /**
  *
  * @author Dani
  */
-public class FuncionariosDependenciaView extends javax.swing.JInternalFrame implements java.util.Observer {
+public class LaborView extends javax.swing.JInternalFrame implements java.util.Observer {
 
-    FuncionariosDependenciaController controller;
-    FuncionariosDependenciaModel model;
-    public FuncionariosDependenciaView() throws Exception {
+    LaborController controller;
+    LaborModel model;
+    public LaborView() throws Exception {
         super("", false, true);
         initComponents();
     }
 
-    public FuncionariosDependenciaController getController() {
+    public LaborController getController() {
         return controller;
     }
 
-    public void setController(FuncionariosDependenciaController controller) {
+    public void setController(LaborController controller) {
         this.controller = controller;
     }
 
-    public FuncionariosDependenciaModel getModel() {
+    public LaborModel getModel() {
         return model;
     }
 
-    public void setModel(FuncionariosDependenciaModel model) {
+    public void setModel(LaborModel model) {
         this.model = model;
         model.addObserver(this);
     }
@@ -55,7 +58,8 @@ public class FuncionariosDependenciaView extends javax.swing.JInternalFrame impl
         IDlabl = new javax.swing.JLabel();
         idTxtField = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        puesto = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -86,7 +90,12 @@ public class FuncionariosDependenciaView extends javax.swing.JInternalFrame impl
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Registrador", "Secretaria", "Jefe OCCB", "Jefe RRHH", "Administrador" }));
+        jButton1.setText("Agregar Funcionario a Dependencia");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,30 +105,38 @@ public class FuncionariosDependenciaView extends javax.swing.JInternalFrame impl
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(IDlabl)
                         .addGap(18, 18, 18)
                         .addComponent(idTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(buscar)
-                        .addGap(0, 32, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                        .addComponent(buscar)))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IDlabl)
-                    .addComponent(idTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(IDlabl)
+                            .addComponent(idTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buscar))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,8 +151,21 @@ public class FuncionariosDependenciaView extends javax.swing.JInternalFrame impl
     }//GEN-LAST:event_buscarActionPerformed
 
     private void funcionariosTabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionariosTabMouseClicked
-
+        if (evt.getClickCount() == 2) {
+            int row = this.funcionariosTab.getSelectedRow();
+            int col = this.funcionariosTab.getSelectedColumn();
+            controller.editar(row, evt.getLocationOnScreen());
+        }
     }//GEN-LAST:event_funcionariosTabMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int row = funcionariosTab.getSelectedRow();
+        try {
+            controller.agregaLabor(row,(Puesto)puesto.getSelectedItem());
+        } catch (Exception ex) {
+            Logger.getLogger(LaborView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -143,16 +173,19 @@ public class FuncionariosDependenciaView extends javax.swing.JInternalFrame impl
     private javax.swing.JButton buscar;
     private javax.swing.JTable funcionariosTab;
     private javax.swing.JTextField idTxtField;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox puesto;
     // End of variables declaration//GEN-END:variables
 
+   
     @Override
     public void update(Observable o, Object arg) {
         this.limpiarErrores();
         Funcionario filtro = model.getFilter();
         this.fromFuncionario(filtro);
         this.funcionariosTab.setModel(model.getFuncionarios());
+        this.puesto.setModel(model.getPuestos());
     }
     
       boolean validar(){
@@ -179,4 +212,6 @@ public class FuncionariosDependenciaView extends javax.swing.JInternalFrame impl
       public void limpiarErrores(){
        this.IDlabl.setForeground(Application.COLOR_OK); 
    }
+     
+     
 }

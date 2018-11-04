@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto2.presentation.rrhh.labor;
+package proyecto2.presentation.rrhh.listado;
 
 import java.awt.Point;
 import java.util.Arrays;

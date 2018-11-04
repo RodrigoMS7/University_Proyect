@@ -57,9 +57,12 @@ import proyecto2.presentation.rrhh.funcionarios.edicion.FuncionarioView;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosController;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosModel;
 import proyecto2.presentation.rrhh.funcionarios.listado.FuncionariosView;
-import proyecto2.presentation.rrhh.labor.FuncionariosDependenciaController;
-import proyecto2.presentation.rrhh.labor.FuncionariosDependenciaModel;
-import proyecto2.presentation.rrhh.labor.FuncionariosDependenciaView;
+import proyecto2.presentation.rrhh.labor.LaborController;
+import proyecto2.presentation.rrhh.labor.LaborModel;
+import proyecto2.presentation.rrhh.labor.LaborView;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaController;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaModel;
+import proyecto2.presentation.rrhh.listado.FuncionariosDependenciaView;
 import proyecto2.presentation.solicitudes.edicion.SolicitudController;
 import proyecto2.presentation.solicitudes.edicion.SolicitudModel;
 import proyecto2.presentation.solicitudes.edicion.SolicitudView;
@@ -181,6 +184,12 @@ public class Application {
         FuncionariosDependenciaController funcDepController = new FuncionariosDependenciaController(funcDepView,funcDepModel, session, ses);
         FUNCIONARIOS_DEPENDENCIA_CONTROLLER = funcDepController;
         applicationView.addInternalFrame(funcDepView);
+        
+        LaborModel laborModel = new LaborModel();
+        LaborView laborView = new LaborView();
+        LaborController laborController = new LaborController(laborView, laborModel, session,ses);
+        applicationView.addInternalFrame(laborView);
+        LABOR_CONTOLLER = laborController; 
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -202,7 +211,7 @@ public class Application {
     public static ActivosController ACTIVOS_CONTROLLER;
     public static BienesController BIENES_CONTROLLER;
     public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
-
+    public static LaborController LABOR_CONTOLLER;
 
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;

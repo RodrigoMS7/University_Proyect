@@ -3,6 +3,7 @@ package proyecto2.logic;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -22,7 +23,11 @@ public class Puesto  implements java.io.Serializable {
        this.nombre = nombre;
        this.labors = labors;
     }
-   
+    public Puesto(String nombre, int id) {
+       this.nombre = nombre;
+       this.idPuesto = id;
+    }
+    
     public Integer getIdPuesto() {
         return this.idPuesto;
     }
@@ -45,8 +50,12 @@ public class Puesto  implements java.io.Serializable {
         this.labors = labors;
     }
 
-
-
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
+    
 
 }
 

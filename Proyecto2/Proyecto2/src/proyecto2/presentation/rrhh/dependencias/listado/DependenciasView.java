@@ -85,6 +85,8 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+
         buscarButton.setText("buscar");
         buscarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +136,11 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
         });
 
         jButton2.setText("Agrega Funcionario a Dependencia");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,6 +231,11 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
         int row = this.dependenciasFld.getSelectedRow();
         controller.listaFuncionariosDependencia(row);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+         int row = this.dependenciasFld.getSelectedRow();
+        controller.asignaFuncionario(row);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

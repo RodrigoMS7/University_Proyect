@@ -94,8 +94,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/ampliacion.png"))); // NOI18N
 
-        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
@@ -106,6 +104,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1088, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         DEPENDENCIAS.setText("Dependencias");
 
@@ -124,7 +123,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         Funcionarios.setText("Funcionarios");
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Listado");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
