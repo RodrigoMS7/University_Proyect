@@ -50,6 +50,10 @@ public class LoginController {
         view.setVisible(true);
     }
     
+    public void show(){
+        view.setVisible(true);
+    }
+    
     public void exit(){
         System.exit(0);
     }

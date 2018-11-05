@@ -115,7 +115,7 @@ public class ApplicationController {
         this.show();
     }   
     public void hide(){
-        Application.DEPENDENCIAS_CONTROLLER.hide();
+        //Application.DEPENDENCIAS_CONTROLLER.hide();
         //Application.ESTADOS_CONTROLLER.hide();        
         view.setVisible(false);
     }   
