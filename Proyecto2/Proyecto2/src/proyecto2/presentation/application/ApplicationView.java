@@ -5,6 +5,7 @@
  */
 package proyecto2.presentation.application;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Observable;
@@ -12,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import proyecto2.SessionUsuario;
 
 /**
  *
@@ -22,7 +24,7 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     ApplicationController controller;
     ApplicationModel model;
     Dimension dim;
-    
+   
     public void setController(ApplicationController controller){
         this.controller=controller;
     }
@@ -61,6 +63,23 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         this.desktopPane.add(f);
        } catch(Exception ex){ }
    }
+    public void habilitaSecretario(){
+        secretaria.setEnabled(true);
+    }
+     public void habilitaJefe(){
+        jefe.setEnabled(true);
+    }
+      public void habilitaRegistrador(){
+        registrador.setEnabled(true);
+    }
+    public void habilitaAdministrador() {
+        administrador.setEnabled(true);
+    }
+
+    public void habilitaRRHH() {
+        RRHH.setEnabled(true);
+        //RRHH.setForeground(Color.GRAY);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,32 +92,29 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         desktopPane = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        DEPENDENCIAS = new javax.swing.JMenu();
+        RRHH = new javax.swing.JMenu();
         dependenciasListadoMenuItem = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        Funcionarios = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         solicitudesMenu = new javax.swing.JMenu();
         solicitudesMenuItem = new javax.swing.JMenuItem();
-        secretariaMenuItem = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        registradorMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        registrador = new javax.swing.JMenu();
         solicitudesRegistrador = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         activosMenu = new javax.swing.JMenu();
         activosMenuItem = new javax.swing.JMenuItem();
-        laboresMenu = new javax.swing.JMenu();
-        laboresMenuItem = new javax.swing.JMenuItem();
+        secretaria = new javax.swing.JMenu();
+        secretariaMenuItem = new javax.swing.JMenuItem();
+        administrador = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jefe = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/ampliacion.png"))); // NOI18N
-
-        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
@@ -110,33 +126,28 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1088, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        DEPENDENCIAS.setText("Dependencias");
+        RRHH.setText("Jefe de RRHH");
+        RRHH.setEnabled(false);
 
-        dependenciasListadoMenuItem.setText("Listado");
+        dependenciasListadoMenuItem.setText("Dependencias");
         dependenciasListadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dependenciasListadoMenuItemActionPerformed(evt);
             }
         });
-        DEPENDENCIAS.add(dependenciasListadoMenuItem);
+        RRHH.add(dependenciasListadoMenuItem);
 
-        jMenuBar1.add(DEPENDENCIAS);
-
-        jMenu2.setText("Exit");
-        jMenuBar1.add(jMenu2);
-
-        Funcionarios.setText("Funcionarios");
-
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Funcionarios");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        Funcionarios.add(jMenuItem1);
+        RRHH.add(jMenuItem1);
 
-        jMenuBar1.add(Funcionarios);
+        jMenuBar1.add(RRHH);
 
         solicitudesMenu.setText("Solicitudes");
 
@@ -148,52 +159,26 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         });
         solicitudesMenu.add(solicitudesMenuItem);
 
-        secretariaMenuItem.setText("secretaria");
-        secretariaMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                secretariaMenuItemActionPerformed(evt);
-            }
-        });
-        solicitudesMenu.add(secretariaMenuItem);
-
-        jMenuItem2.setText("jefe");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        solicitudesMenu.add(jMenuItem2);
-
-        jMenuItem3.setText("Administrador");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        solicitudesMenu.add(jMenuItem3);
-
-        registradorMenuItem.setText("Registrador");
-        registradorMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registradorMenuItemActionPerformed(evt);
-            }
-        });
-        solicitudesMenu.add(registradorMenuItem);
-
         jMenuBar1.add(solicitudesMenu);
 
-        jMenu1.setText("Registrador");
+        registrador.setText("Registrador");
+        registrador.setEnabled(false);
 
-        solicitudesRegistrador.setText("Solicitudes");
+        solicitudesRegistrador.setText("Bien");
         solicitudesRegistrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 solicitudesRegistradorActionPerformed(evt);
             }
         });
-        jMenu1.add(solicitudesRegistrador);
+        registrador.add(solicitudesRegistrador);
 
         jMenuItem5.setText("Activos");
-        jMenu1.add(jMenuItem5);
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        registrador.add(jMenuItem5);
 
         jMenuItem4.setText("categoria");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -201,9 +186,9 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        registrador.add(jMenuItem4);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(registrador);
 
         activosMenu.setText("Activos");
 
@@ -217,17 +202,44 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
 
         jMenuBar1.add(activosMenu);
 
-        laboresMenu.setText("Labores");
+        secretaria.setText("Secretaria");
 
-        laboresMenuItem.setText("Listado");
-        laboresMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        secretariaMenuItem.setText("Solicitudes");
+        secretariaMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                laboresMenuItemActionPerformed(evt);
+                secretariaMenuItemActionPerformed(evt);
             }
         });
-        laboresMenu.add(laboresMenuItem);
+        secretaria.add(secretariaMenuItem);
 
-        jMenuBar1.add(laboresMenu);
+        jMenuBar1.add(secretaria);
+
+        administrador.setText("Administrador");
+
+        jMenuItem3.setText("Solicitudes");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        administrador.add(jMenuItem3);
+
+        jMenuBar1.add(administrador);
+
+        jefe.setText("Jefe de la OCCB");
+
+        jMenuItem2.setText("Solicitudes");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jefe.add(jMenuItem2);
+
+        jMenuBar1.add(jefe);
+
+        jMenu2.setText("Exit");
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -246,7 +258,11 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     }// </editor-fold>//GEN-END:initComponents
 
     private void dependenciasListadoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dependenciasListadoMenuItemActionPerformed
-        controller.dependenciasShow();
+        try {
+            controller.dependenciasShow();
+        } catch (Exception ex) {
+            Logger.getLogger(ApplicationView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_dependenciasListadoMenuItemActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -269,11 +285,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         controller.AdministradorSolicitudShow();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void registradorMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registradorMenuItemActionPerformed
-        // TODO add your handling code here:
-         //controller.solicitudRegistradorShow();
-    }//GEN-LAST:event_registradorMenuItemActionPerformed
-
     private void solicitudesRegistradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesRegistradorActionPerformed
         // TODO add your handling code here:
         controller.solicitudRegistradorShow();
@@ -288,14 +299,9 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         controller.activosShow();
     }//GEN-LAST:event_activosMenuItemActionPerformed
 
-    private void laboresMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laboresMenuItemActionPerformed
-        try {
-            // TODO add your handling code here:
-            controller.laborsShow();
-        } catch (Exception ex) {
-            Logger.getLogger(ApplicationView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_laboresMenuItemActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,14 +339,13 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu DEPENDENCIAS;
-    private javax.swing.JMenu Funcionarios;
+    private javax.swing.JMenu RRHH;
     private javax.swing.JMenu activosMenu;
     private javax.swing.JMenuItem activosMenuItem;
+    private javax.swing.JMenu administrador;
     private javax.swing.JMenuItem dependenciasListadoMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -348,9 +353,9 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenu laboresMenu;
-    private javax.swing.JMenuItem laboresMenuItem;
-    private javax.swing.JMenuItem registradorMenuItem;
+    private javax.swing.JMenu jefe;
+    private javax.swing.JMenu registrador;
+    private javax.swing.JMenu secretaria;
     private javax.swing.JMenuItem secretariaMenuItem;
     private javax.swing.JMenu solicitudesMenu;
     private javax.swing.JMenuItem solicitudesMenuItem;

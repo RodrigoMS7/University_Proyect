@@ -77,21 +77,16 @@ public class ApplicationController {
     }
     
     public void categoriaShow() {
+        Application.CATEGORIAS_CONTROLLER.ocultaBoton();
         Application.CATEGORIAS_CONTROLLER.show();
     }
     public void activosShow(){
-//        Application.ACTIVOS_CONTROLLER.show();
+        Application.ACTIVOS_CONTROLLER.show();
     }
-
-    public void laborsShow() throws Exception{
-        Application.LABORS_CONTROLLER.show();
-    }
-
     
 //     void showBien() {
 //         Application.BIENES_CONTROLLER.show();
 //     }
-
     public void enter(){
         this.reset();
         this.show();

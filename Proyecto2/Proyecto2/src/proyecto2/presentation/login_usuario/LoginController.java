@@ -39,7 +39,7 @@ public class LoginController {
         sessUsu.setAttibute(Application.USER_ATTRIBUTE, real);
         view.setVisible(false);
         Application.APPLICATION_CONTROLLER.setUsuario(real);
-        //Application.APPLICATION_CONTROLLER.habilitaBotones();
+        Application.APPLICATION_CONTROLLER.habilitaBotones();
         Application.APPLICATION_CONTROLLER.enter();
        
     }   

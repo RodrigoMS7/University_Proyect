@@ -51,7 +51,7 @@ public class BienesModel extends java.util.Observable {
     }
     
     public void setBien(List<Bien> bienes){
-        int[] cols = {BienTableModel.CODIGO,BienTableModel.DESCRIPCION,BienTableModel.MARCA,BienTableModel.MODELO,BienTableModel.CANTIDAD,BienTableModel.PRECIO};
+        int[] cols = {BienTableModel.CODIGO,BienTableModel.DESCRIPCION,BienTableModel.MARCA,BienTableModel.MODELO,BienTableModel.CANTIDAD,BienTableModel.PRECIO, BienTableModel.CATEGORIA};
         this.bienes = new BienTableModel(cols, bienes);    
     }
     

@@ -29,9 +29,9 @@ import proyecto2.presentation.categoria.edicion.CategoriaController;
 import proyecto2.presentation.categoria.listado.CategoriasController;
 import proyecto2.presentation.categoria.listado.CategoriasModel;
 import proyecto2.presentation.categoria.listado.CategoriasView;
-import proyecto2.presentation.labor.listado.LaborsController;
-import proyecto2.presentation.labor.listado.LaborsModel;
-import proyecto2.presentation.labor.listado.LaborsView;
+import proyecto2.presentation.registrador.labor.listado.LaborsController;
+import proyecto2.presentation.registrador.labor.listado.LaborsModel;
+import proyecto2.presentation.registrador.labor.listado.LaborsView;
 import proyecto2.presentation.login_usuario.LoginController;
 import proyecto2.presentation.login_usuario.LoginModel;
 import proyecto2.presentation.login_usuario.LoginView;
@@ -167,7 +167,6 @@ public class Application {
         CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session, ses);
         CATEGORIAS_CONTROLLER = categoriasController;
         applicationView.addInternalFrame(categoriaView);
-
         
         ActivosModel activosModel = new ActivosModel();
         ActivosView activosView= new ActivosView();
@@ -201,6 +200,7 @@ public class Application {
         LaborController laborController = new LaborController(laborView, laborModel, session,ses);
         applicationView.addInternalFrame(laborView);
         LABOR_CONTOLLER = laborController; 
+        
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -224,6 +224,7 @@ public class Application {
     public static LaborsController LABORS_CONTROLLER;
     public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
     public static LaborController LABOR_CONTOLLER;
+ 
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;

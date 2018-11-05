@@ -47,6 +47,12 @@ public class BienTableModel extends AbstractTableModel {
             case CANTIDAD: return bien.getCantidad();
             case PRECIO: return bien.getPrecio();
             case CODIGO: return bien.getCodigo();
+            case CATEGORIA: {
+                if(bien.getCategoria()==null)
+                    return "Sin asignar";
+                else 
+                    return bien.getCategoria().getTipo();
+            }
             default: return "";
         }
     }    
@@ -61,6 +67,7 @@ public class BienTableModel extends AbstractTableModel {
     public static final int CANTIDAD = 3;
     public static final int PRECIO = 4;
     public static final int CODIGO = 5;
+    public static final int CATEGORIA = 6;
     
     String[] colNames = new String[10];
     private void initColNames(){
@@ -70,5 +77,6 @@ public class BienTableModel extends AbstractTableModel {
         colNames[CANTIDAD]= "Cantidad";
         colNames[PRECIO]= "Precio";
         colNames[CODIGO]= "Codigo";
+        colNames[CATEGORIA]= "Categoria";
     }
 }
