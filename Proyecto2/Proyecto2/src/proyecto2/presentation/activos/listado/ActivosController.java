@@ -63,8 +63,8 @@ public class ActivosController {
     
     public void getLabores(Point at, int row) throws Exception {
         Activo seleccionado = model.getActivos().getRowAt(row);
-        Application.LABOR_CONTROLLER.setCodigoActivo(seleccionado.getCodigo());
-        Application.LABOR_CONTROLLER.show(at);
+        Application.LABORS_CONTROLLER.setCodigoActivo(seleccionado.getCodigo());
+        Application.LABORS_CONTROLLER.show(at);
         
     }
     
