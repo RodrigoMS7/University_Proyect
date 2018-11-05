@@ -14,10 +14,6 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import proyecto2.SessionUsuario;
-import AppPackage.AnimationClass;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import proyecto2.Application;
 
 /**
  *
@@ -50,7 +46,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         
         this.setLocationRelativeTo(null);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setIconImage(new ImageIcon(getClass().getResource("/proyecto2/presentation/login_usuario/images/100.png")).getImage());
         //this.setSize(this.getMaximumSize());
     }
     @Override
@@ -95,14 +90,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private void initComponents() {
 
         desktopPane = new javax.swing.JDesktopPane();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        label_logout = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         RRHH = new javax.swing.JMenu();
@@ -122,59 +109,24 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuItem3 = new javax.swing.JMenuItem();
         jefe = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setSize(new java.awt.Dimension(0, 0));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        desktopPane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/icons8_Menu_32px_1.png"))); // NOI18N
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-        desktopPane.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
-
-        jLabel4.setFont(new java.awt.Font("Gill Sans MT", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Opciones");
-        desktopPane.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/thumb-1920-418892.jpg"))); // NOI18N
-        desktopPane.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
-
-        label_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/if_sign-in_59203.png"))); // NOI18N
-        label_logout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                label_logoutMouseClicked(evt);
-            }
-        });
-        desktopPane.add(label_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 60, 40, 40));
-
-        jLabel5.setFont(new java.awt.Font("High Tower Text", 1, 36)); // NOI18N
-        jLabel5.setText("Funcionario: ");
-        desktopPane.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, -1, -1));
-
-        jLabel6.setFont(new java.awt.Font("High Tower Text", 1, 36)); // NOI18N
-        jLabel6.setText("Puesto: ");
-        desktopPane.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 380, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("High Tower Text", 1, 36)); // NOI18N
-        jLabel7.setText("Cédula: ");
-        desktopPane.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 320, -1, -1));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/icons8_User_96px_2.png"))); // NOI18N
-        desktopPane.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 100, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto2/presentation/application/images/ampliacion.png"))); // NOI18N
-        desktopPane.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, 1088));
 
-        getContentPane().add(desktopPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1088, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        desktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         RRHH.setText("Jefe de RRHH");
         RRHH.setEnabled(false);
@@ -251,7 +203,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuBar1.add(activosMenu);
 
         secretaria.setText("Secretaria");
-        secretaria.setEnabled(false);
 
         secretariaMenuItem.setText("Solicitudes");
         secretariaMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +215,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuBar1.add(secretaria);
 
         administrador.setText("Administrador");
-        administrador.setEnabled(false);
 
         jMenuItem3.setText("Solicitudes");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -277,7 +227,6 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         jMenuBar1.add(administrador);
 
         jefe.setText("Jefe de la OCCB");
-        jefe.setEnabled(false);
 
         jMenuItem2.setText("Solicitudes");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -287,17 +236,23 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         });
         jefe.add(jMenuItem2);
 
-        jMenuItem6.setText("ActivoGeneral");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jefe.add(jMenuItem6);
-
         jMenuBar1.add(jefe);
 
+        jMenu2.setText("Exit");
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -344,30 +299,9 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
         controller.activosShow();
     }//GEN-LAST:event_activosMenuItemActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        controller.activosGeneralShow();
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        AnimationClass logout = new AnimationClass();
-        logout.jLabelXRight(-40, 10, 10, 5, this.label_logout);
-        
-        logout.jLabelXLeft(10, -40, 10, 5, this.label_logout);
-    }//GEN-LAST:event_jLabel3MouseClicked
-
-    private void label_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_logoutMouseClicked
-        int dialogo = JOptionPane.YES_NO_OPTION;
-        int resultado = JOptionPane.showConfirmDialog(null,"¿Está seguro de volver a login?", "Exit", dialogo);
-        if(resultado == 0){
-            this.controller.hide();
-            Application.LOGIN_CONTROLLER.logout();
-            //Application.LOGIN_CONTROLLER.show();
-        }
-    }//GEN-LAST:event_label_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -412,22 +346,14 @@ public class ApplicationView extends javax.swing.JFrame implements java.util.Obs
     private javax.swing.JMenuItem dependenciasListadoMenuItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jefe;
-    private javax.swing.JLabel label_logout;
     private javax.swing.JMenu registrador;
     private javax.swing.JMenu secretaria;
     private javax.swing.JMenuItem secretariaMenuItem;

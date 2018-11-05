@@ -84,15 +84,6 @@ public class ApplicationController {
         Application.ACTIVOS_CONTROLLER.show();
     }
     
-    void activosGeneralShow() {
-        try {
-            Application.ACTIVO_GENERAL_CONTROLLER.getView().toSolicitudFromActivo();
-        } catch (Exception ex) {
-            Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        Application.ACTIVO_GENERAL_CONTROLLER.show();
-    }
-    
 //     void showBien() {
 //         Application.BIENES_CONTROLLER.show();
 //     }
@@ -115,7 +106,7 @@ public class ApplicationController {
         this.show();
     }   
     public void hide(){
-        //Application.DEPENDENCIAS_CONTROLLER.hide();
+        Application.DEPENDENCIAS_CONTROLLER.hide();
         //Application.ESTADOS_CONTROLLER.hide();        
         view.setVisible(false);
     }   

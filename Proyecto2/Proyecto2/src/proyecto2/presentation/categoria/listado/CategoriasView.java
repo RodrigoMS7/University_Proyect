@@ -22,7 +22,7 @@ public class CategoriasView extends javax.swing.JInternalFrame implements java.u
 
     CategoriasModel model;
     CategoriasController controller;
-
+    
     public void ocultaBotonAsignaCat(){
         this.asignaCat.setVisible(false);
     }
