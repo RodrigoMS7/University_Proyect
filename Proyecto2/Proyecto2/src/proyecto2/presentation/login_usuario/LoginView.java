@@ -285,7 +285,7 @@ public class LoginView extends javax.swing.JFrame implements java.util.Observer 
         int dialogo = JOptionPane.YES_NO_OPTION;
         int resultado = JOptionPane.showConfirmDialog(null,"¿Está seguro de salir?", "Exit", dialogo);
         if(resultado == 0)
-            System.exit(0);
+            this.controller.exit();
     }//GEN-LAST:event_label_ExitMouseClicked
 
     private void label_MinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label_MinMouseClicked

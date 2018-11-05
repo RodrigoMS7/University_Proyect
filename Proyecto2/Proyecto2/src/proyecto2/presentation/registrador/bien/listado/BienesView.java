@@ -19,6 +19,7 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
     BienesController controller;
 
     public BienesView() {
+        super("",false,true);
         initComponents();
     }
 
@@ -134,7 +135,7 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_SalirActionPerformed
-        System.exit(0);
+        //System.exit(0);
     }//GEN-LAST:event_button_SalirActionPerformed
 
     private void button_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_BuscarActionPerformed
@@ -150,6 +151,7 @@ public class BienesView extends javax.swing.JInternalFrame implements java.util.
         Bien seleccionada = model.getBienes().getRowAt(row);
         Application.CATEGORIAS_CONTROLLER.setCodBbien(seleccionada.getCodigo());
         Application.CATEGORIAS_CONTROLLER.show();
+        Application.CATEGORIAS_CONTROLLER.muestraBoton();
     }//GEN-LAST:event_buttonFuncActionPerformed
 
 //    Bien toBien(){

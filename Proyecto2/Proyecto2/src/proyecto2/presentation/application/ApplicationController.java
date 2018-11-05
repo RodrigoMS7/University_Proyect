@@ -66,7 +66,7 @@ public class ApplicationController {
     }
     public void AdministradorSolicitudShow(){
         try {
-            Application.ADMINISTRADOR_SOLICITUD_CONTROLLER.getView().toSolicitudFromDependencia();
+            Application.ADMINISTRADOR_SOLICITUD_CONTROLLER.getView().toSolicitudFromSolicitud();
         } catch (Exception ex) {
             Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,7 +77,7 @@ public class ApplicationController {
     }
     
     public void categoriaShow() {
-       // Application.CATEGORIAS_CONTROLLER.ocultaBoton();
+        Application.CATEGORIAS_CONTROLLER.ocultaBoton();
         Application.CATEGORIAS_CONTROLLER.show();
     }
     public void activosShow(){

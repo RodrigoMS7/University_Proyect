@@ -39,7 +39,7 @@ public class LoginController {
         sessUsu.setAttibute(Application.USER_ATTRIBUTE, real);
         view.setVisible(false);
         Application.APPLICATION_CONTROLLER.setUsuario(real);
-        //Application.APPLICATION_CONTROLLER.habilitaBotones();
+        Application.APPLICATION_CONTROLLER.habilitaBotones();
         Application.APPLICATION_CONTROLLER.enter();
        
     }   
@@ -47,6 +47,10 @@ public class LoginController {
     public void logout(){
         sessUsu.removeAttribute(Application.USER_ATTRIBUTE);
         model.setCurrent(new Usuario());
+        view.setVisible(true);
+    }
+    
+    public void show(){
         view.setVisible(true);
     }
     

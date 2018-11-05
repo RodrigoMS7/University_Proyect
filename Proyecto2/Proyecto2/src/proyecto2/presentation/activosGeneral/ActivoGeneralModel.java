@@ -19,54 +19,54 @@ import proyecto2.presentation.SolicitudTableModel;
 public class ActivoGeneralModel extends java.util.Observable{
     
     Activo filter;
-    ActivoGeneralTableModel solicitudes;
+    ActivoGeneralTableModel activos;
     Activo seleccionada;
 
-//    public ActivoGeneralModel() {
-//        this.reset();
-//    }
+    public ActivoGeneralModel() {
+        this.reset();
+    }
 
-//    public void reset(){ 
-//        filter = new Solicitud();
-//        List<Solicitud> rows = new ArrayList<>();
-//        seleccionada=null;
-//        this.setSolicitudes(rows);
-//        this.commit();
-//    }
-//
-//    public Solicitud getFilter() {
-//        return filter;
-//    }
-//
-//    public void setFilter(Solicitud filter) {
-//        this.filter = filter;
-//    }
-//
-//    public SolicitudTableModel getSolicitudes() {
-//        return solicitudes;
-//    }
-//    
-//    public void setSolicitudes(List<Solicitud> solicitudes) {
-//        int[] cols={SolicitudTableModel.CODIGO, SolicitudTableModel.COMPROBANTE,SolicitudTableModel.FECHA,SolicitudTableModel.TIPO,SolicitudTableModel.ESTADO,SolicitudTableModel.CANTIDAD,SolicitudTableModel.MONTO};
-//        this.solicitudes= new SolicitudTableModel(cols, solicitudes);
-//    }
-//
-//    public Solicitud getSeleccionada() {
-//        return seleccionada;
-//    }
-//
-//    public void setSeleccionada(Solicitud seleccionada) {
-//        this.seleccionada = seleccionada;
-//    }
-//
-//    @Override
-//    public void addObserver(Observer o) {
-//        super.addObserver(o);
-//        this.commit();
-//    }
-//
-//    public void commit(){
-//        setChanged();
-//        notifyObservers();
-//    }
+    public void reset(){ 
+        filter = new Activo();
+        List<Activo> rows = new ArrayList<>();
+        seleccionada = null;
+        this.setActivos(rows);
+        this.commit();
+    }
+
+    public Activo getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Activo filter) {
+        this.filter = filter;
+    }
+
+    public ActivoGeneralTableModel getActivos() {
+        return activos;
+    }
+    
+    public void setActivos(List<Activo> activos) {
+        int[] cols={ActivoGeneralTableModel.CODIGO, ActivoGeneralTableModel.CATEGORIA,ActivoGeneralTableModel.DESCRIPCION,ActivoGeneralTableModel.DEPENDENCIA,ActivoGeneralTableModel.FUNCIONARIO_RESPONSABLE};
+        this.activos = new ActivoGeneralTableModel(cols, activos);
+    }
+
+    public Activo getSeleccionada() {
+        return seleccionada;
+    }
+
+    public void setSeleccionada(Activo seleccionada) {
+        this.seleccionada = seleccionada;
+    }
+
+    @Override
+    public void addObserver(Observer o) {
+        super.addObserver(o);
+        this.commit();
+    }
+
+    public void commit(){
+        setChanged();
+        notifyObservers();
+    }
 }

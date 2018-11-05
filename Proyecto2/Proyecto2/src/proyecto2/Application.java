@@ -15,12 +15,19 @@ import proyecto2.logic.Solicitud;
 import proyecto2.presentation.activos.listado.ActivosController;
 import proyecto2.presentation.activos.listado.ActivosModel;
 import proyecto2.presentation.activos.listado.ActivosView;
+import proyecto2.presentation.activosGeneral.ActivoGeneralController;
+import proyecto2.presentation.activosGeneral.ActivoGeneralModel;
+import proyecto2.presentation.activosGeneral.ActivoGeneralView;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudController;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudModel;
 import proyecto2.presentation.administrador.listado.AdministradorSolicitudView;
 import proyecto2.presentation.application.ApplicationController;
 import proyecto2.presentation.application.ApplicationModel;
 import proyecto2.presentation.application.ApplicationView;
+//import proyecto2.presentation.bien.edicion.BienController;
+//import proyecto2.presentation.bien.listado.BienesController;
+//import proyecto2.presentation.bien.listado.BienesModel;
+//import proyecto2.presentation.bien.listado.BienesView;
 import proyecto2.presentation.registrador.bien.edicion.BienController;
 import proyecto2.presentation.registrador.bien.listado.BienesController;
 import proyecto2.presentation.registrador.bien.listado.BienesModel;
@@ -29,9 +36,9 @@ import proyecto2.presentation.categoria.edicion.CategoriaController;
 import proyecto2.presentation.categoria.listado.CategoriasController;
 import proyecto2.presentation.categoria.listado.CategoriasModel;
 import proyecto2.presentation.categoria.listado.CategoriasView;
-import proyecto2.presentation.labor.listado.LaborsController;
-import proyecto2.presentation.labor.listado.LaborsModel;
-import proyecto2.presentation.labor.listado.LaborsView;
+import proyecto2.presentation.registrador.labor.listado.LaborsController;
+import proyecto2.presentation.registrador.labor.listado.LaborsModel;
+import proyecto2.presentation.registrador.labor.listado.LaborsView;
 import proyecto2.presentation.login_usuario.LoginController;
 import proyecto2.presentation.login_usuario.LoginModel;
 import proyecto2.presentation.login_usuario.LoginView;
@@ -167,7 +174,6 @@ public class Application {
         CategoriasController categoriasController = new CategoriasController(categoriaView, categoriasModel, session, ses);
         CATEGORIAS_CONTROLLER = categoriasController;
         applicationView.addInternalFrame(categoriaView);
-
         
         ActivosModel activosModel = new ActivosModel();
         ActivosView activosView= new ActivosView();
@@ -190,6 +196,13 @@ public class Application {
         applicationView.addInternalFrame(bienesView);
 
         
+        ActivoGeneralModel activoGeneralModel = new ActivoGeneralModel();
+        ActivoGeneralView activoGeneralView = new ActivoGeneralView();
+        ActivoGeneralController activoGeneralController = new ActivoGeneralController(activoGeneralView, activoGeneralModel, session, ses);
+        ACTIVO_GENERAL_CONTROLLER = activoGeneralController;
+        applicationView.addInternalFrame(activoGeneralView);
+        //activoGeneralView.setVisible(true);
+
         FuncionariosDependenciaModel funcDepModel = new FuncionariosDependenciaModel();
         FuncionariosDependenciaView funcDepView = new FuncionariosDependenciaView();
         FuncionariosDependenciaController funcDepController = new FuncionariosDependenciaController(funcDepView,funcDepModel, session, ses);
@@ -200,7 +213,9 @@ public class Application {
         LaborView laborView = new LaborView();
         LaborController laborController = new LaborController(laborView, laborModel, session,ses);
         applicationView.addInternalFrame(laborView);
+        //LABOR_CONTROLLER = laborController; 
         LABOR_CONTOLLER = laborController; 
+        
     }
 
     public static FuncionarioController FUNCIONARIO_CONTROLLER;
@@ -221,8 +236,11 @@ public class Application {
     public static RegistradorController REGISTRADOR_CONTROLLER;
     public static ActivosController ACTIVOS_CONTROLLER;
     public static BienesController BIENES_CONTROLLER;
+    public static ActivoGeneralController ACTIVO_GENERAL_CONTROLLER;
+
     public static LaborsController LABORS_CONTROLLER;
     public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
+    //public static LaborController LABOR_CONTROLLER;
     public static LaborController LABOR_CONTOLLER;
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;

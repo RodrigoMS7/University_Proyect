@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -160,7 +162,29 @@ public class ModelGeneral {
             return null;
         }
     }
-
+    
+    public void deleteBienFromSolicitud(int solicitud){
+        String sql = "delete from bien where solicitud like "+ solicitud;
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                PreparedStatement rs = proyecto2.logic.ModelGeneral.getConnection().prepareStatement(sql)) {
+            rs.executeUpdate();
+        } catch (SQLException e) {
+        }
+        
+        //Transaction t = ses.beginTransaction();
+        //ses.createQuery(sql).setInteger(sql, solicitud).executeUpdate();
+        //t.commit();
+        
+     //String query = "delete from Poiext where idpoiext = :idpoiext";
+     //Session session = this.sessionFactory.openSession();
+     //Transaction tx = null;
+     //tx=session.beginTransaction();
+     //session.createQuery(query).setInteger("idpoiext", idpoiext).executeUpdate();
+     //tx.commit();
+     //session.close();
+        
+    }
+     
     public void eliminaFuncionario(Funcionario f) {
         Transaction t = ses.beginTransaction();
         ses.delete(f);
@@ -191,14 +215,12 @@ public class ModelGeneral {
         t.commit();
     }
 
-    
     public void borrarSolicitud(Solicitud solicitud) {
         Transaction t = ses.beginTransaction();
         ses.delete(solicitud);
-        t.commit(); 
+        t.commit();
     }
-    
-    
+
     //public List<Bien> getAllBienes(){
     //    String sql = "select * from bien";
     ///**************************
@@ -218,13 +240,21 @@ public class ModelGeneral {
     }
 
     public List<Bien> getAllBienesCategoria(Solicitud solicitud) {
-        String sql = "select * from bien where solicitud=" + solicitud.getCodigo();
+//        String sql = "select * from bien where solicitud=" + solicitud.getCodigo();
+        String sql = " select * from bien b left join categoria c on b.categoria = c.id_categoria where b.solicitud=" + solicitud.getCodigo();
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Bien> resultado = new ArrayList<Bien>();
             while (rs.next()) {
-                Integer.parseInt(rs.getString("Cantidad"));
-                resultado.add(new Bien(rs.getInt("codigo"), rs.getString("Descripcion"), rs.getString("Marca"), rs.getString("Modelo"), Integer.parseInt(rs.getString("Cantidad")), Double.parseDouble(rs.getString("Precio"))));
+                if (rs.getString("categoria") != null) {
+                    Categoria cat = new Categoria();
+                    cat.setConsecutivo(rs.getInt("consecutivo"));
+                    cat.setTipo(rs.getString("tipo"));
+                    cat.setIdCategoria(rs.getInt("id_categoria"));
+                    resultado.add(new Bien(rs.getInt("codigo"),cat, rs.getInt("cantidad"), rs.getString("modelo"), rs.getString("descripcion"), rs.getString("marca"), rs.getDouble("precio")));
+                } else {
+                resultado.add(new Bien(rs.getInt("codigo"),rs.getString("Descripcion"), rs.getString("Marca"), rs.getString("Modelo"), Integer.parseInt(rs.getString("Cantidad")), Double.parseDouble(rs.getString("Precio"))));
+                }   
             }
             return resultado;
         } catch (SQLException e) {
@@ -306,6 +336,18 @@ public class ModelGeneral {
         } catch (SQLException e) {
         }
         return 0;
+    }
+    
+    public String getPuestoDeLaborFromActivo(String id){
+        String sql = "select * from labor a inner join puesto p on a.puesto = p.id_puesto where funcionario = '" + id + "'";
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            while (rs.next()) {
+                String puesto = rs.getString("nombre");
+                return puesto;
+            }
+        } catch (SQLException e) {        }
+       return "";
     }
 
     public String getCodigoDependenciaDesdeLabor(String id) throws Exception {
@@ -536,8 +578,7 @@ public class ModelGeneral {
         } catch (SQLException e) {
             return null;
         }
-
-    }
+     }
 
     public List<Categoria> searchCategoria(Categoria categoria) {
         String sql = "select * from categoria where tipo like '%%%s%%'";
@@ -552,7 +593,29 @@ public class ModelGeneral {
         } catch (SQLException e) {
             return null;
         }
-    }
+     }
+     
+     public List<Activo> searchAllActivo() {
+        String sql = "select * from activo a inner join bien b on a.bien = b.codigo inner join labor l on a.labor = l.id_labor inner join categoria c on b.categoria = c.id_categoria";
+        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs = stm.executeQuery(sql);) {
+            List<Activo> resultado = new ArrayList<Activo>();
+            //Labor labor = new Labor();
+            while (rs.next()) {
+               // Categoria categoria
+                
+                Bien bien = new Bien();
+                bien.setDescripcion("descripcion");
+                //bien.se
+                
+                //resultado.add(new Activo(rs.getString("codigo"),/*(Bien) rs.getObject("bien")*/,/*(Labor) rs.getObject("labor")*/));
+            }
+            return resultado;
+        } catch (SQLException e) {
+            return null;
+        }
+     }
+    
 
 //    public int getUltimoCodigoSolicitud(){ BORRAR
 //        String sql = "select * from solicitud";
@@ -581,7 +644,7 @@ public class ModelGeneral {
     }
 
     public List<Activo> searchActivos(Activo filtro) {
-        String comodin="";
+        String comodin = "";
         //String sql = "select * from activo a inner join labor l";
         String sql = "select * from activo where labor is NULL";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -595,10 +658,10 @@ public class ModelGeneral {
 //                    Funcionario f = new Funcionario();
 //                    f.setId(rs.getString("funcionario"));
 //                    Labor l = new Labor(d, f);
-                      //resultado.add(new Activo(rs.getString("codigo"), l));
-                      resultado.add(new Activo(rs.getString("codigo")));
+                    //resultado.add(new Activo(rs.getString("codigo"), l));
+                    resultado.add(new Activo(rs.getString("codigo")));
                 }
-                comodin=rs.getString("codigo");
+                comodin = rs.getString("codigo");
             }
             return resultado;
         } catch (SQLException e) {
@@ -606,9 +669,55 @@ public class ModelGeneral {
         }
     }
 
+    public List<Activo> searchActivosFromCodigo(Activo filter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-      public List<Funcionario> searchAllFuncionariosFromDependencia(String codigo){
-        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ='"+codigo+"'";
+//    public String searchDependenciaFromLabor(String id) {
+//        String sql = "select dependencia from labor where funcionario= '"+id+"'";
+//        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+//                ResultSet rs = stm.executeQuery(sql);) {
+//            while (rs.next()) {
+//                String codigo = rs.getString("nom");
+//                return codigo;
+//            }
+//        } catch (SQLException e) {
+//        }
+//        return "";
+//    }
+
+    public List<Activo> searchActivosFromDependencia(String codigo) {
+        String sql = "select * from activo a inner join labor l on a.labor = l.id_labor inner join dependencia d on l.dependencia = '" + codigo + "'";
+        try(Statement stm= proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+                ResultSet rs= stm.executeQuery(sql);){
+            List<Activo> resultado = new ArrayList<Activo>();
+            while(rs.next()){
+                //´probando
+                Dependencia d = new Dependencia();
+                d.setCodigo(rs.getString("dependencia"));
+                d.setNombre(rs.getString("nombre"));
+                Funcionario f = new Funcionario();
+                f.setId(rs.getString("funcionario"));              
+                //Puesto p = new Puesto();
+                //p.setNombre(rs.getString("nombre"));
+                Labor labor = new Labor(d,f/*,p*/);
+                
+                Categoria c = new Categoria();
+                c.setTipo(rs.getString("tipo"));
+                //NO SE SI CARGAR SU CONSECUTIVO
+                Bien bien = new Bien ();
+                bien.setDescripcion(rs.getString("descripcion"));
+                bien.setCategoria(c);
+                
+                resultado.add(new Activo(rs.getString("codigo"), bien/*(Bien) rs.getObject("bien")*/, labor/*(Labor) rs.getObject("labor")*/));
+            }
+            return resultado;
+        }catch(SQLException e){}
+        return null;
+    }
+    
+    public List<Funcionario> searchAllFuncionariosFromDependencia(String codigo) {
+        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ='" + codigo + "'";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Funcionario> resultado = new ArrayList<Funcionario>();
@@ -620,9 +729,9 @@ public class ModelGeneral {
             return null;
         }
     }
-      
-      public List<Funcionario> searchAllFuncionariosFromDependencia(String codigo, Funcionario func){
-        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ='"+codigo+"' and f.id like '%%%s%%'";
+
+    public List<Funcionario> searchAllFuncionariosFromDependencia(String codigo, Funcionario func) {
+        String sql = "select * from labor l inner join funcionario f on l.funcionario = f.id where l.dependencia ='" + codigo + "' and f.id like '%%%s%%'";
         sql = String.format(sql, func.getId());
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
@@ -635,6 +744,7 @@ public class ModelGeneral {
             return null;
         }
     }
+
     public List<Puesto> findAllPuestos() {
         String sql = "select * from puesto";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -648,7 +758,7 @@ public class ModelGeneral {
             return null;
         }
     }
-    
+
 //    public List<Activo> findActivosPorDescripcion(){
 //         String sql = "select * from puesto";
 //        try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -662,5 +772,4 @@ public class ModelGeneral {
 //            return null;
 //        }
 //    }
-    
 }

@@ -38,6 +38,12 @@ public class CategoriasController {
         model.setFilter(filter);
         this.refrescarBusqueda();
     }
+    public void muestraBoton() {
+        view.muestraBotonAsignaCat();
+    }
+    public void ocultaBoton() {
+        view.ocultaBotonAsignaCat();
+    }
     public void buscar(){
         List<Categoria> rows = proyecto2.logic.ModelGeneral.instance().searchAllCategoria();
         model.setCategorias(rows);

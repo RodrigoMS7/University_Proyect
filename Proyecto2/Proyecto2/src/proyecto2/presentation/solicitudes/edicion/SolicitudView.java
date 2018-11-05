@@ -458,7 +458,7 @@ public class SolicitudView extends javax.swing.JInternalFrame implements java.ut
     public void modifica(Solicitud s) throws Exception {
         this.text_Comprobante.setText(s.getComprobante());
         //this.text_Fecha.setText(s.getComprobante());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         this.text_Fecha.setText(sdf.format(s.getFecha()));
         this.text_Fecha.setForeground(Color.BLACK);
         this.comboBox_Tipo.setSelectedItem(s.getTipoAdquisicion());
