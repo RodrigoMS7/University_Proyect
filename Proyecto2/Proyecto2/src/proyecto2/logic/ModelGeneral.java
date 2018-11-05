@@ -596,16 +596,18 @@ public class ModelGeneral {
      }
      
      public List<Activo> searchAllActivo() {
-        String sql = "select * from activo a inner join bien b on a.bien = b.codigo inner join labor l on a.labor = l.id_labor inner join categoria c on b.categoria = c.id_categoria";
+        String sql = "select * from activo a inner join bien b on a.bien = b.codigo inner join labor l on a.labor = l.id_labor inner join categoria c on a.categoria = c.id_categoria";
+        //String sql = "select * from activo a inner join bien b on a.bien = b.codigo inner join categoria c on b.categoria = c.id_categoria";
         try (Statement stm = proyecto2.logic.ModelGeneral.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
                 ResultSet rs = stm.executeQuery(sql);) {
             List<Activo> resultado = new ArrayList<Activo>();
             //Labor labor = new Labor();
             while (rs.next()) {
-               // Categoria categoria
+                Categoria categoria = new Categoria();
+                categoria.setTipo(rs.getString("tipo"));
                 
                 Bien bien = new Bien();
-                bien.setDescripcion("descripcion");
+                bien.setDescripcion(rs.getString("descripcion"));
                 //bien.se
                 
                 //resultado.add(new Activo(rs.getString("codigo"),/*(Bien) rs.getObject("bien")*/,/*(Labor) rs.getObject("labor")*/));
