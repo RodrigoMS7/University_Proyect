@@ -48,7 +48,7 @@ public class JefeController {
     }
 
     public void refrescarBusqueda() throws Exception {
-        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("porVerificar", model.getFilter());
+        List<Solicitud> rows = proyecto2.logic.ModelGeneral.instance().searchByEstado("por verificar", model.getFilter());
         model.setSolicitudes(rows);
         model.commit();
 //        if (rows.isEmpty()) {

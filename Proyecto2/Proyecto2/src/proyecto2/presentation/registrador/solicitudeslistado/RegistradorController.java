@@ -8,6 +8,7 @@ package proyecto2.presentation.registrador.solicitudeslistado;
 import java.awt.Point;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import proyecto2.Application;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Solicitud;
@@ -74,5 +75,15 @@ public class RegistradorController {
     public void hide(){
         view.setVisible(false);
     }  
+    
+    public void cambiaEstadoSolicitud(String estado, int row) throws Exception{
+        Transaction t=session.beginTransaction();
+        Solicitud seleccionada = model.getSolicitudes().getRowAt(row);
+        Solicitud solicitud = proyecto2.logic.ModelGeneral.instance().getSolicitud(seleccionada.getCodigo());
+        solicitud.setEstado(estado);
+        session.merge(solicitud);
+        t.commit();
+        buscarInicio();
+    }
     
 }

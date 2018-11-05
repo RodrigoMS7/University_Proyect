@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import proyecto2.Application;
 import proyecto2.SessionUsuario;
 import proyecto2.logic.Activo;
 import proyecto2.logic.Bien;
@@ -37,6 +38,12 @@ public class CategoriasController {
      public void buscar(Categoria filter) throws Exception{           
         model.setFilter(filter);
         this.refrescarBusqueda();
+    }
+    public void muestraBoton() {
+        view.muestraBotonAsignaCat();
+    }
+     public void ocultaBoton() {
+        view.ocultaBotonAsignaCat();
     }
     public void buscar(){
         List<Categoria> rows = proyecto2.logic.ModelGeneral.instance().searchAllCategoria();
@@ -116,6 +123,7 @@ public class CategoriasController {
         session.merge(bien);
         session.merge(catBD);
         t.commit();
+        Application.BIENES_CONTROLLER.refrescarBusqueda();
     }
     
     public void setCodBbien(int codBien){

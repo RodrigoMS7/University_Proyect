@@ -8,6 +8,8 @@ package proyecto2.presentation.registrador.solicitudeslistado;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,6 +67,9 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
         comprobanteFld = new javax.swing.JTextField();
         estado = new javax.swing.JLabel();
         estadosComboBox = new javax.swing.JComboBox<String>();
+        jLabel1 = new javax.swing.JLabel();
+        estadosComboBox1 = new javax.swing.JComboBox<String>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
@@ -101,6 +106,17 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
 
         estadosComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "por verificar", "por rotular", "procesada" }));
 
+        jLabel1.setText("Cambiar Estado Solicitud");
+
+        estadosComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "por rotular", "procesada" }));
+
+        jButton1.setText("Seleccionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,15 +124,23 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(comprobante)
-                .addGap(2, 2, 2)
-                .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(estado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(estadosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buscarButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comprobante)
+                        .addGap(2, 2, 2)
+                        .addComponent(comprobanteFld, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(estado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(estadosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(buscarButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(estadosComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,9 +153,14 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
                     .addComponent(estado)
                     .addComponent(buscarButton)
                     .addComponent(estadosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(93, 93, 93)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(estadosComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,6 +185,15 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
         }
     }//GEN-LAST:event_solicitudesMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int row = this.solicitudes.getSelectedRow();
+        try {
+            controller.cambiaEstadoSolicitud(this.estadosComboBox1.getSelectedItem().toString(), row);
+        } catch (Exception ex) {
+            Logger.getLogger(RegistradorView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscarButton;
@@ -163,6 +201,9 @@ public class RegistradorView extends javax.swing.JInternalFrame implements java.
     private javax.swing.JTextField comprobanteFld;
     private javax.swing.JLabel estado;
     private javax.swing.JComboBox<String> estadosComboBox;
+    private javax.swing.JComboBox<String> estadosComboBox1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable solicitudes;
     // End of variables declaration//GEN-END:variables
