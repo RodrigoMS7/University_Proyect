@@ -194,14 +194,14 @@ public class DependenciasView extends javax.swing.JInternalFrame implements java
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarButtonActionPerformed
-        if(this.validar()){
+        //if(this.validar()){
             try{
                 controller.buscar(this.toDependencia());
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE); 
             }
-        }else
-            JOptionPane.showMessageDialog(this, "Debe indicar algún dato", "ERROR", JOptionPane.ERROR_MESSAGE); 
+        //}else
+          //  JOptionPane.showMessageDialog(this, "Debe indicar algún dato", "ERROR", JOptionPane.ERROR_MESSAGE); 
     }//GEN-LAST:event_buscarButtonActionPerformed
 
     private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed

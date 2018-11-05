@@ -36,6 +36,9 @@ import proyecto2.presentation.categoria.edicion.CategoriaController;
 import proyecto2.presentation.categoria.listado.CategoriasController;
 import proyecto2.presentation.categoria.listado.CategoriasModel;
 import proyecto2.presentation.categoria.listado.CategoriasView;
+import proyecto2.presentation.labor.listado.LaborsController;
+import proyecto2.presentation.labor.listado.LaborsModel;
+import proyecto2.presentation.labor.listado.LaborsView;
 import proyecto2.presentation.login_usuario.LoginController;
 import proyecto2.presentation.login_usuario.LoginModel;
 import proyecto2.presentation.login_usuario.LoginView;
@@ -180,11 +183,19 @@ public class Application {
         applicationView.addInternalFrame(activosView);
 
 
+        LaborsModel laborsModel = new LaborsModel();
+        LaborsView laborsView= new LaborsView();
+        LaborsController laborsController = new LaborsController(laborsView,laborsModel,session,ses);
+        LABORS_CONTROLLER = laborsController;
+        applicationView.addInternalFrame(laborsView);
+
+
         BienesModel bienesModel = new BienesModel();
         BienesView bienesView = new BienesView();
         BienesController bienesController = new BienesController(bienesView, bienesModel, session, ses);
         BIENES_CONTROLLER = bienesController;
         applicationView.addInternalFrame(bienesView);
+
         
         ActivoGeneralModel activoGeneralModel = new ActivoGeneralModel();
         ActivoGeneralView activoGeneralView = new ActivoGeneralView();
@@ -203,7 +214,7 @@ public class Application {
         LaborView laborView = new LaborView();
         LaborController laborController = new LaborController(laborView, laborModel, session,ses);
         applicationView.addInternalFrame(laborView);
-        LABOR_CONTOLLER = laborController; 
+        LABOR_CONTROLLER = laborController; 
 
     }
 
@@ -227,9 +238,9 @@ public class Application {
     public static BienesController BIENES_CONTROLLER;
     public static ActivoGeneralController ACTIVO_GENERAL_CONTROLLER;
 
+    public static LaborsController LABORS_CONTROLLER;
     public static FuncionariosDependenciaController FUNCIONARIOS_DEPENDENCIA_CONTROLLER;
-    public static LaborController LABOR_CONTOLLER;
-
+    public static LaborController LABOR_CONTROLLER;
     public static final int MODO_AGREGAR = 0;
     public static final int MODO_EDITAR = 1;
     public static final int MODO_CONSULTAR = 2;
